@@ -1,0 +1,15 @@
+<%= form_with model: @post, url: posts_path do |form|  %>
+  <%= form.label :title, "Title: " %>
+  <%= form.text_field :title %>
+
+  <%= form.label :body, "Content: " %>
+  <%= form.text_field :body %>
+  
+ <%= form.label :title, "Images: " %>
+ <%= form.file_field :images, multiple: true, name: "images[]" %>
+
+  <%= form.label :skill_list %>
+  <%= form.text_field :skill_list, value: @post.skills.join(',') %>
+
+  <%= form.submit %>
+<% end %>

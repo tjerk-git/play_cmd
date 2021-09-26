@@ -1,0 +1,12 @@
+<h1><%= @post.title %></h1>
+
+<% @post.images.each do |file| %>
+  <%= image_tag file.representation(resize_to_limit: [500, 500]) %>
+<% end %>
+
+<% if @post.skill_list.present? %>
+  <% @post.skill_list.each do |tag| %>
+    <%= tag %>
+  <% end %>
+<% end %>
+

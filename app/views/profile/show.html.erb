@@ -1,0 +1,5 @@
+<h1> <%= @user.name %> </h1>
+
+<% if @user.avatar.attached? %>
+<%= image_tag @user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100) %>
+<% end %>

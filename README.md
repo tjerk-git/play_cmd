@@ -1,10 +1,17 @@
 # README
-
 Repo for playground for MIJNCMD
-Monolith Rails Application with Vue sprinkles.
-User -> check for NHLSTENDEN domain validation
+Monolith Rails Application with Vue sprinkles where needed
 
-First setup
+# MVP
+- [x] User moet kunnen registeren
+- [x] User moet kunnen inloggen
+- [x] User moet een profiel foto kunnen instellen
+- [x] User moet een post kunnen maken
+- [ ] User moet feedback op post kunnen ontvangen
+- [ ] User moet kunnen browsen op tags
+- [ ] User moet kunnen liken
+- [ ] User krijgt email bij reacties op post
+
 
 # Post
 Media (gif, heic, jpeg)
@@ -27,7 +34,7 @@ User has many Comments
 User has many Posts
 User has many Tags
 
-# Tag
+# Skills
 Belongs to User
 Belongs to Post
 
@@ -38,16 +45,5 @@ Belongs to Post
 // Ik sloop dit eruit want comments moeten over de post gaan.
 Parent
 Children
-
-
-# MVP
-- [ ] User moet kunnen registeren
-- [ ] User moet kunnen inloggen
-- [ ] User moet een profiel foto kunnen instellen
-- [ ] User moet een post kunnen maken
-- [ ] User moet feedback op post kunnen ontvangen
-- [ ] User moet kunnen browsen op tags
-- [ ] User moet kunnen liken
-- [ ] User krijgt email bij reacties op post
 
 
