@@ -1,7 +1,12 @@
 <h1><%= @post.title %></h1>
 
-<% @post.images.each do |file| %>
-  <%= image_tag file.representation(resize_to_limit: [500, 500]) %>
+
+<% if @post.images.attached? %>
+  <% @post.images.each do |image| %>
+    <%= link_to gallery_view_path do %>
+      <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <% if @post.skill_list.present? %>

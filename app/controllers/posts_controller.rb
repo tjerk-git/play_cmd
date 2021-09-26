@@ -1,6 +1,16 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
 
+    def index
+
+        if params[:tag]
+            @posts = Post.tagged_with(["awesome", "cool"], :match_all => true)
+        else
+            @posts = Post.all()
+        end
+       
+    end
+
     def show
         @post = Post.find(params[:id])
     end
@@ -17,6 +27,10 @@ class PostsController < ApplicationController
 
         post.save
         redirect_to post
+    end
+
+    def gallery
+        @post = Post.find(params[:id])
     end
 
 private

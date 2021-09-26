@@ -1,0 +1,18 @@
+<h1>Listing all posts 
+<% if params[:tag] %>
+        <%= params[:tag] %>
+<% end %>
+</h1>
+
+
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <%= post.title %>
+    <% if post.skill_list.present? %>
+    <% post.skill_list.each do |tag| %>
+        <b><%= tag %></b>
+    <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>
