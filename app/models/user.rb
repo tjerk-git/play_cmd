@@ -2,9 +2,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
-   # Validates for NHLSTENDEN.com
+   # Validates for NHLSTENDEN.com and STUDENT.NHLSTENDEN.COM
    validates :email, format: {
-      with: /\b[A-Z0-9._%a-z\-]+@nhlstenden\.com\z/, message: "must be a nhlstenden.com account" 
+      with: /\b[A-Z0-9._%a-z\-]+@(?:student.)?nhlstenden\.com\z/, message: "must be a nhlstenden.com account"
    }
 
    has_one_attached :avatar do |attachable|
