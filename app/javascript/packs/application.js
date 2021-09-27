@@ -7,7 +7,25 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import * as instances from '../instances'
+import Vue from "vue"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener('turbolinks:load', () => {
+    Object.keys(instances).forEach((instanceName) => {
+        const instance = instances[instanceName]
+        const elements = document.querySelectorAll(instance.el)
+
+        elements.forEach((element) => {
+            const props = JSON.parse(element.getAttribute('data-props'))
+
+            new Vue({
+                el: element,
+                render: h => h(instance.component, { props })
+            })
+        })
+    })
+})

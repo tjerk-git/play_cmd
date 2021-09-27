@@ -1,4 +1,4 @@
-<h1>Listing all posts 
+<h1>Listing all posts
 <% if params[:tag] %>
         <%= params[:tag] %>
 <% end %>
@@ -16,3 +16,6 @@
 
   <% end %>
 <% end %>
+
+<% props = { tags: {item: {name: "Hello"}} }.to_json %>
+<div class="vue-tag-selector" data-props="<%= props %>"></div>
