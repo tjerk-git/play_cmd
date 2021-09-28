@@ -1,4 +1,4 @@
-<h1>Listing all posts 
+<h1>Listing all posts
 <% if params[:tag] %>
         <%= params[:tag] %>
 <% end %>
@@ -6,13 +6,16 @@
 
 
 <% if @posts %>
-  <% @posts.each do |post| %>
-    <%= post.title %>
-    <% if post.skill_list.present? %>
-    <% post.skill_list.each do |tag| %>
-        <b><%= tag %></b>
+    <ul>
+    <% @posts.each do |post| %>
+    <div>
+        <%= post.title %>
+        <% if post.skill_list.present? %>
+        <% post.skill_list.each do |tag| %>
+            <b><%= tag %></b>
+        <% end %>
+        <% end %>
+    </div>
     <% end %>
-    <% end %>
-
-  <% end %>
+    </ul>
 <% end %>
