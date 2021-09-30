@@ -8,7 +8,7 @@ class PostsController < ApplicationController
         else
             @posts = Post.all()
         end
-       
+
     end
 
     def show
@@ -17,14 +17,19 @@ class PostsController < ApplicationController
 
     def new
         @post = Post.new()
+        @tags = Tag.all().select(:name, :id)
+        render inertia: 'Post/New', props: {
+            post: @post,
+            skills: @tags
+        }
     end
 
     def create
+        params[:skill_list].map(&:inspect).join(', ')
         post = Post.new(post_params)
         post.images.attach(params[:images])
         post.user = current_user
-        post.skill_list.add(params[:skill_list])
-
+        post.skill_list.add(skills)
         post.save
         redirect_to post
     end
@@ -35,6 +40,6 @@ class PostsController < ApplicationController
 
 private
     def post_params
-        params.require(:post).permit(:skill_list, :title, :body, images: [])
+        params.require(:postItem).permit(:skill_list, :title, :body, images: [])
     end
 end

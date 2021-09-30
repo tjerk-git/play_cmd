@@ -4,10 +4,31 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
+
+import Vue from 'vue'
+import { App, plugin } from '@inertiajs/inertia-vue'
+import { InertiaProgress } from '@inertiajs/progress'
+import * as Routes from './routes';
+
+Vue.prototype.$routes = Routes
+
+Vue.use(plugin)
+InertiaProgress.init()
+
+// Instead of using App.vue page, Inertia
+// will use Rails application.html.erb layout page
+const el = document.getElementById('app')
+
+new Vue({
+  render: h => h(App, {
+    props: {
+      initialPage: JSON.parse(el.dataset.page),
+      resolveComponent: name => require(`../pages/${name}`).default,
+    },
+  }),
+}).$mount(el)
