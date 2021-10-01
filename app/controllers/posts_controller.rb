@@ -13,6 +13,9 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
+        render inertia: 'Post/Show', props: {
+            post: @post
+        }
     end
 
     def new
@@ -29,7 +32,7 @@ class PostsController < ApplicationController
         post.user = current_user
         post.skill_list.add(params[:skill_list])
         post.save()
-        redirect_to post
+        redirect_to post, inertia: { newCreated: true }
     end
 
     def gallery
