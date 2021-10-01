@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Hello world</h1>
-        <form @submit.prevent="form.post($routes.posts())">
+        <form @submit.prevent="sendPost">
             <div class="input-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" v-model="form.postItem.title">
@@ -67,6 +67,10 @@ export default {
             }
             this.options.push(tag)
             this.post.skill_list.push(newTag)
+        },
+        sendPost() {
+            this.form.postItem.skill_list = this.form.postItem.skill_list.toString()
+            this.form.post(this.$routes.posts())
         }
     },
     mounted () {

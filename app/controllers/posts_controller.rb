@@ -25,12 +25,10 @@ class PostsController < ApplicationController
     end
 
     def create
-        params[:skill_list].map(&:inspect).join(', ')
         post = Post.new(post_params)
-        post.images.attach(params[:images])
         post.user = current_user
-        post.skill_list.add(skills)
-        post.save
+        post.skill_list.add(params[:skill_list])
+        post.save()
         redirect_to post
     end
 
@@ -40,6 +38,6 @@ class PostsController < ApplicationController
 
 private
     def post_params
-        params.require(:postItem).permit(:skill_list, :title, :body, images: [])
+        params.require(:postItem).permit(:title, :body, :images, :skill_list)
     end
 end
