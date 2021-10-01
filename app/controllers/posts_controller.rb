@@ -9,6 +9,9 @@ class PostsController < ApplicationController
             @posts = Post.all()
         end
 
+        render inertia: 'Post/Index', props: {
+            posts: @posts
+        }
     end
 
     def show
