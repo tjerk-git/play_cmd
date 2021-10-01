@@ -14,10 +14,15 @@ import Vue from 'vue'
 import { App, plugin } from '@inertiajs/inertia-vue'
 import { InertiaProgress } from '@inertiajs/progress'
 import * as Routes from './routes';
+import { Head, Link } from '@inertiajs/inertia-vue'
+import VueConfetti from 'vue-confetti'
 
 Vue.prototype.$routes = Routes
 
 Vue.use(plugin)
+Vue.component('InertiaLink', Link)
+Vue.use(VueConfetti)
+
 InertiaProgress.init()
 
 // Instead of using App.vue page, Inertia

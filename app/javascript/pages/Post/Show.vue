@@ -6,11 +6,6 @@
 </template>
 
 <script>
-import VueConfetti from 'vue-confetti'
-import Vue from 'vue'
-
-Vue.use(VueConfetti)
-
 export default {
     props: {
         newCreated: Boolean,
