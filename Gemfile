@@ -57,3 +57,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'inertia_rails'
 gem "js-routes"
+
+gem "tailwindcss-rails", "~> 0.5.0"
