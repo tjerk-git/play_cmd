@@ -2,14 +2,15 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
+  has_many :post_tags
+  has_many :tags, :through => :post_tags
+
   before_validation :create_slug
 
   has_many_attached :images do |attachable|
     attachable.variant :cover, resize: "900x700"
     attachable.variant :large_thumb, resize: "350x235"
   end
-
-  acts_as_taggable_on :skills
 
   def create_slug
     if slug.blank? && title.present?

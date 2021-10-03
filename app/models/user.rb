@@ -1,4 +1,7 @@
+
 class User < ApplicationRecord
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
@@ -12,5 +15,6 @@ class User < ApplicationRecord
    end
 
    has_many :posts
-   acts_as_taggable_on :skills
+   has_many :user_tags
+   has_many :users, :through => :user_tags
 end

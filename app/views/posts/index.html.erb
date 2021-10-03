@@ -1,18 +1,50 @@
 <h1>Listing all posts 
 <% if params[:tag] %>
-        <%= params[:tag] %>
+      <%= params[:tag] %>
 <% end %>
 </h1>
 
+<h2> Browse by tag</h2>
+<% if @tags %>
+  <ul>
+  <% @tags.each do |tag| %>
+    <li>
+    <%= link_to tag.name, "/posts/list/#{tag.name}" %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
 
 <% if @posts %>
+  
   <% @posts.each do |post| %>
+  <div class="post">
     <%= post.title %>
-    <% if post.skill_list.present? %>
-    <% post.skill_list.each do |tag| %>
-        <b><%= tag %></b>
+
+    <% if post.images.attached? %>
+    <% post.images.each do |image| %>
+      <%= link_to gallery_view_path do %>
+        <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
+      <% end %>
     <% end %>
     <% end %>
 
+    <% if post.tags.present? %>
+      <% post.tags.each do |tag| %>
+          <%= link_to tag.name, "/posts/list/#{tag.name}" %>
+      <% end %>
+    <% end %>
+  </div>
   <% end %>
 <% end %>
+
+<style>
+.post{
+  padding:10px;
+  border: 1px solid grey;
+  margin:10px;
+  float:left;
+  width: 400px;
+}
+</style>
+

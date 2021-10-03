@@ -9,9 +9,9 @@
   <% end %>
 <% end %>
 
-<% if @post.skill_list.present? %>
-  <% @post.skill_list.each do |tag| %>
-    <%= tag %>
+<% if @post.tags.present? %>
+  <% @post.tags.each do |tag| %>
+    <%= tag.name %>
   <% end %>
 <% end %>
 
