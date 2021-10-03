@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
   get '/post/:id/gallery', to: 'posts#gallery', :as => :gallery_view
   get '/posts/list/:tag', to: 'posts#by_tag', :as => :tag_path
+  post '/posts/list/filter/', to: 'posts#filter', :as => :filter_path
   
   patch '/profile/:id/edit', to: 'profile#update'
   put '/profile/:id/edit', to: 'profile#update'
 
-  resources :posts
+  resources :posts, param: :slug
+
 end

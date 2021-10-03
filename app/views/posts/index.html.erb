@@ -15,11 +15,17 @@
   </ul>
 <% end %>
 
+<h2> Filter by multiple tags </h1>
+<%= form_with model: @post, url: filter_path_url do |form|  %>
+ <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  <%= form.submit %>
+<% end %>
+
+
 <% if @posts %>
-  
   <% @posts.each do |post| %>
   <div class="post">
-    <%= post.title %>
+      <%= link_to post.title, "/posts/#{post.slug}" %>
 
     <% if post.images.attached? %>
     <% post.images.each do |image| %>
@@ -36,6 +42,8 @@
     <% end %>
   </div>
   <% end %>
+<% else %>
+  <h1> No posts found... </h1>
 <% end %>
 
 <style>

@@ -15,8 +15,13 @@ class PostsController < ApplicationController
         render :index
     end
 
+    def filter
+        @posts = Post.joins(:tags).where(tags: { id: params[:tag_ids] })
+        render :index
+    end
+
     def show
-        @post = Post.find(params[:id])
+        @post = Post.find_by!(slug: params[:slug])
     end
 
     def new
