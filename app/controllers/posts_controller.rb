@@ -6,6 +6,12 @@ class PostsController < ApplicationController
         @tags = Tag.all()
     end
 
+    def like
+        @post = Post.find(params[:id])
+        Like.create(user: current_user, post: @post)
+        redirect_to post_path(@post.slug)
+    end
+
     def for_you
         @posts = Post.joins(:tags).where(tags: { name: params[:tag] })
     end
@@ -24,20 +30,15 @@ class PostsController < ApplicationController
         @post = Post.find_by!(slug: params[:slug])
     end
 
-    def new
+    def new 
         @post = Post.new()
-        @tags = Tag.all().select(:name, :id)
-        render inertia: 'Post/New', props: {
-            post: @post,
-            skills: @tags
-        }
     end
 
     def create
         @post = Post.new(post_params)
         @post.user = current_user
         if @post.save!
-          redirect_to @post, notice: 'Bericht aangemaakt'
+          redirect_to post_path(@post.slug), notice: 'Bericht aangemaakt'
         else
           flash.now[:alert] = 'Bericht niet opgeslagen'
           render :new

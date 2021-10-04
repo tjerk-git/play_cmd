@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
 
   belongs_to :user
+  has_many :likes
 
   has_many :post_tags
   has_many :tags, :through => :post_tags
@@ -10,6 +11,10 @@ class Post < ApplicationRecord
   has_many_attached :images do |attachable|
     attachable.variant :cover, resize: "900x700"
     attachable.variant :large_thumb, resize: "350x235"
+  end
+  
+  def liked?(user)
+    !!self.likes.find{|like| like.user == user}
   end
 
   def create_slug

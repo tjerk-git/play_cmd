@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   patch '/profile/:id/edit', to: 'profile#update'
   put '/profile/:id/edit', to: 'profile#update'
 
+  put '/post/:id/like', to: 'posts#like', as: 'like'
+
   resources :posts, param: :slug
 
 end

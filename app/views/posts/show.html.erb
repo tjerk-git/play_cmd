@@ -1,6 +1,6 @@
 <h1><%= @post.title %></h1>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", posts_path %>
 
 <% if @post.images.attached? %>
   <% @post.images.each do |image| %>
@@ -16,3 +16,12 @@
   <% end %>
 <% end %>
 
+<% if @post.liked?(current_user) %>
+  <h1> <%= @post.likes.length %> </h1>
+  <%= button_to "You liked this, and we like you", like_path(@post), method: "put", disabled: true %>
+<% else %>
+  <%= button_to "Like", like_path(@post), method: "put" %>
+    <% if @post.likes.count > 0 %>
+    <span> <%= @post.likes.count %> </span>
+    <% end %>
+<% end %>
