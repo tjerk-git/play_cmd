@@ -2,15 +2,6 @@
   "name": "play-cmd",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@inertiajs/inertia": "^0.10.1",
-    "@inertiajs/inertia-vue": "^0.7.2",
-    "@inertiajs/progress": "^0.2.6",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.4.3",
-=======
     "@fullhuman/postcss-purgecss": "^4.0.3",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
@@ -23,7 +14,6 @@
     "postcss": "^8.2.10",
     "postcss-loader": "^4.0.3",
     "sass": "^1.32.7",
->>>>>>> cedf11736d3a7c62427ebed59233146011d989c8
     "tailwindcss": "^2.2.16",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.14",

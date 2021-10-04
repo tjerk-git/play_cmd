@@ -23,21 +23,6 @@
 
 
 <% if @posts %>
-<<<<<<< HEAD
-    <ul>
-    <% @posts.each do |post| %>
-    <div>
-        <%= post.title %>
-        <% if post.skill_list.present? %>
-        <% post.skill_list.each do |tag| %>
-            <b><%= tag %></b>
-        <% end %>
-        <% end %>
-    </div>
-    <% end %>
-    </ul>
-<% end %>
-=======
   <% @posts.each do |post| %>
   <div class="post">
       <%= link_to post.title, "/posts/#{post.slug}" %>
@@ -71,4 +56,3 @@
 }
 </style>
 
->>>>>>> cedf11736d3a7c62427ebed59233146011d989c8
