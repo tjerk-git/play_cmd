@@ -22,7 +22,3 @@ environment.loaders.keys().forEach(loaderName => {
 const loader = environment.loaders.get(loaderName)
 loader.use.forEach(hotfixPostcssLoaderConfig)
 })
-
-environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
-environment.loaders.prepend('vue', vue)
-module.exports = environment
