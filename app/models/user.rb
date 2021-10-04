@@ -1,7 +1,6 @@
 
 class User < ApplicationRecord
 
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
@@ -17,4 +16,5 @@ class User < ApplicationRecord
    has_many :posts
    has_many :user_tags
    has_many :users, :through => :user_tags
+   has_many :comments
 end

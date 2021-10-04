@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   put '/post/:id/like', to: 'posts#like', as: 'like'
 
+  post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
+
   resources :posts, param: :slug
 
 end

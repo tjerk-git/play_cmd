@@ -28,6 +28,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find_by!(slug: params[:slug])
+        @comment = Comment.new()
     end
 
     def new 
