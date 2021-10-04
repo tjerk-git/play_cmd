@@ -1,11 +1,29 @@
 <h1>Listing all posts
 <% if params[:tag] %>
-        <%= params[:tag] %>
+      <%= params[:tag] %>
 <% end %>
 </h1>
 
+<h2> Browse by tag</h2>
+<% if @tags %>
+  <ul>
+  <% @tags.each do |tag| %>
+    <li>
+    <%= link_to tag.name, "/posts/list/#{tag.name}" %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<h2> Filter by multiple tags </h1>
+<%= form_with model: @post, url: filter_path_url do |form|  %>
+ <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  <%= form.submit %>
+<% end %>
+
 
 <% if @posts %>
+<<<<<<< HEAD
     <ul>
     <% @posts.each do |post| %>
     <div>
@@ -19,3 +37,38 @@
     <% end %>
     </ul>
 <% end %>
+=======
+  <% @posts.each do |post| %>
+  <div class="post">
+      <%= link_to post.title, "/posts/#{post.slug}" %>
+
+    <% if post.images.attached? %>
+    <% post.images.each do |image| %>
+      <%= link_to gallery_view_path do %>
+        <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
+      <% end %>
+    <% end %>
+    <% end %>
+
+    <% if post.tags.present? %>
+      <% post.tags.each do |tag| %>
+          <%= link_to tag.name, "/posts/list/#{tag.name}" %>
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
+<% else %>
+  <h1> No posts found... </h1>
+<% end %>
+
+<style>
+.post{
+  padding:10px;
+  border: 1px solid grey;
+  margin:10px;
+  float:left;
+  width: 400px;
+}
+</style>
+
+>>>>>>> cedf11736d3a7c62427ebed59233146011d989c8

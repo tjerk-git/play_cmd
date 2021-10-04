@@ -60,8 +60,6 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    acts-as-taggable-on (8.1.0)
-      activerecord (>= 5.0, < 6.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.16)
@@ -87,6 +85,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     ffi (1.15.4)
     globalid (0.5.2)
@@ -225,11 +227,11 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 8.0)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   devise
+  dotenv-rails
   image_processing (~> 1.2)
   inertia_rails
   jbuilder (~> 2.7)
@@ -246,7 +248,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
-  webpacker (~> 5.0)
+  webpacker (~> 5.4.0)
 
 RUBY VERSION
    ruby 3.0.0p0

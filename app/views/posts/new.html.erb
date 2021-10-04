@@ -8,8 +8,7 @@
  <%= form.label :title, "Images: " %>
  <%= form.file_field :images, multiple: true, name: "images[]" %>
 
-  <%= form.label :skill_list %>
-  <%= form.text_field :skill_list, value: @post.skills.join(',') %>
+ <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
 
   <%= form.submit %>
 <% end %>
