@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>
+    Hey, 
+    <% if @comment.post.user.name %>
+      <%= @comment.post.user.name %>
+    <% else %>
+     <%= @comment.post.user.email %>
+    <% end %>
+    </h1>
+    <p>
+      <%= @commenter %>, has left some feedback saying:
+      <br>
+        <%= @comment.body %>
+    </p>
+    <p>
+      Check it out!  <%= link_to @comment.post.title, "/posts/#{@comment.post.slug}" %>
+    </p>
+    <p>Thanks for playing and have a great day!</p>
+  </body>
+</html>

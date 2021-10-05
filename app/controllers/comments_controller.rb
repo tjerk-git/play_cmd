@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
         @comment.user = current_user
         @comment.post = Post.find(params[:post_id])
         if @comment.save!
+          CommentMailer.with(comment: @comment).feedback_email.deliver_later
           redirect_to post_path(@comment.post.slug), notice: 'comment aangemaakt'
         else
           flash.now[:alert] = 'comment niet opgeslagen'
