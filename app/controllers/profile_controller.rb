@@ -6,15 +6,15 @@ class ProfileController < ApplicationController
     end
 
     def list
-        case
-        when params[:tag_ids]
-            @users = User.joins(:tags).where(tags: { id: params[:tag_ids] })         
-        when params[:query]
+        if params[:query] != ""
             query = params[:query]
             @users = User.where("name like ?", "%#{query}%")
+        elsif params[:tag_ids]
+            @users = User.joins(:tags).where(tags: { id: params[:tag_ids] })
         else
-          @users = User.all()
+            @users = User.all()
         end
+       #@users = User.where("name like ?", "%#{query}%")
     end
 
 

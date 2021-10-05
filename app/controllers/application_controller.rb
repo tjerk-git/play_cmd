@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+      devise_parameter_sanitizer.permit(:account_update) do |user_params|
         user_params.permit(
           { tag_ids: [] },
           :email,
@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
           :password_confirmation,
           :name,
           :avatar
+          )
+      end
+
+      devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+        user_params.permit(
+          :email,
+          :password,
+          :password_confirmation,
+          :name,
           )
       end
     end
