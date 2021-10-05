@@ -14,12 +14,11 @@ Monolith Rails Application with Vue sprinkles where needed
 - [ ] User krijgt email bij reacties op post
 - [ ] User moet kunnen browsen op andere users (op tag of via zoeken)
 
-
 # TODO FUN STUFF
 - [ ] Liken zonder refresh
 - [ ] Confetti bij plaatsen post
 - [ ] Lasers bij liken post
 - [ ] Confetti bij schrijven feedback
 - [ ] WYIWYG editors
-
-
+- [ ] User moet gebruikers(teamleden) toe kunnen voegen aan een post
+- [ ] User moet tools kunnen selecteren bij post

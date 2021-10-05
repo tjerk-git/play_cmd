@@ -16,8 +16,10 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
 
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-      <%= link_to "People", people_path %>
+      <div class="grid grid-cols-3 gap-6 bg-gray-200">
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <%= link_to "People", people_path %>
+      </div>
       <%= yield %>
     </div>
   </body>

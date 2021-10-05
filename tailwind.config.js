@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -5,7 +7,9 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+        gray: colors.trueGray,
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
