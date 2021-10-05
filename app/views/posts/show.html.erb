@@ -1,48 +1,132 @@
-<h1><%= @post.title %></h1>
 <% if notice == 'Bericht aangemaakt' %>
   <script>
-  window.onload = function () {
-    modes.fireworks();
-  };
+    window.onload = function () {
+      modes.fireworks();
+    };
   </script>
 <% end %>
+
 <%= link_to "Back", posts_path %>
 
-<% if @post.images.attached? %>
-  <% @post.images.each do |image| %>
-    <%= link_to gallery_view_path do %>
-      <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
-    <% end %>
-  <% end %>
-<% end %>
+<div>
+  <div class="flex justify-between w-full">
+      <div class="flex items-center py-2">
+        <%# Image %>
+        <div class=" text-darkBackground dark:text-gray-400">
+          <h3 class="text-xl"><%= @post.user.name %></h3>
+          <p>Developer</p>
+        </div>
+      </div>
+      <div class="self-center">
+      <% if @post.liked?(current_user) %>
+          <h1> <%= @post.likes.length %> </h1>
+          <%= button_to "You liked this, and we like you", like_path(@post), method: "put", disabled: true, class: 'bg-red-100 text-red-800 rounded-lg inline-flex p-3' %>
+        <% else %>
+          <%= button_to "Like", like_path(@post), method: "put", class: 'bg-gray-100 text-gray-800 rounded-lg inline-flex p-3' %>
+            <% if @post.likes.count > 0 %>
+            <span> <%= @post.likes.count %> </span>
+            <% end %>
+        <% end %>
+      </div>
+  </div>
+  <h1 class="mb-4 text-2xl font-semibold text-black dark:text-white mt-9">
+    <%= @post.title %>
+  </h1>
 
-<% if @post.tags.present? %>
-  <% @post.tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %>
-<% end %>
-
-<% if @post.liked?(current_user) %>
-  <h1> <%= @post.likes.length %> </h1>
-  <%= button_to "You liked this, and we like you", like_path(@post), method: "put", disabled: true %>
-<% else %>
-  <%= button_to "Like", like_path(@post), method: "put" %>
-    <% if @post.likes.count > 0 %>
-    <span> <%= @post.likes.count %> </span>
-    <% end %>
-<% end %>
-
-<h3> Comments </h3>
-
-<% if @post.comments %>
-    <% @post.comments.each do |comment| %>
-    <%= comment.body %>
-    <%= comment.user.id %>
-  <% end %>
-<% end %>
-
-<%= form_with model: @comment, url: new_comment_path(@post.id) do |form|  %>
-  <%= form.label :body, "Comment: " %>
-  <%= form.text_field :body %>
-  <%= form.submit %>
-<% end %>
+    <div class="grid items-start grid-cols-1 gap-4 mb-8 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+        <span class="w-full bg-white">
+          <div class="px-4 py-4">
+          <%= @post.body %>
+          <% if @post.images.attached? %>
+            <% @post.images.each do |image| %>
+              <%= link_to gallery_view_path do %>
+                <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
+              <% end %>
+            <% end %>
+          <% end %>
+          </div>
+        </span>
+        <div class="flex w-full gap-4">
+          <div class="flex-auto px-4 py-2 bg-white">
+            <div class="flex items-center">
+              <%# Image here %>
+              <div class="">
+                <h3><%= @post.user.name %></h3>
+                <p class="text-gray-300">Developer</p>
+              </div>
+            </div>
+            <% if @post.user.tags.present? %>
+              <div class="py-4">
+                <h4 class="text-gray-800">Creative fields</h4>
+                  <div class="flex justify-between mt-1">
+                    <div class="flex space-x-2">
+                      <% @post.user.tags.each do |tag| %>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
+                        <%= tag.name %>
+                        </span>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <div class="flex-auto px-4 py-2 bg-white">
+            <h2 class="font-semibold">Tools</h2>
+            <% if @post.tags.present? %>
+              <% @post.tags.each do |tag| %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
+                <%= tag.name %>
+                </span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        </div>
+    <section class="grid grid-cols-1 gap-4">
+      <div>
+        <div class="">
+          <ul class="space-y-4">
+            <% if @post.comments %>
+              <% @post.comments.each do |comment| %>
+              <div class="px-2 py-3 text-black bg-white rounded-md">
+                <div class="flex space-x-3">
+                  <div class="flex-1">
+                    <p class="text-gray-700 text-md">
+                      <%= comment.body %>
+                    </p>
+                  </div>
+                </div>
+                <div class="py-1 mt-4 border-t border-1">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <%# <div class="flex-shrink-0 w-10 h-10">
+                          <%# Image here %>
+                        <%# </div> %>
+                        <div class="py-2">
+                          <div class="text-sm font-medium text-gray-900">
+                            <%= comment.user.name %>
+                          </div>
+                          <div class="text-sm text-gray-500">
+                            <%= comment.created_at.to_date %>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
+            <div class="bg-white">
+            <%= form_with model: @comment, url: new_comment_path(@post.id) do |form|  %>
+              <%= form.label :body, "Comment: " %>
+              <%= form.text_field :body %>
+              <%= form.submit %>
+            <% end %>
+          </div>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

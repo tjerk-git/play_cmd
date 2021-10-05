@@ -23,7 +23,13 @@
         <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         <%= link_to "People", people_path %>
       </div>
-      <%= yield %>
+      <div class="flex items-stretch flex-1 overflow-hidden">
+        <main
+          class="flex-1 px-6 mt-8 overflow-scroll md:px-10 focus:outline-none"
+        >
+          <%= yield %>
+        </main>
+      </div>
     </div>
   </body>
 </html>
