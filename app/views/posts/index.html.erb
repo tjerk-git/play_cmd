@@ -4,19 +4,6 @@
 <% end %>
 </h1>
 
-<div class="bg-gray-50">
-<h2 class="font-bold"> Browse by tag</h2>
-<% if @tags %>
-  <ul>
-  <% @tags.each do |tag| %>
-    <li>
-    <%= link_to tag.name, "/posts/list/#{tag.name}" %>
-    </li>
-  <% end %>
-  </ul>
-<% end %>
-</div>
-
 <div class="my-2 bg-gray-100">
 <h2 class="font-bold"> Filter by multiple tags </h2>
 <%= form_with model: @post, url: filter_posts_path do |form|  %>
