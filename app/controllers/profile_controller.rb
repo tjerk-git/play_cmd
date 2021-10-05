@@ -2,22 +2,21 @@ class ProfileController < ApplicationController
     before_action :authenticate_user!
     
     def show
-        @user = User.find(params[:id])
+        @user = User.find_by_slug(params[:slug])
     end
 
-    def edit 
-        @user = User.find(params[:id])
-  
-        #redirect_to root_path
-    end
-
-    def update
-        user = User.find(params[:id])
-        if params[:avatar]
-            user.avatar.attach(params[:avatar])
+    def list
+        case
+        when params[:tag_ids]
+            @users = User.joins(:tags).where(tags: { id: params[:tag_ids] })         
+        when params[:query]
+            query = params[:query]
+            @users = User.where("name like ?", "%#{query}%")
+        else
+          @users = User.all()
         end
-        user.update(user_params)
     end
+
 
     private
     def user_params

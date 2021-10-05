@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_161338) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
+    t.string "slug"
     t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

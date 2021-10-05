@@ -1,0 +1,16 @@
+
+<%= form_with url: filter_people_path, method: :post do |form| %>
+  <%= form.label :query, "Search by name:" %>
+  <%= form.text_field :query %>
+  <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if !@users.empty? %>
+    <% @users.each do |user| %>
+        <%= user.name %>
+        <%= link_to "Profile", profile_path(user.slug) %>
+    <% end %>
+<% else %>
+    <h1> Weird, niemand gevonden... </h1>
+<% end %>

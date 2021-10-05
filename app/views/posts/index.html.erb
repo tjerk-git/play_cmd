@@ -16,7 +16,7 @@
 <% end %>
 
 <h2> Filter by multiple tags </h1>
-<%= form_with model: @post, url: filter_path_url do |form|  %>
+<%= form_with model: @post, url: filter_posts_path do |form|  %>
  <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
   <%= form.submit %>
 <% end %>

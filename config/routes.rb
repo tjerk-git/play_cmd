@@ -1,23 +1,21 @@
 Rails.application.routes.draw do
-
-  devise_for :users
-
   root to: "posts#index"
 
-  get '/profile/:id', to: 'profile#show'
-  get '/profile/:id/edit', to: 'profile#edit', :as => :user
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  resources :posts, param: :slug
 
   get '/post/:id/gallery', to: 'posts#gallery', :as => :gallery_view
   get '/posts/list/:tag', to: 'posts#by_tag', :as => :tag_path
-  post '/posts/list/filter/', to: 'posts#filter', :as => :filter_path
-  
-  patch '/profile/:id/edit', to: 'profile#update'
-  put '/profile/:id/edit', to: 'profile#update'
 
-  put '/post/:id/like', to: 'posts#like', as: 'like'
+  post '/posts/list/filter/', to: 'posts#filter', :as => :filter_posts
+  put '/post/:id/like', to: 'posts#like', :as =>'like'
+
+  get '/people/list/', to: 'profile#list', :as => :people
+  post '/people/list/', to: 'profile#list', :as => :filter_people
+
+  get '/profile/:slug', to: 'profile#show', :as => :profile
 
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
-
-  resources :posts, param: :slug
 
 end
