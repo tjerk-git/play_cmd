@@ -1,5 +1,11 @@
 <h1><%= @post.title %></h1>
-
+<% if notice == 'Bericht aangemaakt' %>
+  <script>
+  window.onload = function () {
+    modes.fireworks();
+  };
+  </script>
+<% end %>
 <%= link_to "Back", posts_path %>
 
 <% if @post.images.attached? %>
