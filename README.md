@@ -15,15 +15,15 @@ Monolith Rails Application with Vue sprinkles where needed
 - [x] User moet kunnen browsen op andere users (op tag of via zoeken)
 
 # 2.0
-- [] Templating Dashboard
-- [] Templating Menu
-- [] Templating Post
-- [] Templating Profiel
-- [] Templating Onboarding?
-- [] Templating Posts overzicht
-- [] Templating People pagina
-- [] Templating Emails
-- [] WYIWYG editors
+- [ ] Templating Dashboard
+- [ ] Templating Menu
+- [ ] Templating Post
+- [ ] Templating Profiel
+- [ ] Templating Onboarding?
+- [ ] Templating Posts overzicht
+- [ ] Templating People pagina
+- [ ] Templating Emails
+- [ ] WYIWYG editors
 
 # TODO FUN STUFF
 - [ ] Liken zonder refresh
