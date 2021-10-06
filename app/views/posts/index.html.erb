@@ -1,9 +1,24 @@
+
+  <%= link_to "People", people_path %>
+  <%= link_to "Community", for_you_path %>
+
 <h1 class="font-bold">Listing all posts
 <% if params[:tag] %>
       <%= params[:tag] %>
 <% end %>
 </h1>
 
+<% if current_page?(:controller => 'posts', :action => 'for_you') %>
+<h1>
+Browsing by your tags: 
+<% current_user.tags.each do |tag| %>
+  <%= tag.name %>,
+<% end %>
+</h1>
+
+<% end %>
+
+<% if !current_page?(:controller => 'posts', :action => 'for_you') %>
 <div class="my-2 bg-gray-100">
 <h2 class="font-bold"> Filter by multiple tags </h2>
 <%= form_with model: @post, url: filter_posts_path do |form|  %>
@@ -11,6 +26,7 @@
   <%= form.submit %>
 <% end %>
 </div>
+<% end %>
 
 <% if @posts %>
   <div class="grid grid-cols-3 gap-4">
@@ -35,7 +51,7 @@
         <div class="flex space-x-2">
           <% post.tags.each do |tag| %>
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
-              <%= link_to tag.name, "/posts/list/#{tag.name}" %>
+              <%= link_to tag.name, "/posts/list/#{tag.slug}" %>
             </span>
           <% end %>
         </div>
@@ -46,13 +62,3 @@
 <% else %>
   <h1> No posts found... </h1>
 <% end %>
-
-<style>
-.post{
-  padding:10px;
-  border: 1px solid grey;
-  margin:10px;
-  float:left;
-  width: 400px;
-}
-</style>

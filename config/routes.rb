@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :posts, param: :slug
 
   get '/post/:id/gallery', to: 'posts#gallery', :as => :gallery_view
-  get '/posts/list/:tag', to: 'posts#by_tag', :as => :tag_path
+  get '/posts/list/for-you', to: 'posts#for_you', :as => :for_you
+  get '/posts/list/:slug', to: 'posts#by_tag', :as => :tag_path
+
 
   post '/posts/list/filter/', to: 'posts#filter', :as => :filter_posts
   put '/post/:id/like', to: 'posts#like', :as =>'like'
