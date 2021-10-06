@@ -13,6 +13,8 @@ module.exports = {
   variants: {
     extend: {
         gray: colors.trueGray,
+        gradientFirst: '#30DB81',
+        gradientSecond: '#26AB93',
     },
   },
   plugins: [
