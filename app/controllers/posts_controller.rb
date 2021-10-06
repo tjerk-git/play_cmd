@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
     def by_tag
         @posts = Post.joins(:tags).where(tags: { slug: params[:slug] })
+        @tag = Tag.find_by_slug(params[:slug])
         render :index
     end
 

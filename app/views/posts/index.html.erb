@@ -1,14 +1,15 @@
 <div class="flex justify-between w-full flex-gap">
   <% if !current_page?(:controller => 'posts', :action => 'for_you') %>
   <h1 class="text-2xl">Listing all posts
-    <% if params[:tag] %>
+    <% if @tag %>
       with tag
       <span class="font-bold">
-       <%= params[:tag] %>
+       <%= @tag.name %>
       </span>
     <% end %>
   </h1>
   <% end %>
+
   <% if current_page?(:controller => 'posts', :action => 'for_you') %>
     <h1 class="text-2xl">
     Browsing by your tags:
