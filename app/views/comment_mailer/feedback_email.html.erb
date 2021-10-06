@@ -10,7 +10,7 @@
       <%= @comment.post.user.name %>
     <% else %>
      <%= @comment.post.user.email %>
-    <% end %>
+    <% end %> 👋
     </h1>
     <p>
       <%= @commenter %>, has left some feedback saying:
@@ -18,7 +18,7 @@
         <%= @comment.body %>
     </p>
     <p>
-      Check it out!  <%= link_to @comment.post.title, @link_to_post %>
+      Check it out!  <%= link_to @comment.post.title, "/post/" + @comment.post.slug %>
     </p>
     <p>Thanks for playing and have a great day!</p>
   </body>

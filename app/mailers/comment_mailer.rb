@@ -3,7 +3,6 @@ class CommentMailer < ApplicationMailer
 
   def feedback_email
     @comment = params[:comment]
-    @link_to_post = post_path(@comment.post.slug)
     if @comment.user.name
         @commenter = @comment.user.name
     else
