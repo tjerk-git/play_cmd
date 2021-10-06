@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   purge: [],
@@ -7,7 +8,10 @@ module.exports = {
     extend: {
       colors: {
         background: '#F7F7F7'
-      }
+      },
+      fontFamily: {
+        sans: ['Mulish', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   variants: {

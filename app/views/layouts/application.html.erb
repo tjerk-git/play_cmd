@@ -1,95 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PlayCmd</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>PlayCmd</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
 
 
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body class="bg-background">
-    <div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+<body class="bg-background">
+<div>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-      <%# <div class="grid grid-cols-3 gap-6 bg-gray-200">
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-        <%# <%= link_to "People", people_path %>
-      <%# </div> %>
-      <% if current_user %>
-    <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-darkBackground">
+  <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-darkBackground">
     <div class="hidden md:flex md:flex-shrink-0">
-      <nav
-        class="flex flex-col flex-grow w-64 pt-8 pb-4 overflow-y-auto bg-white "
-      >
+      <% if current_user %>
+      <nav class="flex flex-col flex-grow w-64 pt-8 pb-4 overflow-y-auto bg-white">
         <div class="flex items-center flex-shrink-0 px-5">
-          <a
-            href="/"
-            class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white duration-200 bg-gray-900 rounded group-hover:bg-gray-700"
-          >
+          <a href="/" class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white duration-200 bg-gray-900 rounded group-hover:bg-gray-700">
             <span class="italic font-bold text-md"> CMD </span>
           </a>
         </div>
         <div class="flex flex-col flex-grow mt-10">
           <div class="flex-1 space-y-2">
-          <%= link_to "People", people_path, class: 'flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 hover:bg-gray-50' %>
-          <%= link_to "Posts", posts_path, class: 'flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 hover:bg-gray-50', active_class: 'text-gray-900' %>
-        </div>
-        <div class="justify-center flex-shrink-0 w-full">
-          <a
-            class="flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 hover:bg-gray-50"
-          >
-            <span class="ml-2">Feedback</span>
-          </a>
-          <div class="mt-auto space-y-1">
-              <a
-                class="flex-shrink-0 block w-full group"
-              >
+            <%= link_to "Posts", posts_path, class: 'flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 hover:bg-gray-50' %>
+            <%= link_to "People", people_path, class: 'flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 hover:bg-gray-50' %>
+          </div>
+          <div class="justify-center flex-shrink-0 w-full">
+            <a class="flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 hover:bg-gray-50">
+              <span class="">Feedback</span>
+            </a>
+          </div>
+          <div class="mt-auto px-6 py-2 border-l-4 ">
+            <a class="block w-full group">
               <div class="justify-center">
-                    <p
-                      class="text-sm font-light text-gray-700 group-hover:text-gray-900"
-                    >
-                      <%= current_user.name %>
-                    </p>
-                    <span>
-                      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-                    </span>
-                    </div>
-              </a>
+                <p class="text-sm font-light text-gray-700 group-hover:text-gray-900">
+                  <%= current_user.name %>
+                </p>
+                <span>
+                 <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'text-sm text-gray-400' %>
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </nav>
+      <% end %>
     </div>
     <div class="flex flex-col flex-1">
       <div class="w-full px-6 mx-auto mt-4 md:px-8">
         <div class="relative z-10 flex flex-shrink-0 h-16">
-          <button
-            class="px-4 text-gray-500 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-500 md:hidden"
-          >
+          <button class="px-4 text-gray-500 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-500 md:hidden">
             <span class="sr-only">Open</span>
-            <svg
-              class="w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
             </svg>
           </button>
           <div class="flex justify-between flex-1 px-4 md:px-0">
@@ -97,56 +70,30 @@
               <div class="hidden w-1/3 mt-0 sm:mt-4 md:block">
                 <label for="search" class="sr-only">Search projects</label>
                 <div class="relative text-gray-400 focus-within:text-gray-400">
-                  <div
-                    class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none "
-                  >
-                    <!-- Heroicon name: solid/search -->
-                    <svg
-                      class="w-5 h-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                        clip-rule="evenodd"
-                      />
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
                     </svg>
                   </div>
-                  <input
-                    id="search"
-                    name="search"
-                    class="block w-full py-2 pl-10 pr-3 leading-5 text-indigo-100 placeholder-gray-400 border border-transparent rounded-md cursor-not-allowed bg-gray-50 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm"
-                    disabled
-                    placeholder="Zoeken"
-                    type="search"
-                  />
+                  <input id="search" name="search" class="block w-full py-2 pl-10 pr-3 leading-5 text-indigo-100 placeholder-gray-400 border border-transparent rounded-md cursor-not-allowed bg-gray-50 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" disabled placeholder="Zoeken" type="search"/>
                 </div>
               </div>
             </div>
             <div class="flex items-center ml-4 md:ml-6">
               <div class="flex px-2 mt-0 sm:mt-4 sm:ml-4">
-                <button
-                  class="inline-flex items-center py-2 text-sm font-medium text-white border border-none rounded-md shadow-sm px-9 hover:text-gray-200 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gray-900 focus:outline-none ring-0 sm:order-1 sm:ml-3"
-                >
-                  Uploaden
-                </button>
+                <%= link_to "Uploaden", new_post_path, class: 'inline-flex items-center py-2 text-sm font-medium text-white border border-none rounded-md shadow-sm px-9 hover:text-gray-200 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gray-900 focus:outline-none ring-0 sm:order-1 sm:ml-3' %>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="flex items-stretch flex-1 overflow-hidden">
-        <main
-          class="flex-1 px-6 mt-8 overflow-scroll md:px-10 focus:outline-none"
-        >
-        <% end %>
+        <main class="flex-1 px-6 mt-8 overflow-scroll md:px-10 focus:outline-none">
           <%= yield %>
         </main>
       </div>
     </div>
-    </div>
-  </body>
+  </div>
+</div>
+</body>
 </html>
