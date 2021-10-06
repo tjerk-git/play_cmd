@@ -13,11 +13,14 @@ class PostsController < ApplicationController
     end
 
     def for_you
-        @posts = Post.joins(:tags).where(tags: { name: params[:tag] })
+        #user = current_user.tag_ids
+        #puts YAML::dump(current_user.tag_ids)
+        @posts = Post.joins(:tags).where(tags: { id: current_user.tag_ids })
+        render :index
     end
 
     def by_tag
-        @posts = Post.joins(:tags).where(tags: { name: params[:tag] })
+        @posts = Post.joins(:tags).where(tags: { slug: params[:slug] })
         render :index
     end
 

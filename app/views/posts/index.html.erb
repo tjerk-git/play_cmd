@@ -7,6 +7,14 @@
       </span>
     <% end %>
   </h1>
+  <% if current_page?(:controller => 'posts', :action => 'for_you') %>
+    <h1>
+    Browsing by your tags:
+    <% current_user.tags.each do |tag| %>
+      <%= tag.name %>,
+    <% end %>
+    </h1>
+  <% end %>
   <div class="flex items-center -mx-4 divide-x divide-gray-200">
     <div class="relative inline-block px-4 text-left" x-data="{open: false}">
       <button @click="open = !open" type="button" class="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900" aria-expanded="false">
@@ -66,7 +74,7 @@
               <div class="flex space-x-2">
                 <% post.tags.each do |tag| %>
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
-              <%= link_to tag.name, "/posts/list/#{tag.name}" %>
+              <%= link_to tag.name, "/posts/list/#{tag.slug}" %>
             </span>
                 <% end %>
               </div>
