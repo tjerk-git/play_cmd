@@ -7,7 +7,7 @@
   <%= csp_meta_tag %>
 
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="//unpkg.com/alpinejs" defer></script>
 
@@ -37,7 +37,7 @@
         </div>
         <div class="flex flex-col flex-grow mt-10">
           <div class="flex-1 space-y-2">
-            <div class="flex items-center px-6 py-2 text-sm font-light border-l-2 group">
+            <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 group hover:bg-gray-50" href="<%= posts_path %>">
               <svg width="19" height="21" fill="none" viewBox="0 0 19 21" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
                 <path
                   stroke="currentColor"
@@ -47,9 +47,9 @@
                   d="M6.95646 18.8328V15.9194C6.95644 15.1784 7.52542 14.5763 8.23038 14.5713H10.8127C11.521 14.5713 12.0952 15.1749 12.0952 15.9194V18.8419C12.095 19.471 12.5728 19.9853 13.1711 20H14.8927C16.6088 20 18 18.5376 18 16.7337V8.44594C17.9908 7.73629 17.6738 7.06988 17.1392 6.63638L11.2516 1.65104C10.2202 0.782988 8.75397 0.782988 7.72253 1.65104L1.86076 6.64543C1.32413 7.07717 1.00661 7.74468 1 8.45499V16.7337C1 18.5376 2.3912 20 4.10734 20H5.82886C6.44211 20 6.93924 19.4774 6.93924 18.8328"
                 />
               </svg>
-              <%= link_to "Home", posts_path, class: 'text-gray-900 dark:text-white' %>
-            </div>
-            <div class="flex items-center px-6 py-2 text-sm font-light border-l-2 group">
+              <span class="text-gray dark:text-white">Home</span>
+            </a>
+            <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 group hover:bg-gray-50"  href="<%= people_path %>">
               <svg width="23" height="23"  fill="none" viewBox="0 0 23 23" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
                   <path
                         stroke="currentColor"
@@ -98,9 +98,9 @@
                         d="M3.87542 13.6565C2.58071 13.8501 1.677 14.3034 1.677 15.2378C1.677 15.8808 2.1025 16.2986 2.79059 16.5612"
                       />
               </svg>
-              <%= link_to "People", people_path, class: 'text-gray-900 dark:text-white' %>
-            </div>
-            <div class="flex items-center px-6 py-2 text-sm font-light border-l-2 group">
+              <span class="text-gray-900 dark:text-white">People</span>
+            </a>
+            <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 group hover:bg-gray-50"  href="<%= for_you_path %>">
               <svg width="18" height="17" fill="none" viewBox="0 0 18 17" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
                 <path
                   fill-rule="evenodd"
@@ -111,8 +111,10 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              <%= link_to "Community", for_you_path, class: 'text-gray-900 dark:text-white' %>
-              </div>
+              <span class="text-gray-900 dark:text-white">
+                Community
+              </span>
+              </a>
           </div>
           <div class="justify-center">
                  <a

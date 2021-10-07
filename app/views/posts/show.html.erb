@@ -5,9 +5,6 @@
       };
   </script>
 <% end %>
-<%#= link_to "Back", posts_path %>
-
-
 
 <div>
   <div class="flex justify-between w-full">
@@ -15,7 +12,11 @@
       <%# Image %>
       <div class=" text-darkBackground dark:text-gray-400">
         <h3 class="text-xl"><%= @post.user.name %></h3>
-        <p>Developer</p>
+        <% if is_teacher %>
+          <p>Teacher</p>
+        <% else %>
+          <p>Student</p>
+        <% end %>
       </div>
     </div>
     <div class="self-center">
