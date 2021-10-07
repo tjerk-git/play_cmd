@@ -45,11 +45,13 @@
               <% end %>
 
             </div>
-            <div class="flex-1 min-w-0">
-              <% if is_your_post(@post) %>
-                <%= render partial: "your_likes", object: @post %>
-              <% end %>
-            </div>
+            <% if @post.likes.count > 0 %>
+              <div class="flex-1 min-w-0">
+                <% if is_your_post(@post) %>
+                  <%= render partial: "your_likes", object: @post %>
+                <% end %>
+              </div>
+            <% end %>
       </div>
       </turbo-frame>
     </div>
