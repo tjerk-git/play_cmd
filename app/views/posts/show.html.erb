@@ -5,7 +5,6 @@
       };
   </script>
 <% end %>
-
 <%#= link_to "Back", posts_path %>
 
 <div>
@@ -18,19 +17,21 @@
       </div>
     </div>
     <div class="self-center">
+      <turbo-frame id="like">
       <% if @post.liked?(current_user) %>
         <%= button_to like_path(@post), method: "put", disabled: true, class: 'bg-red-100 text-red-800 rounded-lg inline-flex p-3' do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         <% end %>
       <% else %>
         <%= button_to like_path(@post), method: "put", class: 'bg-white text-gray-800 rounded-lg inline-flex p-3' do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         <% end %>
       <% end %>
+      </turbo-frame>
     </div>
   </div>
   <h1 class="mb-4 text-2xl font-semibold text-black dark:text-white mt-9">
@@ -57,7 +58,7 @@
             <%# Image here %>
             <div class="">
               <h3><%= @post.user.name %></h3>
-              <p class="text-gray-400 text-sm">Developer</p>
+              <p class="text-sm text-gray-400">Developer</p>
             </div>
           </div>
           <% if @post.user.tags.present? %>
@@ -90,6 +91,7 @@
     <section class="grid grid-cols-1 gap-4">
       <div>
         <div class="">
+          <turbo-frame id="comments">
           <ul class="space-y-4">
             <% if @post.comments %>
               <% @post.comments.each do |comment| %>
@@ -128,12 +130,18 @@
                     <%= form.text_area :body, rows: 3, placeholder: 'Wat vind je er van', class: 'shadow-sm focus:ring-gray-500 focus:border-gray-500 block  w-full sm:text-sm border-none rounded-md bg-gray-100 resize-none' %>
                   </div>
                 </div>
-                <div class="w-full flex flex-row-reverse px-4 pb-4">
+                <div class="flex flex-row-reverse w-full px-4 pb-4">
                     <%= form.submit nil, class: 'inline-flex items-center px-7 py-2 border border-transparent text-sm rounded-md shadow-sm text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700' %>
                 </div>
               <% end %>
             </div>
           </ul>
+          <% if notice == 'comment aangemaakt' %>
+            <script>
+              modes.fireworks();
+            </script>
+          <% end %>
+          </turbo-frame>
         </div>
       </div>
     </section>
