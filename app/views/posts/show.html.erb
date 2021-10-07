@@ -1,4 +1,4 @@
-<% if notice == 'Bericht aangemaakt' %>
+<% if notice == 'Post aangemaakt' %>
   <script>
       window.onload = function () {
           modes.fireworks();
@@ -41,8 +41,8 @@
   <div class="grid items-start grid-cols-1 gap-4 mb-8 lg:grid-cols-3">
     <div class="grid grid-cols-1 gap-4 lg:col-span-2">
       <div class="w-full bg-white rounded-md">
-        <div class="px-4 py-4">
-          <%= @post.body %>
+        <div class="px-4 py-4 prose">
+          <%= @post.body%>
           <% if @post.cover_image.attached? %>
               <%= image_tag @post.cover_image.variant(resize_to_limit: [800, 400]).processed %>
           <% end %>
