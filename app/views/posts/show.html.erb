@@ -7,6 +7,8 @@
 <% end %>
 <%#= link_to "Back", posts_path %>
 
+
+
 <div>
   <div class="flex justify-between w-full">
     <div class="flex items-center py-2">
@@ -17,6 +19,17 @@
       </div>
     </div>
     <div class="self-center">
+
+      <% if is_teacher %>
+         <turbo-frame id="community_highlight">
+
+         </turbo-frame>
+      <% end %>
+      
+      <% if is_your_post(@post) %>
+        <%= render partial: "your_likes", object: @post %>
+      <% end %>
+
       <turbo-frame id="like">
       <% if @post.liked?(current_user) %>
         <%= button_to like_path(@post), method: "put", disabled: true, class: 'bg-red-100 text-red-800 rounded-lg inline-flex p-3' do %>
