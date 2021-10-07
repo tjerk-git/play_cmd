@@ -13,8 +13,6 @@ class PostsController < ApplicationController
     end
 
     def for_you
-        #user = current_user.tag_ids
-        #puts YAML::dump(current_user.tag_ids)
         @posts = Post.joins(:tags).where(tags: { id: current_user.tag_ids })
         render :index
     end
@@ -41,11 +39,12 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
+        @post.cover_image.attach(params[:cover_image])
         @post.user = current_user
         if @post.save!
-          redirect_to post_path(@post.slug), notice: 'Bericht aangemaakt'
+          redirect_to post_path(@post.slug), notice: 'Post aangemaakt'
         else
-          flash.now[:alert] = 'Bericht niet opgeslagen'
+          flash.now[:alert] = 'Post niet opgeslagen, loop even langs D2.036'
           render :new
         end
     end
@@ -60,7 +59,7 @@ private
             :title,
             :current_user,
             :body,
-            :images => [],
+            :cover_image => [],
             :tag_ids => [],
         )
     end

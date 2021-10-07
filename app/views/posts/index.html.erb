@@ -14,9 +14,7 @@
     <h1 class="text-2xl">
     Browsing by your tags:
     <% current_user.tags.each do |tag| %>
-      <span class="font-bold">
-      <%= tag.name %>
-      </span>,
+      <span class="font-bold"><%= tag.name %> </span>
     <% end %>
     </h1>
   <% end %>
@@ -61,13 +59,9 @@
       <% @posts.each do |post| %>
         <div class="bg-white rounded-md shadow-md">
           <div>
-            <% if post.images.attached? %>
-              <% post.images.each do |image| %>
-                <%= link_to gallery_view_path do %>
-                  <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
-                <% end %>
-              <% end %>
-            <% end %>
+          <% if post.cover_image.attached? %>
+              <%= image_tag @post.cover_image.variant(resize_to_limit: [800, 400]).processed %>
+          <% end %>
           </div>
           <header class="flex p-2 md:p-4">
             <div>

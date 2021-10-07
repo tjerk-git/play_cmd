@@ -7,12 +7,11 @@ class Post < ApplicationRecord
   has_many :post_tags
   has_many :tags, :through => :post_tags
 
+  has_rich_text :body
+
   before_validation :create_slug
 
-  has_many_attached :images do |attachable|
-    attachable.variant :cover, resize: "900x700"
-    attachable.variant :large_thumb, resize: "350x235"
-  end
+  has_one_attached :cover_image
   
   def liked?(user)
     !!self.likes.find{|like| like.user == user}

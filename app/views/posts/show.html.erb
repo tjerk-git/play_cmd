@@ -43,12 +43,8 @@
       <div class="w-full bg-white rounded-md">
         <div class="px-4 py-4">
           <%= @post.body %>
-          <% if @post.images.attached? %>
-            <% @post.images.each do |image| %>
-              <%= link_to gallery_view_path do %>
-                <%= image_tag image.variant(resize_to_limit: [800, 400]).processed %>
-              <% end %>
-            <% end %>
+          <% if @post.cover_image.attached? %>
+              <%= image_tag @post.cover_image.variant(resize_to_limit: [800, 400]).processed %>
           <% end %>
         </div>
       </div>

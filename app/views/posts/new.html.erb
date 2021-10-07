@@ -3,10 +3,10 @@
   <%= form.text_field :title %>
 
   <%= form.label :body, "Content: " %>
-  <%= form.text_field :body %>
+  <%= form.rich_text_area :body %>
   
- <%= form.label :title, "Images: " %>
- <%= form.file_field :images, multiple: true, name: "images[]" %>
+ <%= form.label :cover_image, "Cover afbeelding: " %>
+ <%= form.file_field :cover_image, name: "cover_image" %>
 
  <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
 
