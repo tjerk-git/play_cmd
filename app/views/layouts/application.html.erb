@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="//unpkg.com/alpinejs" defer></script>
 
 
@@ -18,8 +19,12 @@
 
 <body class="bg-background">
 <div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% if notice %>
+     <%= render partial: "layouts/notice", object: notice %>
+  <% end %>
+  <% if alert %>
+    <%= render partial: "layouts/alert", object: alert %>
+<% end %>
 
   <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-darkBackground">
     <div class="hidden md:flex md:flex-shrink-0">
