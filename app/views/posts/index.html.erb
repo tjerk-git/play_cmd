@@ -60,12 +60,23 @@
         <div class="bg-white rounded-md shadow-md">
           <div>
           <% if post.cover_image.attached? %>
-              <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed %>
+              <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-md' %>
           <% end %>
           </div>
           <header class="flex p-2 md:p-4">
             <div>
               <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug) %></h2>
+               <div class="flex items-center mt-8">
+                <!-- <img
+                  alt="<%= post.user.name %>"
+                  class="inline w-8 h-8 mr-2 rounded-full"
+                /> -->
+                <p
+                  class="ml-1 font-semibold text-gray-900 text-md dark:text-gray-300"
+                >
+                  <%= post.user.name %>
+                </p>
+              </div>
             </div>
           </header>
           <% if post.tags.present? %>

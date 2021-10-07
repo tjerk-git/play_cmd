@@ -18,13 +18,13 @@ class PostsController < ApplicationController
     end
 
     def by_tag
-        @posts = Post.joins(:tags).where(tags: { slug: params[:slug] })
+        @posts = Post.joins(:tags).where(tags: { slug: params[:slug] }).order(created_at: :desc)
         @tag = Tag.find_by_slug(params[:slug])
         render :index
     end
 
     def filter
-        @posts = Post.joins(:tags).where(tags: { id: params[:tag_ids] })
+        @posts = Post.joins(:tags).where(tags: { id: params[:tag_ids] }).order(created_at: :desc)
         render :index
     end
 
