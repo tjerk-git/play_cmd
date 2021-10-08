@@ -57,7 +57,7 @@ class PostsController < ApplicationController
         @post = Post.find_by!(slug: params[:slug])
         @post.destroy
 
-        redirect_to posts_path
+        redirect_to posts_path, notice: 'Post verwijderd'
     end
 
 private
