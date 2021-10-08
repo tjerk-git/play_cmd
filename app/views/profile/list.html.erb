@@ -1,6 +1,44 @@
 <div class="flex justify-between w-full flex-gap">
   <h1 class="text-2xl">All users</h1>
 </div>
+  <h1> Meilisearch </h1>
+    <div>
+      <div id="searchbox"></div>
+      <div id="hits"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/dist/instant-meilisearch.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
+<script type="text/javascript">
+
+const search = instantsearch({
+  indexName: 'User',
+  searchClient: instantMeiliSearch(
+    'http://127.0.0.1:7700'
+  ),
+})
+
+search.addWidgets([
+  instantsearch.widgets.searchBox({
+    container: '#searchbox',
+  }),
+  instantsearch.widgets.hits({
+    container: '#hits',
+    templates: {
+      item: `
+        <div>
+          <div class="hit-name">
+            {{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}
+          </div>
+        </div>
+      `,
+    },
+  }),
+])
+
+search.start()
+</script>
+
 
 <%= form_with url: filter_people_path, method: :post do |form| %>
   <div class="flex justify-between w-full mt-4 flex-gap">
@@ -80,3 +118,4 @@
 <% else %>
     <h1> Weird, niemand gevonden... </h1>
 <% end %>
+

@@ -4,7 +4,7 @@
   </h2>
   <p class="mt-2 text-sm text-gray-600">
     Or
-    <%- if controller_name != 'sessions' %>
+    <% if controller_name != 'sessions' %>
       <%= link_to "Log in", new_session_path(resource_name), class: 'font-medium text-gray-600 hover:text-gray-500' %>
     <% end %>
   </p>

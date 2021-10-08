@@ -1,5 +1,10 @@
 
 class User < ApplicationRecord
+  include MeiliSearch
+
+  meilisearch do
+    attribute :email, :name
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
@@ -19,6 +24,7 @@ class User < ApplicationRecord
    has_many :tags, :through => :user_tags
 
    has_many :comments
+   
 
    before_validation :create_slug
 
