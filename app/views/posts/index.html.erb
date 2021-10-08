@@ -19,7 +19,7 @@
     <% end %>
     </h1>
   <% end %>
-  <% if !current_page?(:controller => 'posts', :action => 'for_you') %>
+  <% if !current_page?(:controller => 'posts', :action => 'for_you') && !@posts.empty? %>
   <div class="flex items-center -mx-4 divide-x divide-gray-200">
     <div class="relative inline-block px-4 text-left" x-data="{open: false}">
       <button @click="open = !open" type="button" class="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900" aria-expanded="false">
@@ -57,7 +57,7 @@
 <% end %>
 </div>
 <div class="my-2 bg-gray-100">
-  <% if @posts %>
+  <% if !@posts.empty? %>
     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
       <% @posts.each do |post| %>
         <div class="bg-white rounded-md shadow-md">
@@ -97,7 +97,18 @@
       <% end %>
     </div>
   <% else %>
-    <h1> No posts found... </h1>
+  <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
+        <div class="bg-white rounded-md shadow-md">
+          <div>
+            <img src="https://media4.giphy.com/media/WU5tf9pEbsJlx935rv/200.gif" class="block object-cover w-full h-72 rounded-t-md"/>
+          </div>
+          <header class="flex p-2 py-3 md:p-3">
+            <div>
+              <h2 class="text-xl font-semibold">No posts available</h2>
+            </div>
+          </header>
+        </div>
+    </div>
   <% end %>
 </div>
 </turbo-frame>
