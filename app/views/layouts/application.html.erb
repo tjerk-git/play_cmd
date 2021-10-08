@@ -178,7 +178,7 @@
             <div class="flex items-center ml-4 md:ml-6">
               <div class="flex px-2 mt-0 sm:mt-4 sm:ml-4">
                 <% if !current_page?(:controller => 'posts', :action => 'new') %>
-                <%= link_to "Uploaden", new_post_path, class: 'inline-flex items-center py-2 text-sm font-medium text-white border border-none rounded-md shadow-sm px-9 hover:text-gray-200 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gray-900 focus:outline-none ring-0 sm:order-1 sm:ml-3' %>
+                <%= link_to "Uploaden", new_post_path, class: 'inline-flex invisible lg:visible items-center py-2 text-sm font-medium text-white border border-none rounded-md shadow-sm px-9 hover:text-gray-200 bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gray-900 focus:outline-none ring-0 sm:order-1 sm:ml-3' %>
                 <% end %>
               </div>
             </div>
