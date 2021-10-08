@@ -4,6 +4,10 @@ module PostsHelper
         return current_user.role == 1
     end
 
+    def is_student(user)
+        return !user.role == 1
+    end
+
     def is_your_post(post)
         return current_user == post.user
     end
