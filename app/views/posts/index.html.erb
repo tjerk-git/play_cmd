@@ -5,7 +5,7 @@
     <% if @tag %>
       with tag
       <span class="font-bold">
-       <%= @tag.name %>
+       #<%= @tag.name %>
       </span>
     <% end %>
   </h1>
@@ -15,10 +15,11 @@
     <h1 class="text-2xl">
     Browsing by your tags:
     <% current_user.tags.each do |tag| %>
-      <span class="font-bold"><%= tag.name %> </span>
+      <span class="font-bold">#<%= tag.name %> </span>
     <% end %>
     </h1>
   <% end %>
+  <% if !current_page?(:controller => 'posts', :action => 'for_you') %>
   <div class="flex items-center -mx-4 divide-x divide-gray-200">
     <div class="relative inline-block px-4 text-left" x-data="{open: false}">
       <button @click="open = !open" type="button" class="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900" aria-expanded="false">
@@ -53,6 +54,7 @@
       </div>
     </div>
   </div>
+<% end %>
 </div>
 <div class="my-2 bg-gray-100">
   <% if @posts %>
@@ -61,7 +63,7 @@
         <div class="bg-white rounded-md shadow-md">
           <div>
           <% if post.cover_image.attached? %>
-              <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-imd' %>
+              <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-md' %>
           <% end %>
           </div>
           <header class="flex p-2 md:p-3">
