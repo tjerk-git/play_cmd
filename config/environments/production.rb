@@ -3,6 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
 
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_url_options = { ENV['APP_URL'] , port: 3000 }
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: ENV['MAILGUN_APIKEY'],
