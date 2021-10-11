@@ -7,6 +7,7 @@ ruby '3.0.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 
 gem 'pg'
+gem 'rexml'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
