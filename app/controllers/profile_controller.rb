@@ -9,12 +9,13 @@ class ProfileController < ApplicationController
         if params[:query] != ""
             query = params[:query]
             @users = User.where("name like ?", "%#{query}%")
-        elsif params[:tag_ids]
-            @users = User.joins(:tags).where(tags: { id: params[:tag_ids] })
-        else
-            @users = User.all()
         end
-       #@users = User.where("name like ?", "%#{query}%")
+    end
+
+    def by_tag
+        @users = User.joins(:tags).where(tags: { slug: params[:slug] }).order(created_at: :desc)
+        @tag = Tag.find_by_slug(params[:slug])
+        render :list
     end
 
 

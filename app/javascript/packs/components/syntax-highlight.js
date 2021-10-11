@@ -1,4 +1,8 @@
 window.applyFormattingToPreBlocks = function () {
+
+    if(this.document.querySelector('.trix-content') == null) {
+        return 
+    }
     const preElements = this.document.querySelector('.trix-content').querySelectorAll('pre');
     preElements.forEach(function(preElement) {
         const regex = /(?!lang\-\\w\*)lang-\w*\W*/gm;

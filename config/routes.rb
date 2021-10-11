@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   put '/post/:id/like', to: 'posts#like', :as =>'like'
 
   get '/people/list/', to: 'profile#list', :as => :people
-  post '/people/list/', to: 'profile#list', :as => :filter_people
+  get '/people/search/', to: 'profile#list', :as => :filter_people
+  get '/people/list/:slug', to: 'profile#by_tag', :as => :tag_users
 
   get '/profile/:slug', to: 'profile#show', :as => :profile
 
