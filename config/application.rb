@@ -12,7 +12,10 @@ module PlayCmd
     config.load_defaults 6.1
     config.action_mailer.default_url_options = { host: ENV['APP_URL'] }
 
-    Dotenv::Railtie.load
+    Bundler.require(*Rails.groups)
+    if ['development', 'test'].include? ENV['RAILS_ENV']
+      Dotenv::Railtie.load
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
