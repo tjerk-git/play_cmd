@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
     def list
         if params[:query] != ""
             query = params[:query]
-            @users = User.where("name like ?", "%#{query}%")
+            @users = User.where("name ilike ?", "%#{query}%")
         end
     end
 

@@ -18,3 +18,28 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+
+let __SkipConfirmation = false;
+
+Rails.confirm = function (message, element) {
+  if (__SkipConfirmation) {
+    return true;
+  }
+  function onConfirm() {
+    __SkipConfirmation = true
+    element.click()
+    __SkipConfirmation = false
+  }
+  Swal.fire({
+    title: message,
+    showCancelButton: true,
+    icon: 'warning',
+    confirmButtonText: 'Yes, I am very sure!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      onConfirm();
+    }
+  })
+  return false;
+};
