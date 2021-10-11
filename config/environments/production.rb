@@ -1,18 +1,15 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.default_url_options = { host: ENV['MAIL_HOSTNAME'], port: 3000 }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :user_name => ENV['MAIL_USERNAME'],
-    :password => ENV['MAIL_PASSWORD'],
-    :address => ENV['MAIL_HOSTNAME'],
-    :domain => ENV['MAIL_HOSTNAME'],
-    :port => '2525',
-    :authentication => :cram_md5
+  # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['MAILGUN_APIKEY'],
+    domain: ENV['MAILGUN_DOMAIN'],
+    api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
   }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
