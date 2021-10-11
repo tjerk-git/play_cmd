@@ -2,13 +2,14 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
-  # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: ENV['APP_URL'], port: 3000 }
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_APIKEY'],
-    domain: ENV['MAILGUN_DOMAIN'],
-    api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'playcmd.heroku.com',
+    :authentication => :plain,
   }
 
   # Code is not reloaded between requests.
