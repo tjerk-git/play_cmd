@@ -38,7 +38,7 @@
         x-transition.scale.origin.top
         x-on:click.away="open = false"
       >
-        <div class="absolute right-0 p-4 mt-2 origin-top-right bg-white rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div class="absolute right-0 p-4 mt-2 overflow-auto origin-top-right bg-white rounded-md shadow-2xl max-h-32 ring-1 ring-black ring-opacity-5 focus:outline-none">
           <%= form_with model: @post, url: filter_posts_path do |form| %>
             <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
               <div class="flex items-center">
