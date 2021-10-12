@@ -15,7 +15,7 @@
 #     :password_confirmation => "12345678",
 #     :role                  => 1
 # )
-# user.skip_confirmation!
+# # user.skip_confirmation!
 # user.save!
 
 # user = User.new(
@@ -25,8 +25,10 @@
 #     :password_confirmation => "12345678",
 #     :role                  => 0
 # )
-# user.skip_confirmation!
+# # user.skip_confirmation!
 # user.save!
+
+inviteCode = InvitationCode.create(code: 'speenvarken-2021', due_at: "2021-12-31")
 
 tag = Tag.create(name: 'Web Design')
 tag = Tag.create(name: 'UI/UX')
