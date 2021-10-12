@@ -1,0 +1,17 @@
+<% unless flash[:alert].blank? %>
+  <div>
+    <% if flash[:alert].is_a?(Array) %>
+      Something went wrong:
+      <ul>
+        <% flash[:alert].each do |error| %>
+          <li>
+            <%= error %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= flash[:alert] %>
+    <% end %>
+    <br>
+  </div>
+<% end %>
