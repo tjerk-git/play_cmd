@@ -9,7 +9,6 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'pg'
 gem 'rexml'
 gem 'aws-sdk', '~> 3'
-gem 'sendgrid-rails', '~> 2.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

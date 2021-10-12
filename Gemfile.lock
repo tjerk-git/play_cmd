@@ -1336,9 +1336,6 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sendgrid-rails (2.0.5)
-      actionmailer (>= 3.0.0)
-      activesupport (>= 2.1.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -1402,7 +1399,6 @@ DEPENDENCIES
   rexml
   sass-rails (>= 6)
   selenium-webdriver
-  sendgrid-rails (~> 2.0)
   spring
   turbo-rails
   turbolinks (~> 5)
