@@ -1,3 +1,9 @@
+<% if @post.errors.any? %>
+  <% @post.errors.full_messages.each do |message|%>
+  <h3><%= message %> </h3>
+  <%end%>
+<%end%>
+
 <%= form_with model: @post, url: posts_path do |form|  %>
   <%= form.text_field :title, placeholder: 'The title', class: 'text-4xl bg-transparent border-none w-full' %>
   <div class="w-full">

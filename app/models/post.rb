@@ -8,7 +8,8 @@ class Post < ApplicationRecord
   has_many :tags, :through => :post_tags
 
   has_rich_text :body
-
+  
+  validates :title, presence: true
   before_validation :create_slug
 
   has_one_attached :cover_image

@@ -140,7 +140,7 @@
             <a class="block w-full group">
               <div class="justify-center">
                 <p class="text-sm font-light text-gray-700 group-hover:text-gray-900">
-                   <%= link_to current_user.name, "users/edit" %>
+                   <%= link_to current_user.name, edit_user_registration_path %><br/>
                 </p>
                 <span>
                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'text-sm text-gray-400' %>
