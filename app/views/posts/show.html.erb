@@ -6,6 +6,13 @@
   </script>
 <% end %>
 
+<style>
+trix-toolbar [data-trix-button-group='history-tools'],
+trix-toolbar [data-trix-button-group='block-tools'] {
+  display: none;
+}
+</style>
+
 <div>
   <div class="flex justify-between w-full">
     <div class="flex items-center py-2">
@@ -152,7 +159,7 @@
               <%= form_with model: @comment, url: new_comment_path(@post.id) do |form| %>
                 <div class="flex px-4 py-5 space-x-3">
                   <div class="flex-grow">
-                  
+
                     <%= form.rich_text_area :body, rows: 3, placeholder: 'Wat vind je er van', data: { controller: "mentions", target: "mentions.field" } ,
                     class: 'shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-none rounded-md bg-gray-100 resize-none' %>
                   </div>
