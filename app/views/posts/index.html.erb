@@ -19,6 +19,7 @@
     <% end %>
     </h1>
   <% end %>
+  
   <% if !current_page?(:controller => 'posts', :action => 'for_you') && !@posts.empty? %>
   <div class="flex items-center -mx-4 divide-x divide-gray-200">
     <div class="relative inline-block px-4 text-left" x-data="{open: false}">
@@ -78,3 +79,5 @@
   <% end %>
 </div>
 </turbo-frame>
+
+<%= will_paginate @posts %>

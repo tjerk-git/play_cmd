@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
   resources :posts, param: :slug
+  resources :mentions, only: [:index]
 
   get '/post/:id/gallery', to: 'posts#gallery', :as => :gallery_view
   get '/posts/list/for-you', to: 'posts#for_you', :as => :for_you

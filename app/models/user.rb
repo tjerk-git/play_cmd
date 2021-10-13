@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ActionText::Attachable
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable

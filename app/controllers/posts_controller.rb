@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @posts = Post.all().order(created_at: :desc)
+        @posts = Post.paginate(page: params[:page], per_page: 30).order(created_at: :desc)
         @tags = Tag.all()
     end
 
@@ -13,18 +13,18 @@ class PostsController < ApplicationController
     end
 
     def for_you
-        @posts = Post.joins(:tags).where(tags: { id: current_user.tag_ids })
+        @posts = Post.joins(:tags).where(tags: { id: current_user.tag_ids }).paginate(page: params[:page], per_page: 30)
         render :index
     end
 
     def by_tag
-        @posts = Post.joins(:tags).where(tags: { slug: params[:slug] }).order(created_at: :desc)
+        @posts = Post.joins(:tags).where(tags: { slug: params[:slug] }).order(created_at: :desc).paginate(page: params[:page], per_page: 30)
         @tag = Tag.find_by_slug(params[:slug])
         render :index
     end
 
     def filter
-        @posts = Post.joins(:tags).where(tags: { id: params[:tag_ids] }).order(created_at: :desc)
+        @posts = Post.joins(:tags).where(tags: { id: params[:tag_ids] }).order(created_at: :desc).paginate(page: params[:page], per_page: 30)
         render :index
     end
 
