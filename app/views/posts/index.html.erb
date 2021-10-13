@@ -74,7 +74,7 @@
                   <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-2 rounded-full' %>
                 <% end %>
                 <p
-                  class="ml-1 font-semibold text-gray-900 text-md dark:text-gray-300"
+                  class="ml-1 text-gray-900 text-md dark:text-gray-300"
                 >
                   <%= post.user.name %>
                 </p>
