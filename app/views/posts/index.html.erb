@@ -42,13 +42,12 @@
           <%= form_with model: @post, url: filter_posts_path do |form| %>
             <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
               <div class="flex items-center">
-                <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>
+                <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded', :onclick => "this.form.submit()"%>
                 <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                   <%= b.label %>
                 </label>
               </div>
             <% end %>
-            <%= form.submit %>
           <% end %>
         </div>
       </div>
@@ -60,39 +59,7 @@
   <% if !@posts.empty? %>
     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
       <% @posts.each do |post| %>
-        <div class="bg-white rounded-md shadow-md">
-          <div>
-          <% if post.cover_image.attached? %>
-              <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-md' %>
-          <% end %>
-          </div>
-          <header class="flex p-2 md:p-4">
-            <div>
-              <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug),  data: { turbo: false } %></h2>
-               <div class="flex items-center mt-8">
-                <% if post.user.avatar.attached? %>
-                  <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-2 rounded-full' %>
-                <% end %>
-                <p
-                  class="ml-1 text-gray-900 text-md dark:text-gray-300"
-                >
-                  <%= post.user.name %>
-                </p>
-              </div>
-            </div>
-          </header>
-          <% if post.tags.present? %>
-            <div class="bottom-0 flex justify-between pt-2 pb-4 space-x-8 md:px-4">
-              <div class="flex space-x-2">
-                <% post.tags.each do |tag| %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
-                  <%= link_to tag.name, "/posts/list/#{tag.slug}" %>
-                </span>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+          <%= render partial: "post_card", locals: { post: post } %>
       <% end %>
     </div>
   <% else %>
