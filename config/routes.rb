@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get '/profile/show/:slug', to: 'profile#show', :as => :profile
   get '/profile/edit/:slug', to: 'profile#edit', :as => :profile_edit
+  put '/profile/hide_onboarding', to: 'profile#hide_onboarding', :as => :hide_onboarding
 
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
 
