@@ -112,7 +112,7 @@
               </div>
               <div class="ml-4">
                 <p class="text-sm font-light text-gray-700 group-hover:text-gray-900">
-                  <%= link_to current_user.name, "users/edit" %>
+                   <%= link_to current_user.name, edit_user_registration_path %>
                 </p>
                 <p class="text-xs font-light text-gray-500 group-hover:text-gray-700">
                   <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
