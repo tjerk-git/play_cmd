@@ -1,14 +1,37 @@
+<% if @post.errors.any? %>
+  <% @post.errors.full_messages.each do |message|%>
+  <h3><%= message %> </h3>
+  <%end%>
+<%end%>
+
 <%= form_with model: @post, url: posts_path do |form|  %>
   <%= form.text_field :title, placeholder: 'The title', class: 'text-4xl bg-transparent border-none w-full' %>
-  <div class="flex flex-row p-4">
-    <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-      <div class="flex items-center">
-        <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>
-        <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
-          <%= b.label %>
-        </label>
+  <div class="w-full">
+  <div class="flex items-center divide-x divide-gray-200">
+    <div class="relative inline-block px-4 text-left" x-data="{open: false}">
+      <button @click="open = !open" type="button" class="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900" aria-expanded="false">
+        <span>Tags</span>
+        <svg class="flex-shrink-0 w-5 h-5 ml-1 -mr-1 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div
+        x-show="open"
+        x-on:click.away="open = false"
+      >
+        <div class="absolute left-0 z-20 w-40 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto origin-top-left bg-white rounded-md shadow-2xl max-h-36 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
+          <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+            <div class="flex items-center">
+                <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>
+                <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
+                  <%= b.label %>
+                </label>
+              </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
+  </div>
   </div>
   <div class="px-4 py-4">
     <%= form.rich_text_area :body %>

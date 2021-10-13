@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get '/people/search/', to: 'profile#list', :as => :filter_people
   get '/people/list/:slug', to: 'profile#by_tag', :as => :tag_users
 
-  get '/profile/:slug', to: 'profile#show', :as => :profile
+  get '/profile/show/:slug', to: 'profile#show', :as => :profile
+  get '/profile/edit/:slug', to: 'profile#edit', :as => :profile_edit
 
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
 

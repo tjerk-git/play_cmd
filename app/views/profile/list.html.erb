@@ -5,11 +5,13 @@
 <% if !@users.empty? %>
 
   <div class="grid grid-cols-3 gap-4 mt-4">
-  
+
   <% @users.each do |user| %>
       <div class="flex-auto px-4 py-4 bg-white rounded-md">
         <div class="flex items-center">
-          <%# Image here %>
+          <% if user.avatar.attached? %>
+            <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-3 rounded-full' %>
+          <% end %>
           <div class="">
             <%= link_to user.name, profile_path(user.slug) %><br/>
             <a href="mailto:<% user.email %>" class="text-sm text-gray-400"><%= user.email %></a>
@@ -35,4 +37,3 @@
 <% else %>
     <h1> Weird, niemand gevonden... </h1>
 <% end %>
-

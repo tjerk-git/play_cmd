@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   attr_accessor :invitation_code
 
-  validate do |user|
+  validate on: :create do |user|
     InviteValidator.new(user).validate
   end
 
