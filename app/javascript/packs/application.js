@@ -43,3 +43,4 @@ Rails.confirm = function (message, element) {
   })
   return false;
 };
+import "controllers"

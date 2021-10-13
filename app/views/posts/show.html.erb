@@ -152,7 +152,9 @@
               <%= form_with model: @comment, url: new_comment_path(@post.id) do |form| %>
                 <div class="flex px-4 py-5 space-x-3">
                   <div class="flex-grow">
-                    <%= form.text_area :body, rows: 3, placeholder: 'Wat vind je er van', class: 'shadow-sm focus:ring-gray-500 focus:border-gray-500 block  w-full sm:text-sm border-none rounded-md bg-gray-100 resize-none' %>
+                  
+                    <%= form.rich_text_area :body, rows: 3, placeholder: 'Wat vind je er van', data: { controller: "mentions", target: "mentions.field" } ,
+                    class: 'shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-none rounded-md bg-gray-100 resize-none' %>
                   </div>
                 </div>
                 <div class="flex flex-row-reverse w-full px-4 pb-4">

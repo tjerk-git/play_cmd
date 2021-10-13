@@ -1,0 +1,6 @@
+ <span class="mention">
+    <%= user.name %>
+    <% if user.avatar.attached? %>
+        <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-2 rounded-full' %>
+    <% end %>
+ </span>

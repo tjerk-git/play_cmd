@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ActionText::Attachable
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
@@ -18,12 +19,12 @@ class User < ApplicationRecord
       attachable.variant :thumb, resize: "100x100"
    end
 
-   has_many :posts
+   has_many :posts, dependent: :delete_all
 
    has_many :user_tags
    has_many :tags, :through => :user_tags
 
-   has_many :comments
+   has_many :comments, dependent: :delete_all
 
    before_validation :create_slug
 
