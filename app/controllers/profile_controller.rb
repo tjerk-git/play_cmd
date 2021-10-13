@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
     before_action :authenticate_user!
-    
+
     def show
         @user = User.find_by_slug(params[:slug])
     end
@@ -10,6 +10,13 @@ class ProfileController < ApplicationController
             query = params[:query]
             @users = User.where("name ilike ?", "%#{query}%")
         end
+    end
+
+    def hide_onboarding
+        @user = current_user
+        @user.onboarding_seen = true
+        @user.save
+        render turbo_stream: turbo_stream.update("onboarding", partial: "shared/onboarding_modal")
     end
 
     def by_tag
