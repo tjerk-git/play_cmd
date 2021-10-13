@@ -21,7 +21,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-background">
+  <body class="bg-background" x-data="{secretModal: 0}">
     <div>
       <% if notice %>
         <%= render partial: "layouts/notice", object: notice %>
@@ -31,6 +31,7 @@
       <% end %>
       <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-darkBackground" x-data="{ open: false }">
       <%= render partial: "shared/onboarding_modal" %>
+      <%= render partial: "shared/secret_modal" %>
       <%= render partial: "layouts/mobile_navigation" %>
 
       <div class="hidden md:flex md:flex-shrink-0">
