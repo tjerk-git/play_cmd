@@ -41,10 +41,10 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
         @post.cover_image.attach(params[:cover_image])
         @post.user = current_user
-        if @post.save!
+        if @post.save
           redirect_to post_path(@post.slug), notice: 'Post aangemaakt'
         else
-          flash.now[:alert] = 'Post niet opgeslagen, loop even langs D2.036'
+          #flash.now[:alert] = 'Post niet opgeslagen'
           render :new
         end
     end
