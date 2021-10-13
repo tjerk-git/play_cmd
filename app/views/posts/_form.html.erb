@@ -1,0 +1,96 @@
+<% if @post.errors.any? %>
+    <%= render partial: "errors", object: @post.errors %>
+<% end %>
+
+<%= form_for(@post) do |form| %>
+  <%= form.text_field :title, placeholder: 'The title', class: 'text-4xl bg-transparent border-none w-full' %>
+  <div class="w-full">
+  <div class="flex items-center divide-x divide-gray-200">
+    <div class="relative inline-block px-4 text-left" x-data="{open: false}">
+      <button @click="open = !open" type="button" class="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900" aria-expanded="false">
+        <span>Tags</span>
+        <svg class="flex-shrink-0 w-5 h-5 ml-1 -mr-1 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div
+        x-show="open"
+        x-on:click.away="open = false"
+      >
+        <div class="absolute left-0 z-20 w-40 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto origin-top-left bg-white rounded-md shadow-2xl max-h-36 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
+          <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+            <div class="flex items-center">
+                <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>
+                <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
+                  <%= b.label %>
+                </label>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="px-4 py-4">
+    <%= form.rich_text_area :body %>
+  </div>
+  <% if !@post.cover_image.attached? %>
+  <div class="flex flex-col flex-grow p-4">
+    <div x-data="{ files: null }" id="FileUpload" class="relative block w-full px-3 py-2 border-2 border-gray-300 border-dashed rounded-md appearance-none hover:shadow-outline-gray">
+        <div
+          x-on:change="files = $event.target.files; console.log($event.target.files);"
+          x-on:dragover="$el.classList.add('active')"
+          x-on:dragleave="$el.classList.remove('active')"
+          x-on:drop="$el.classList.remove('active')"
+        >
+          <%= form.file_field :cover_image, name: "cover_image", id: 'cover_image', class: 'absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0' %>
+        </div>
+        <template x-if="files !== null">
+          <div class="flex flex-col space-y-1">
+            <template x-for="(_,index) in Array.from({ length: files.length })">
+              <div class="flex flex-row items-center space-x-2">
+                <template x-if="files[index].type.includes('audio/')"><i class="far fa-file-audio fa-fw"></i></template>
+                  <template x-if="files[index].type.includes('application/')"><i class="far fa-file-alt fa-fw"></i></template>
+                  <template x-if="files[index].type.includes('image/')"><i class="far fa-file-image fa-fw"></i></template>
+                  <template x-if="files[index].type.includes('video/')"><i class="far fa-file-video fa-fw"></i></template>
+                  <span class="font-medium text-gray-900" x-text="files[index].name">Uploading</span>
+                  <span class="self-end text-xs text-gray-500" x-text="filesize(files[index].size)">...</span>
+                </div>
+              </template>
+          </div>
+      </template>
+      <template x-if="files === null">
+        <div class="flex flex-col items-center justify-center space-y-2">
+          <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <a href="javascript:void(0)" class="flex items-center px-4 py-2 mx-auto font-medium text-center text-gray-700">Drag your files here or click in this area or  <span class="ml-1 underline"> select a file</span></a></p>
+        </div>
+      </template>
+    </div>
+  </div>
+    <%end%>
+  <div class="p-4">
+    <%= form.submit 'Submit',
+        class: '
+          inline-flex
+          justify-center
+          py-2
+          px-4
+          border-none
+          shadow-sm
+          text-sm
+          w-full
+          font-medium
+          rounded-md
+          text-white
+          bg-gray-900
+          hover:bg-gray-700
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-indigo-500'
+        %>
+    <% end %>
+  </div>
+</div>
