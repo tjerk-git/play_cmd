@@ -6,6 +6,20 @@ class PostsController < ApplicationController
         @tags = Tag.all()
     end
 
+    def edit
+        @post = Post.find_by!(slug: params[:slug])
+    end
+
+    def update
+        @post = Post.find(params[:slug])
+        if @post.update(update_post_params)
+            redirect_to post_path(@post.slug), notice: 'Post bewerkt'
+        else
+        #flash.now[:alert] = 'Post niet opgeslagen'
+        render :new
+        end
+    end
+
     def like
         @post = Post.find(params[:id])
         Like.create(user: current_user, post: @post)
@@ -61,6 +75,17 @@ class PostsController < ApplicationController
     end
 
 private
+    def update_post_params
+        params.require(:post).permit(
+            :id,
+            :slug,
+            :title,
+            :current_user,
+            :body,
+            :cover_image => [],
+            :tag_ids => [],
+        )
+    end
     def post_params
         params.require(:post).permit(
             :title,

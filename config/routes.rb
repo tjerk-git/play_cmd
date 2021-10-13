@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/posts/list/for-you', to: 'posts#for_you', :as => :for_you
   get '/posts/list/:slug', to: 'posts#by_tag', :as => :tag_path
 
-
+  patch '/posts', to: 'posts#update', :as => :update_posts
   post '/posts/list/filter/', to: 'posts#filter', :as => :filter_posts
   put '/post/:id/like', to: 'posts#like', :as =>'like'
 
