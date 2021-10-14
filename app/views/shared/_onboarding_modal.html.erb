@@ -1,11 +1,11 @@
 <turbo-frame id="onboarding">
+
+<% if !current_user.onboarding_seen %>
 <script>
     window.onload = function () {
         modes.fireworks();
     };
 </script>
-
-<% if !current_user.onboarding_seen %>
 <div class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
     <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="mt-5 sm:mt-6">
-        <%= button_to "I'm in", hide_onboarding_path, method: "put", class: 'inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm' %>
+        <%= button_to "I'm in", hide_onboarding_path, method: "put", class: 'inline-flex justify-center cursor-pointer w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:text-sm' %>
       </div>
     </div>
   </div>
