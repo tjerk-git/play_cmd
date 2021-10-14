@@ -11,6 +11,9 @@ gem 'rexml'
 gem 'aws-sdk', '~> 3'
 gem 'will_paginate', '~> 3.3'
 
+gem 'sidekiq'
+gem "sidekiq-cron"
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

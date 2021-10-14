@@ -15,6 +15,7 @@ class User < ApplicationRecord
       with: /\b[A-Z0-9._%a-z\-]+@(?:student.)?nhlstenden\.com\z/, message: "must be a nhlstenden.com account"
    }
 
+
    has_one_attached :avatar do |attachable|
       attachable.variant :thumb, resize: "100x100"
    end
@@ -27,20 +28,27 @@ class User < ApplicationRecord
    has_many :comments, dependent: :delete_all
 
    before_validation :create_slug
+   before_validation :make_teacher
 
-   def confirmation_required?
-      !confirmed?
+  def confirmation_required?
+    !confirmed?
+  end
+
+  def create_slug
+    if slug.blank? && name.present?
+      self.slug = name_to_slug
     end
+  end
 
-    def create_slug
-       if slug.blank? && name.present?
-         self.slug = name_to_slug
-       end
-     end
+  def name_to_slug
+    "#{name.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
+  end
 
-     def name_to_slug
-       "#{name.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
+  def make_teacher
+     if !email.include? "student"    
+         self.role = 1
      end
+  end
 end
 
 class InviteValidator
