@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   patch '/posts', to: 'posts#update', :as => :update_posts
   post '/posts/list/filter/', to: 'posts#filter', :as => :filter_posts
   put '/post/:id/like', to: 'posts#like', :as =>'like'
+  put '/post/:id/highlight', to: 'posts#highlight', :as => :highlight
 
   get '/people/list/', to: 'profile#list', :as => :people
   get '/people/search/', to: 'profile#list', :as => :filter_people
