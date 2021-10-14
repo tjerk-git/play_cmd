@@ -15,7 +15,6 @@ class PostsController < ApplicationController
         if @post.update(update_post_params)
             redirect_to post_path(@post.slug), notice: 'Post bewerkt'
         else
-        #flash.now[:alert] = 'Post niet opgeslagen'
         render :new
         end
     end
@@ -40,12 +39,23 @@ class PostsController < ApplicationController
 
 
     def for_you
-        @posts = Post.joins(:tags).where(tags: { id: current_user.tag_ids }).paginate(page: params[:page], per_page: 30)
+        @posts = Post.joins(:tags)
+        .where(
+            tags: { id: current_user.tag_ids }
+        )
+        .paginate(page: params[:page], per_page: 30)
+        .distinct
         render :index
     end
 
     def by_tag
-        @posts = Post.joins(:tags).where(tags: { slug: params[:slug] }).order(created_at: :desc).paginate(page: params[:page], per_page: 30)
+        @posts = Post.joins(:tags)
+        .where(
+            tags: { slug: params[:slug] }
+        )
+        .order(created_at: :desc)
+        .paginate(page: params[:page], per_page: 30)
+        .distinct
         @tag = Tag.find_by_slug(params[:slug])
         render :index
     end
