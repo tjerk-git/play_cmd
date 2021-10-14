@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
     def list
         if params[:query] != ""
             query = params[:query]
-            @users = User.where("name ilike ?", "%#{query}%")
+            @users = User.where("name ilike ?", "%#{query}%").paginate(page: params[:page], per_page: 30)
         end
     end
 

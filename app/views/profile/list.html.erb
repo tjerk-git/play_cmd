@@ -14,7 +14,7 @@
           <% end %>
           <div class="">
               <% if is_teacher(user) %>
-              Lecturer | 
+              Lecturer |
               <% else %>
               Student |
               <% end %>
@@ -39,6 +39,7 @@
         </div>
     <% end %>
   </div>
+  <%= will_paginate @users %>
 <% else %>
     <h1> Weird, niemand gevonden... </h1>
 <% end %>
