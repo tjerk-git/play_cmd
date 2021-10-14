@@ -3,7 +3,7 @@
 <% end %>
 
 <%= form_for(@post) do |form| %>
-  <%= form.text_field :title, placeholder: 'The title', class: 'text-4xl bg-transparent border-none w-full' %>
+  <%= form.text_field :title, placeholder: 'The title', class: 'text-4xl bg-transparent border-none w-full ring-0 focus:ring-0' %>
   <div class="w-full">
   <div class="flex items-center divide-x divide-gray-200">
     <div class="relative inline-block px-4 text-left" x-data="{open: false}">
@@ -15,6 +15,12 @@
       </button>
       <div
         x-show="open"
+        x-transition:enter=""
+        x-transition:enter-start=""
+        x-transition:enter-end=""
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
         x-on:click.away="open = false"
       >
         <div class="absolute left-0 z-20 w-40 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto origin-top-left bg-white rounded-md shadow-2xl max-h-36 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
@@ -36,6 +42,7 @@
   </div>
   <% if !@post.cover_image.attached? %>
   <div class="flex flex-col flex-grow p-4">
+    <label for="email" class="block pb-2 text-sm font-medium text-gray-700">Cover afbeelding</label>
     <div x-data="{ files: null }" id="FileUpload" class="relative block w-full px-3 py-2 border-2 border-gray-300 border-dashed rounded-md appearance-none hover:shadow-outline-gray">
         <div
           x-on:change="files = $event.target.files; console.log($event.target.files);"
