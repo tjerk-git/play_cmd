@@ -64,8 +64,8 @@ trix-toolbar [data-trix-button-group='block-tools'] {
                   tabindex="-1"
                 >
                   <div class="py-1" role="none">
-                    <%= link_to 'Delete post', post_path(@post.slug), method: :delete, data: {turbo: false, confirm: 'Are you sure?'}, class: 'text-gray-700 block px-4 py-2 text-sm' %>
                     <%= link_to 'Edit post', edit_post_path(@post.slug), data: {turbo: false }, class: 'text-gray-700 block px-4 py-2 text-sm' %>
+                    <%= link_to 'Delete post', post_path(@post.slug), method: :delete, data: {turbo: false, confirm: 'Are you sure?'}, class: 'text-gray-700 block px-4 py-2 text-sm' %>
                   </div>
                 </div>
               </div>
