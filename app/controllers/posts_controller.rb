@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @posts = Post.paginate(page: params[:page], per_page: 30).order(created_at: :desc)
+        @posts = Post.paginate(page: params[:page], per_page: 30).order(highlight: :asc)
         @tags = Tag.all()
     end
 
@@ -25,6 +25,19 @@ class PostsController < ApplicationController
         Like.create(user: current_user, post: @post)
         redirect_to post_path(@post.slug)
     end
+
+    def highlight
+        @post = Post.find(params[:id])
+        if @post.highlight == true
+            @post.highlight = false
+        else
+            @post.highlight = true
+        end
+        if @post.save
+            redirect_to post_path(@post.slug), notice: '#{post.title} got the spotlight!'
+        end
+    end
+
 
     def for_you
         @posts = Post.joins(:tags).where(tags: { id: current_user.tag_ids }).paginate(page: params[:page], per_page: 30)
