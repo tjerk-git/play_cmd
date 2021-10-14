@@ -29,8 +29,8 @@ trix-toolbar [data-trix-button-group='block-tools'] {
     <div class="self-center">
 
       <% if is_teacher(current_user) && is_your_field(current_user, @post) %>
-         <turbo-frame id="community_highlight">
-            <% if @post.highlight == true %>
+         <turbo-frame id="highlight">
+            <% if @post.highlight == 1 %>
               <?xml version="1.0" encoding="UTF-8"?>
               <svg class="w-5 h-5 ml-2 -mr-1" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -46,7 +46,6 @@ trix-toolbar [data-trix-button-group='block-tools'] {
               </g>
               </g>
               </svg>
-              
             <% else %>
               <%= button_to highlight_path(@post), method: "put", class: 'bg-white text-gray-800 rounded-lg inline-flex p-3' do %>
                   Giant Highlight button

@@ -28,10 +28,10 @@ class PostsController < ApplicationController
 
     def highlight
         @post = Post.find(params[:id])
-        if @post.highlight == true
-            @post.highlight = false
+        if @post.highlight == 1
+            @post.highlight = 0
         else
-            @post.highlight = true
+            @post.highlight = 1
         end
         if @post.save
             redirect_to post_path(@post.slug), notice: '#{post.title} got the spotlight!'
