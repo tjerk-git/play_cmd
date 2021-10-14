@@ -27,7 +27,9 @@
         <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug),  data: { turbo: false } %></h2>
         <div class="flex items-center mt-8">
         <% if post.user.avatar.attached? %>
-            <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-2 rounded-full' %>
+             <%= link_to profile_path(post.user.slug),  data: { turbo: false } do %>
+                <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-12 h-12 mr-2 rounded-full' %>
+             <% end %>
         <% end %>
         <p class="ml-1 text-gray-900 text-md dark:text-gray-300">
             <%= post.user.name %>
