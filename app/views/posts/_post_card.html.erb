@@ -32,7 +32,9 @@
              <% end %>
         <% end %>
         <p class="ml-1 text-gray-900 text-md dark:text-gray-300">
+        <%= link_to profile_path(post.user.slug), data: { turbo: false } do %>
             <%= post.user.name %>
+        <% end %>
         </p>
         </div>
     </header>

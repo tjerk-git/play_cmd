@@ -22,8 +22,9 @@ class User < ApplicationRecord
 
    has_many :posts, dependent: :delete_all
 
-   has_many :user_tags
+   has_many :user_tags, dependent: :delete_all
    has_many :tags, :through => :user_tags
+   has_many :likes, dependent: :destroy
 
    has_many :comments, dependent: :delete_all
 
