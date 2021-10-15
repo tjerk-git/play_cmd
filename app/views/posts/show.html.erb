@@ -127,7 +127,7 @@ trix-toolbar [data-trix-button-group='block-tools'] {
 
   <div class="grid items-start grid-cols-1 gap-4 mb-8 lg:grid-cols-3">
     <div class="grid grid-cols-1 gap-4 lg:col-span-2">
-      <div class="w-full bg-white rounded-md">
+      <div class="w-full bg-white rounded-md dark:bg-darkColor">
         <div class="px-4 py-4 prose">
           <%= @post.body%>
         </div>
@@ -208,27 +208,27 @@ trix-toolbar [data-trix-button-group='block-tools'] {
       </turbo-frame>
     </div>
     <div class="flex flex-col w-full gap-4">
-        <div class="flex-auto px-4 py-2 bg-white rounded-md">
+        <div class="flex-auto px-4 py-2 bg-white rounded-md dark:bg-darkColor">
           <div class="flex items-center">
             <% if @post.user.avatar.attached? %>
               <%= image_tag @post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-2 rounded-full' %>
             <% end %>
             <div class="">
-              <h3>
+              <h3 class="text-gray-900 dark:text-gray-200">
               <%= link_to profile_path(@post.user.slug) do %>
                 <%= @post.user.name %>
               <% end %>
               </h3>
-              <p class="text-sm text-gray-400"><%= @post.user.email %></p>
+              <p class="text-sm text-gray-400 dark:text-gray-300"><%= @post.user.email %></p>
             </div>
           </div>
           <% if @post.user.tags.present? %>
             <div class="pt-4">
-              <h2 class="mb-2 text-gray-600">Creative fields</h2>
+              <h2 class="mb-2 text-gray-600 dark:text-gray-400">Creative fields</h2>
                <% if @post.tags.present? %>
             <div class="pb-2">
               <% @post.tags.each do |tag| %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium dark:bg-darkBackground bg-gray-100 text-gray-400">
                 <%= tag.name %>
                 </span>
               <% end %>
@@ -237,12 +237,12 @@ trix-toolbar [data-trix-button-group='block-tools'] {
             </div>
             </div>
           <% end %>
-          <div class="flex-auto px-4 py-2 bg-white rounded-md">
-            <h2 class="mb-2 font-semibold">Creative fields</h2>
+          <div class="flex-auto px-4 py-2 bg-white rounded-md dark:bg-darkColor">
+            <h2 class="mb-2 font-semibold text-gray-900 dark:text-gray-200">Linked tags</h2>
             <% if @post.tags.present? %>
             <div class="pb-2">
               <% @post.tags.each do |tag| %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium dark:bg-darkBackground bg-gray-100 text-gray-400">
                 <%= tag.name %>
                 </span>
               <% end %>
