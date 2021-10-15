@@ -61,7 +61,10 @@ class PostsController < ApplicationController
     end
 
     def filter
-        @posts = Post.joins(:tags).where(tags: { id: params[:tag_ids] }).order(created_at: :desc).paginate(page: params[:page], per_page: 30)
+        @posts = Post.joins(:tags)
+        .where(tags: { id: params[:tag_ids] })
+        .order(created_at: :desc)
+        .paginate(page: params[:page], per_page: 30)
         render :index
     end
 
