@@ -13,12 +13,14 @@
             <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-3 rounded-full' %>
           <% end %>
           <div class="">
+            <%= link_to profile_path(user.slug) do %>
               <% if is_teacher(user) %>
               Lecturer |
               <% else %>
               Student |
               <% end %>
-            <%= link_to user.name, profile_path(user.slug) %><br/>
+             <%= user.name %>
+            <% end %>
             <a href="mailto:<% user.email %>" class="text-sm text-gray-400"><%= user.email %></a>
           </div>
         </div>
