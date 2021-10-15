@@ -29,6 +29,10 @@
   .prose pre {
     @apply px-8 py-6 space-y-4 text-sm text-gray-200 bg-gray-900 border-gray-300 rounded bg-opacity-5;
   }
+
+  .props figure {
+    @apply -mx-4;
+  }
 }
 
 pre {

@@ -1,6 +1,6 @@
  <span class="mention">
-    <%= user.name %>
-    <% if user.avatar.attached? %>
-        <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-2 rounded-full' %>
+    <%= link_to profile_path(user.slug), data: { turbo: false } do %>
+        @<%= user.name %>
     <% end %>
+    <% # todo: Add a hover state for user stuff %>
  </span>
