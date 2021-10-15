@@ -68,6 +68,10 @@ class PostsController < ApplicationController
     def show
         @post = Post.find_by!(slug: params[:slug])
         @comment = Comment.new()
+    rescue ActiveRecord::RecordNotFound
+        if @posts.nil?
+            render "not_found"
+        end
     end
 
     def new
