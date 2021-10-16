@@ -1,4 +1,4 @@
-<nav class="flex flex-col flex-grow w-64 pt-8 pb-4 overflow-y-auto bg-white">
+<nav class="flex flex-col flex-grow w-64 pt-8 pb-4 overflow-y-auto bg-white dark:bg-darkColor">
   <div class="flex items-center flex-shrink-0 px-5">
     <a href="/" class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white duration-200 bg-gray-900 rounded group-hover:bg-gray-700">
       <span class="italic font-bold text-md"> CMD </span>
@@ -6,7 +6,7 @@
   </div>
   <div class="flex flex-col flex-grow mt-10">
     <div class="flex-1 space-y-2">
-      <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 group hover:bg-gray-50" href="<%= posts_path %>">
+      <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 dark:border-darkBackground group hover:bg-gray-50 dark:hover:bg-darkBackground" href="<%= posts_path %>">
         <svg width="19" height="21" fill="none" viewBox="0 0 19 21" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
           <path
             stroke="currentColor"
@@ -18,7 +18,7 @@
         </svg>
         <span class="text-gray dark:text-white">Home</span>
       </a>
-      <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 group hover:bg-gray-50"  href="<%= people_path %>">
+      <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 dark:border-darkBackground group hover:bg-gray-50 dark:hover:bg-darkBackground"  href="<%= people_path %>">
         <svg width="23" height="23"  fill="none" viewBox="0 0 23 23" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
           <path
             stroke="currentColor"
@@ -69,7 +69,7 @@
         </svg>
         <span class="text-gray-900 dark:text-white">People</span>
       </a>
-      <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 group hover:bg-gray-50"  href="<%= for_you_path %>">
+      <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 dark:border-darkBackground group hover:bg-gray-50 dark:hover:bg-darkBackground"  href="<%= for_you_path %>">
         <svg width="18" height="17" fill="none" viewBox="0 0 18 17" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
         <path
           fill-rule="evenodd"
@@ -86,7 +86,7 @@
       </a>
     </div>
     <div class="justify-center">
-      <a class="flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent cursor-wait group hover:text-gray-900 hover:bg-gray-50">
+      <a class="flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent cursor-wait group hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-darkBackground">
         <svg width="18" height="17" fill="none" viewBox="0 0 18 17" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500">
           <path
             fill-rule="evenodd"
@@ -111,10 +111,10 @@
                 <% end %>
               </div>
               <div class="ml-4">
-                <p class="text-sm font-light text-gray-700 group-hover:text-gray-900">
+                <p class="text-sm font-light text-gray-700 group-hover:text-gray-900 dark:group-hover:text-gray-300 dark:text-gray-300">
                    <%= link_to current_user.name, edit_user_registration_path %>
                 </p>
-                <p class="text-xs font-light text-gray-500 group-hover:text-gray-700">
+                <p class="text-xs font-light text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 dark:text-gray-400">
                   <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
                 </p>
               </div>

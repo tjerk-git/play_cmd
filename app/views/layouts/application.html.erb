@@ -21,7 +21,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-background" x-data="{secretModal: 0}">
+  <body class="bg-background dark:darkBackground" x-data="{secretModal: 0}">
     <div>
       <% if notice %>
         <%= render partial: "layouts/notice", object: notice %>
