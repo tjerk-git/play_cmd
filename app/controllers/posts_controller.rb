@@ -25,31 +25,9 @@ class PostsController < ApplicationController
         redirect_to post_path(@post.slug)
     end
 
-<<<<<<< HEAD
-    def highlight
-        @post = Post.find(params[:id])
-        if @post.highlight == 1
-            @post.highlight = 0
-        else
-            @post.highlight = 1
-        end
-        if @post.save
-            redirect_to post_path(@post.slug), notice: '#{post.title} got the spotlight!'
-        end
-    end
-
-
-    def for_you
-        @posts = Post.joins(:tags)
-        .where(
-            tags: { id: current_user.tag_ids }
-        )
-=======
-
     def for_you
         @posts = Post.joins(:tags)
         .where(tags: { id: current_user.tag_ids })
->>>>>>> develop
         .paginate(page: params[:page], per_page: 30)
         .distinct
         render :index
@@ -57,13 +35,7 @@ class PostsController < ApplicationController
 
     def by_tag
         @posts = Post.joins(:tags)
-<<<<<<< HEAD
-        .where(
-            tags: { slug: params[:slug] }
-        )
-=======
         .where(tags: { slug: params[:slug] })
->>>>>>> develop
         .order(created_at: :desc)
         .paginate(page: params[:page], per_page: 30)
         .distinct
@@ -76,10 +48,7 @@ class PostsController < ApplicationController
         .where(tags: { id: params[:tag_ids] })
         .order(created_at: :desc)
         .paginate(page: params[:page], per_page: 30)
-<<<<<<< HEAD
-=======
         .distinct
->>>>>>> develop
         render :index
     end
 
