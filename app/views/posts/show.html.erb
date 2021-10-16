@@ -127,7 +127,9 @@ trix-toolbar [data-trix-button-group='block-tools'] {
                     <li>
                       <div class="flex space-x-3">
                         <div class="flex-shrink-0">
-                          <%= image_tag comment.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-10 h-10 rounded-full' %>
+                          <% if comment.user.avatar.attached? %>
+                            <%= image_tag comment.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-10 h-10 rounded-full' %>
+                          <% end %>
                         </div>
                         <div>
                           <div class="text-sm">
@@ -142,16 +144,17 @@ trix-toolbar [data-trix-button-group='block-tools'] {
                         </div>
                       </div>
                     </li>
+                     <% end %>
                     <% end %>
-                    <% end %>
-
                   </ul>
                 </div>
               </div>
               <div class="px-4 py-6 bg-gray-50 sm:px-6">
                 <div class="flex space-x-3">
                   <div class="flex-shrink-0">
+                   <% if current_user.avatar.attached? %>
                     <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-10 h-10 rounded-full' %>
+                  <% end %>
                   </div>
                   <div class="flex-1 min-w-0">
                     <%= form_with model: @comment, url: new_comment_path(@post.id) do |form| %>
