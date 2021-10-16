@@ -7,7 +7,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#F7F7F7'
+        background: '#F7F7F7',
+        darkColor: '#212121',
+        darkBackground: '#121212',
       },
       fontFamily: {
         sans: ['Mulish', ...defaultTheme.fontFamily.sans],

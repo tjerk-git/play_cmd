@@ -25,6 +25,7 @@ class PostsController < ApplicationController
         redirect_to post_path(@post.slug)
     end
 
+<<<<<<< HEAD
     def highlight
         @post = Post.find(params[:id])
         if @post.highlight == 1
@@ -43,6 +44,12 @@ class PostsController < ApplicationController
         .where(
             tags: { id: current_user.tag_ids }
         )
+=======
+
+    def for_you
+        @posts = Post.joins(:tags)
+        .where(tags: { id: current_user.tag_ids })
+>>>>>>> develop
         .paginate(page: params[:page], per_page: 30)
         .distinct
         render :index
@@ -50,9 +57,13 @@ class PostsController < ApplicationController
 
     def by_tag
         @posts = Post.joins(:tags)
+<<<<<<< HEAD
         .where(
             tags: { slug: params[:slug] }
         )
+=======
+        .where(tags: { slug: params[:slug] })
+>>>>>>> develop
         .order(created_at: :desc)
         .paginate(page: params[:page], per_page: 30)
         .distinct
@@ -65,7 +76,17 @@ class PostsController < ApplicationController
         .where(tags: { id: params[:tag_ids] })
         .order(created_at: :desc)
         .paginate(page: params[:page], per_page: 30)
+<<<<<<< HEAD
+=======
+        .distinct
+>>>>>>> develop
         render :index
+    end
+
+    def highlight_modal
+        @post = Post.find_by!(slug: params[:slug])
+        @highlight = Highlight.new()
+        render :show
     end
 
     def show
@@ -88,7 +109,6 @@ class PostsController < ApplicationController
         if @post.save
           redirect_to post_path(@post.slug), notice: 'Post aangemaakt'
         else
-          #flash.now[:alert] = 'Post niet opgeslagen'
           render :new
         end
     end

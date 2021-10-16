@@ -39,3 +39,7 @@
 yarn-debug.log*
 .yarn-integrity
 .env
+.DS_STORE
+.idea
+# for now
+.vscode

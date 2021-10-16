@@ -2,12 +2,11 @@ class HardWorker
   include Sidekiq::Worker
 
   def perform(*args)
-    posts = Post.where(:highlight => true)
+    highlights = Highlight.where(:created_at => 1.month.ago.beginning_of_month..1.month.ago.end_of_month)
 
-    if posts
-      posts.each do |post| 
-        post.highlight = 0
-        post.save!
+    if highlights
+      highlights.each do |highlight| 
+        highlight.destroy!
       end
     end
   end
