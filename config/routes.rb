@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   patch '/posts', to: 'posts#update', :as => :update_posts
   post '/posts/list/filter/', to: 'posts#filter', :as => :filter_posts
   put '/post/:id/like', to: 'posts#like', :as =>'like'
-  put '/post/:id/highlight', to: 'posts#highlight', :as => :highlight
+
+  get '/posts/:slug/highlight_show', to: 'posts#highlight_modal', :as => 'highlight_modal'
 
   get '/people/list/', to: 'profile#list', :as => :people
   get '/people/search/', to: 'profile#list', :as => :filter_people
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
   put '/profile/hide_onboarding', to: 'profile#hide_onboarding', :as => :hide_onboarding
 
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
+  post '/highlight/new/:post_id', to: 'highlights#create', :as => :new_highlight
 
 end

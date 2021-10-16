@@ -3,16 +3,16 @@ class Post < ApplicationRecord
   belongs_to :user, dependent: :destroy
   has_many :likes, dependent: :delete_all
   has_many :comments, dependent: :delete_all
-
+  has_many :highlights, dependent: :delete_all
   has_many :post_tags, dependent: :delete_all
   has_many :tags, :through => :post_tags
 
   has_rich_text :body
-  
+  has_one_attached :cover_image
+
   validates :title, presence: true
   before_validation :create_slug
 
-  has_one_attached :cover_image
 
   def liked?(user)
     !!self.likes.find{|like| like.user == user}
