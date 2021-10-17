@@ -46,6 +46,11 @@
           <main class="flex-1 px-6 mt-8 md:px-10 focus:outline-none">
             <%= yield %>
           </main>
+          <% if @post && @post.slug %>
+            <% if current_page?(controller: 'posts', action: 'highlight_modal', slug: @post.slug) %>
+                <%= render partial: "highlight_form", object: @post %>
+            <% end %>
+          <% end %>
           <footer class="mt-12 mb-5 text-center">
             <p>Version 1.0 &middot; <a href="https://trello.com" target="_blank" class="font-medium underline">Product roadmap</a></p>
           </footer>
