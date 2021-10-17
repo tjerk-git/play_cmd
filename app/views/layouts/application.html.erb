@@ -68,6 +68,11 @@
           <div class="flex items-stretch flex-1 overflow-hidden">
             <main class="flex-1 px-6 mt-8 overflow-scroll md:px-10 focus:outline-none">
               <%= yield %>
+              <% if @post && @post.slug %>
+                <% if current_page?(controller: 'posts', action: 'highlight_modal', slug: @post.slug) %>
+                    <%= render partial: "highlight_form", object: @post %>
+                <% end %>
+              <% end %>
             </main>
           </div>
         </div>

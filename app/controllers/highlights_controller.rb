@@ -1,5 +1,5 @@
 class HighlightsController < ApplicationController
-   
+
     def create
         @highlight = Highlight.new(highlight_params)
         @post = Post.find(params[:post_id])
@@ -8,7 +8,7 @@ class HighlightsController < ApplicationController
         if @highlight.save
           redirect_to post_path(@post.slug), notice: 'Spotlight added!'
         else
-          render :new
+          # render :new
         end
     end
 
