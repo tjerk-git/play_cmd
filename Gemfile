@@ -13,6 +13,7 @@ gem 'will_paginate', '~> 3.3'
 
 gem 'sidekiq'
 gem "sidekiq-cron"
+gem 'rack-cors'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

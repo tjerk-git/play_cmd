@@ -53,7 +53,6 @@
                             <%= image_tag highlight.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-10 h-10 rounded-full ' %>
                           <% else %>
                             <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= highlight.user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
-                          <% end %>
                         </div>
                         <div>
                           <div class="text-sm">
@@ -70,6 +69,7 @@
                         </div>
                       </div>
                     </li>
+                     <% end %>
                     <% end %>
                   </ul>
               </div>

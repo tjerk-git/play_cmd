@@ -15,7 +15,6 @@ class PostsController < ApplicationController
         if @post.update(update_post_params)
             redirect_to post_path(@post.slug), notice: 'Post bewerkt'
         else
-        #flash.now[:alert] = 'Post niet opgeslagen'
         render :new
         end
     end
@@ -25,7 +24,6 @@ class PostsController < ApplicationController
         Like.create(user: current_user, post: @post)
         redirect_to post_path(@post.slug)
     end
-
 
     def for_you
         @posts = Post.joins(:tags)
