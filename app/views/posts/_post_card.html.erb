@@ -7,23 +7,6 @@
     </div>
     <header class="flex p-2 md:p-4">
     <div>
-        <% if post.highlight == 1 %>
-              <?xml version="1.0" encoding="UTF-8"?>
-              <svg class="w-5 h-5 ml-2 -mr-1" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-              <linearGradient id="a" x1="5" x2="55" y1="992.36" y2="1042.4" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#fea" offset="0"/>
-              <stop stop-color="#fc0" offset="1"/>
-              </linearGradient>
-              </defs>
-              <g transform="translate(0 -988.36)">
-              <g transform="translate(0,4e-5)">
-              <path transform="translate(0 988.36)" d="m29 3 7 20h3l-5-15-5-5zm-28 20 5 5 18 13-5-5-18-13zm57 0-18 13 6 20-17-12-16.906 12.031 4.906 4.969 17-12 17 12-6-20 18-13-5-5z" fill="#a0892c"/>
-              <path d="m23 1011.4h-22l18 13-7 20 17-12 17 12-6-20 18-13h-22l-7-20-6 20z" fill="url(#a)"/>
-              </g>
-              </g>
-              </svg>
-        <% end %>
         <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug),  data: { turbo: false } %></h2>
         <div class="flex items-center mt-8">
         <% if post.user.avatar.attached? %>
