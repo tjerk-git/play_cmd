@@ -20,7 +20,10 @@ class ProfileController < ApplicationController
     end
 
     def by_tag
-        @users = User.joins(:tags).where(tags: { slug: params[:slug] }).order(created_at: :desc)
+        @users = User.joins(:tags)
+        .where(tags: { slug: params[:slug] })
+        .order(created_at: :desc)
+        .paginate(page: params[:page], per_page: 30)
         @tag = Tag.find_by_slug(params[:slug])
         render :list
     end
