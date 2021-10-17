@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= render partial: "layouts/partials/media" %>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900;&display=swap" rel="stylesheet">
@@ -23,37 +25,37 @@
 
   <body class="overflow-hidden bg-background dark:darkBackground" x-data="{secretModal: 0}">
     <div class="">
-      <% if notice %>
-        <%= render partial: "layouts/notice", object: notice %>
-      <% end %>
-      <% if alert %>
-        <%= render partial: "layouts/alert", object: alert %>
-      <% end %>
-      <div class="flex h-screen bg-gray-100 dark:bg-darkBackground" x-data="{ open: false }">
+      <%# Alerts and notices %>
+      <%= render partial: "layouts/partials/messages" %>
+
+      <div class="flex h-screen bg-gray-100" x-data="{ open: false }">
+      <%# Modals %>
       <%= render partial: "shared/onboarding_modal" %>
       <%= render partial: "shared/secret_modal" %>
-      <%= render partial: "layouts/mobile_navigation" %>
 
-      <div class="hidden md:flex md:flex-shrink-0">
-        <%= render partial: "layouts/navigation" %>
-      </div>
+      <%# Navigation %>
+      <%= render partial: "layouts/partials/mobile_navigation" %>
+      <%= render partial: "layouts/partials/navigation" %>
 
       <div class="flex flex-col w-full mb-4">
-        <div class="px-8">
-        <%= render partial: "layouts/header" %>
-        </div>
+        <%# Header %>
+        <%= render partial: "layouts/partials/header" %>
+
         <div class="flex flex-col px-6 mt-4 overflow-y-auto md:px-8">
+          <%# Page content %>
           <main class="flex-1 px-6 mt-8 md:px-10 focus:outline-none">
             <%= yield %>
           </main>
+
+          <%# Hacky highlight modal TODO: Alpine this. %>
           <% if @post && @post.slug %>
             <% if current_page?(controller: 'posts', action: 'highlight_modal', slug: @post.slug) %>
                 <%= render partial: "highlight_form", object: @post %>
             <% end %>
           <% end %>
-          <footer class="mt-12 mb-5 text-center">
-            <p>Version 1.0 &middot; <a href="https://trello.com" target="_blank" class="font-medium underline">Product roadmap</a></p>
-          </footer>
+
+          <%# Footer %>
+          <%= render partial: "layouts/partials/footer" %>
         </div>
       </div>
     </div>
