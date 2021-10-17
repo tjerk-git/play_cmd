@@ -10,7 +10,9 @@
       <div class="flex-auto px-4 py-4 bg-white rounded-md">
         <div class="flex items-center">
           <% if user.avatar.attached? %>
-            <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-8 h-8 mr-3 rounded-full' %>
+            <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-8 h-8 mr-3 rounded-full ' %>
+          <% else %>
+            <img class="w-8 h-8 mr-3 rounded-full" src="https://ui-avatars.com/api/?name=<%= user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= user.name %>">
           <% end %>
           <div class="">
             <%= link_to profile_path(user.slug) do %>
@@ -20,7 +22,7 @@
               Student |
               <% end %>
              <%= user.name %>
-            <% end %>
+            <% end %><br>
             <a href="mailto:<% user.email %>" class="text-sm text-gray-400"><%= user.email %></a>
           </div>
         </div>
