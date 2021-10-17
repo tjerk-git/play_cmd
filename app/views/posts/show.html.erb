@@ -1,4 +1,3 @@
-
 <div class="mx-auto md:flex md:items-center md:justify-between">
   <div class="flex items-center">
     <div>
@@ -6,11 +5,11 @@
         <%= @post.title %>
       </h1>
       <% if @post.tags.present? %>
-      <p class="text-sm font-medium text-gray-500">Tags:
-        <% @post.tags.each do |tag| %>
-          <a href="#" class="text-gray-900">#<%= tag.name %></a>
-        <%end%>
-      </p>
+        <p class="text-sm font-medium text-gray-500">Tags:
+          <% @post.tags.each do |tag| %>
+            <a href="#" class="text-gray-900">#<%= tag.name %></a>
+          <%end%>
+        </p>
       <% end %>
     </div>
   </div>
@@ -210,7 +209,6 @@
     </div>
   </section>
 </div>
-
 <%# PAGE STYLING %>
 <style>
   trix-toolbar [data-trix-button-group='history-tools'],
