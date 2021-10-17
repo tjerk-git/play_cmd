@@ -11,17 +11,22 @@
         <% end %>
         </header>
         <div class="mt-2 space-y-2">
-        <%= link_to profile_path(@post.user.slug) do %>
-            <p><%= @post.user.name %><p>
-        <% end %>
-        <%# TODO: - Add bio here. for now its just Student or Teacher %>
-        <p class="text-sm text-gray-600 break-all">
-            <% if is_teacher(@post.user) %>
-            Lecturer
-            <% else %>
-            Student
+            <%= link_to profile_path(@post.user.slug) do %>
+                <p><%= @post.user.name %><p>
             <% end %>
-        </p>
+            <% if @post.user.about != nil %>
+                <p class="text-sm text-gray-600 break-all">
+                <%= @post.user.about %>
+                </p>
+            <% else %>
+                <p class="text-sm text-gray-600 break-all">
+                    <% if is_teacher(@post.user) %>
+                    Lecturer
+                    <% else %>
+                    Student
+                    <% end %>
+                </p>
+            <% end %>
         </div>
         <dl class="grid grid-cols-2 gap-6 mt-4">
         <div>
