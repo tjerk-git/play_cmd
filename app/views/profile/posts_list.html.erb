@@ -1,0 +1,22 @@
+<div class="overflow-hidden bg-white rounded-lg shadow">
+  <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+    <%= render partial: "shared/profile_navigation" %>
+    <div class="divide-y divide-gray-200 lg:col-span-9">
+      <div class="px-4 py-6 sm:p-6 lg:pb-8">
+        <div>
+          <h2 class="text-lg font-medium leading-6 text-gray-900">Your posts</h2>
+          <p class="mt-1 text-sm text-gray-500">
+            Flexing your creative flow ammirite 🚀.
+          </p>
+        </div>
+        <div class="flex flex-col mt-6 lg:flex-row">
+          <div class="flex-grow space-y-6">        
+            <% @posts.each do |post| %>
+              <%= post.title %>
+            <% end %>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
