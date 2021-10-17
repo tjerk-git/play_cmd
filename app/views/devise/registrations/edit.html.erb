@@ -1,157 +1,138 @@
-<div>
-        <h3 class="mb-6 text-2xl font-bold">Edit <%= resource_name.to_s.humanize %></h3>
-<div class="grid items-start grid-cols-1 gap-6 mb-8 lg:grid-cols-12">
-
-<aside class="grid grid-cols-1 gap-4 px-2 py-6 rounded-md sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
-        <nav class="space-y-1">
-          <!-- Current: "bg-gray-50 hover:bg-white", Default: "text-gray-900 hover:text-gray-900 hover:bg-gray-50" -->
-          <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md bg-gray-50 hover:bg-white hover:text-gray-900 group">
-            <svg class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span class="truncate">
-              Profile
-            </span>
-          </a>
-          <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md hover:bg-white hover:text-gray-900 group">
-            <svg class="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span class="truncate">
-              Your likes
-            </span>
-          </a>
-        </nav>
-      </aside>
-
-  <div class="flex justify-between w-full lg:col-span-8">
-    <div class="flex items-center">
-      <div class="text-darkBackground dark:text-gray-400">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
-
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm'  %>
+<div class="overflow-hidden bg-white rounded-lg shadow">
+  <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+    <%= render partial: "shared/profile_navigation" %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'divide-y divide-gray-200 lg:col-span-9' }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="px-4 py-6 sm:p-6 lg:pb-8">
+        <div>
+          <h2 class="text-lg font-medium leading-6 text-gray-900">Profile</h2>
+          <p class="mt-1 text-sm text-gray-500">
+            Here you can edit your profile information
+          </p>
+        </div>
+        <div class="flex flex-col mt-6 lg:flex-row">
+          <div class="flex-grow space-y-6">
+            <div>
+              <%= f.label :email, class: 'block text-sm font-medium text-gray-700' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm'  %>
+            </div>
+            <div>
+              <label for="about" class="block text-sm font-medium text-gray-700">
+                About
+              </label>
+              <div class="mt-1">
+                <textarea id="about" name="about" rows="3" class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"></textarea>
+              </div>
+              <p class="mt-2 text-sm text-gray-500">
+                Brief description for your profile. URLs are hyperlinked.
+              </p>
+            </div>
           </div>
-
-          <div class="mt-4 field">
-            <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
-          </div>
-
-          <div class="mt-4 field">
-            <%= f.label :tags %><br />
-            <div class="relative inline-block mt-2 text-left" x-data="{open: false}">
-              <button @click="open = !open"  type="button" class="relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
-                <span class="block truncate">
-                  Tags
-                </span>
-                <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                  <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </button>
-              <div
-                x-show="open"
-                x-transition:enter=""
-                x-transition:enter-start=""
-                x-transition:enter-end=""
-                x-transition:leave="transition ease-in duration-100"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                x-on:click.away="open = false"
-              >
-                <div class="absolute left-0 z-20 w-40 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto origin-top-left bg-white rounded-md shadow-2xl max-h-36 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
-                  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+          <div class="flex-grow mt-6 lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">
+            <p class="text-sm font-medium text-gray-700" aria-hidden="true">
+              Photo
+            </p>
+                  <div class="mt-1 lg:hidden">
                     <div class="flex items-center">
-                      <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>
-                      <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
-                        <%= b.label %>
-                      </label>
+                      <div class="flex-shrink-0 inline-block w-12 h-12 overflow-hidden rounded-full" aria-hidden="true">
+                        <% if current_user.avatar.attached? %>
+                            <%= image_tag current_user.avatar.variant(resize_to_limit: [320, 320], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-full h-full rounded-full ' %>
+                        <% else %>
+                            <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
+                        <% end %>
+                      </div>
+                      <div class="ml-5 rounded-md shadow-sm">
+                        <div class="relative flex items-center justify-center px-3 py-2 border border-gray-300 rounded-md group hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
+                          <label for="mobile-user-photo" class="relative text-sm font-medium leading-4 text-gray-700 pointer-events-none">
+                            <span>Change</span>
+                            <span class="sr-only"> user photo</span>
+                          </label>
+                          <%= f.file_field :avatar, class: 'absolute w-full h-full border-gray-300 rounded-md opacity-0 cursor-pointer', html: { id: 'desktop-user-photo', name: 'user-photo'} %>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+
+                  <div class="relative hidden overflow-hidden rounded-full lg:block">
+                    <% if current_user.avatar.attached? %>
+                      <%= image_tag current_user.avatar.variant(resize_to_limit: [320, 320], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-40 h-40 rounded-full relative' %>
+                    <% else %>
+                        <img class="relative w-40 h-40 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
+                    <% end %>
+                    <label for="desktop-user-photo" class="absolute inset-0 flex items-center justify-center w-full h-full text-sm font-medium text-white bg-black bg-opacity-75 opacity-0 hover:opacity-100 focus-within:opacity-100">
+                      <span>Change</span>
+                      <span class="sr-only"> user photo</span>
+                      <%= f.file_field :avatar, class: 'absolute inset-0 w-full h-full border-gray-300 rounded-md opacity-0 cursor-pointer', html: { id: 'desktop-user-photo', name: 'user-photo'} %>
+                      <input type="file" id="desktop-user-photo" name="user-photo" class="absolute inset-0 w-full h-full border-gray-300 rounded-md opacity-0 cursor-pointer">
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-12 gap-6 mt-6">
+                <div class="col-span-12 sm:col-span-6">
+                  <%= f.label :name, class: 'block text-sm font-medium text-gray-700' %>
+                  <%= f.text_field :name, autofocus: true, class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
+                </div>
+                <div class="col-span-12 sm:col-span-6">
+                  <%= f.label :tags, class: 'block text-sm font-medium text-gray-700' %>
+                  <div class="relative inline-block w-full mt-2 text-left" x-data="{open: false}">
+                      <button @click="open = !open"  type="button" class="block w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                        <span class="block truncate">
+                          Tags
+                        </span>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                          <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                          </svg>
+                        </span>
+                      </button>
+                      <div
+                        x-show="open"
+                        x-transition:enter=""
+                        x-transition:enter-start=""
+                        x-transition:enter-end=""
+                        x-transition:leave="transition ease-in duration-100"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        x-on:click.away="open = false"
+                      >
+                        <div class="absolute left-0 z-20 w-56 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto origin-top-left bg-white rounded-md shadow-2xl max-h-36 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
+                          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+                            <div class="flex items-center">
+                              <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>
+                              <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
+                                <%= b.label %>
+                              </label>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-12 gap-6 mt-6">
+                <div class="col-span-12 sm:col-span-6">
+                  <div class="flex justify-between">
+                    <%= f.label :password, class: 'block text-sm font-medium text-gray-700' %>
+                    <span class="text-sm text-gray-500" id="password">Leave blank if you don't want to change it</span>
+                  </div>
+                  <%= f.password_field :password, autocomplete: "new-password", class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
+                  <% if @minimum_password_length %>
+                    <p class="mt-2 text-sm text-gray-500" id="email-description"><%= @minimum_password_length %> characters minimum.</p>
                   <% end %>
+                </div>
+
+                <div class="col-span-12 sm:col-span-6">
+                  <%= f.label :password_confirmation, class: 'block text-sm font-medium text-gray-700' %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="mt-4 field">
-            <%= f.label :avatar %><br />
-            <div class="pt-2 mb-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center">
-            <div class="sm:mt-0 sm:col-span-2">
-              <div class="flex items-center">
-                <%= f.file_field :avatar, class: 'bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' %>
-              </div>
+            <div class="flex justify-end px-4 py-4 mt-4 sm:px-6">
+              <%= f.submit "Update", class: 'inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-gray-900 border border-transparent rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500' %>
             </div>
-        </div>
-
-
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-
-          <div class="mt-4 field">
-            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
-            <% if @minimum_password_length %>
-              <em><%= @minimum_password_length %> characters minimum</em>
             <% end %>
-          </div>
-
-          <div class="mt-4 field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
-          </div>
-
-          <div class="mt-5 actions">
-            <%= f.submit "Update", class: '
-              inline-flex
-              justify-center
-              py-2
-              px-4
-              border-none
-              shadow-sm
-              text-sm
-              w-full
-              font-medium
-              rounded-md
-              text-white
-              bg-gray-900
-              hover:bg-gray-700
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-gray-500'
-            %>
-          </div>
-        <% end %>
-
+        </div>
       </div>
-      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,
-        class: 'mt-4 mb-4
-            inline-flex
-              justify-center
-              py-2
-              px-4
-              shadow-sm
-              text-sm
-              w-full
-              font-medium
-              rounded-md
-              text-red-600
-              bg-red-200
-              bg-transparent
-              border-2
-              border-red-200
-              hover:bg-transparent
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-gray-500'
-          %>
-    </div>
-  </div>
-</div>
-</div>
