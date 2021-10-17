@@ -1,0 +1,35 @@
+<div class="flex space-x-3">
+    <div class="flex-shrink-0">
+        <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-10 h-10 rounded-full ' %>
+        <% else %>
+            <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= current_user.name %>">
+        <% end %>
+    </div>
+    <div class="flex-1 min-w-0">
+        <%= form_with model: @comment, url: new_comment_path(@post.id) do |form| %>
+            <div>
+                <label for="comment" class="sr-only">Feedback</label>
+                <%= form.rich_text_area :body,
+                    rows: 3,
+                    placeholder: 'Watcha thinkin?',
+                    data: { controller: "mentions", target: "mentions.field" } ,
+                    class: 'block w-full border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm'
+                %>
+            </div>
+            <div class="flex flex-col items-center justify-between mt-3 md:flex-row">
+                <p class="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                        Be gentle and stay positive ✌️
+                    </span>
+                </p>
+                <div class="">
+                    <%= form.submit 'Send feedback', class: 'mt-4 md:mt-0 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 cursor-pointer' %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

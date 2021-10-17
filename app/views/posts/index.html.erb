@@ -61,13 +61,12 @@
   <% if !@posts.empty? %>
     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
       <% @posts.each do |post| %>
-          <%= render partial: "post_card", locals: { post: post } %>
+          <%= render partial: "posts/partials/post_card", locals: { post: post } %>
       <% end %>
     </div>
     <%= will_paginate @posts %>
-
   <% else %>
-  <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
+    <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
         <div class="bg-white rounded-md shadow-md">
           <div>
             <img src="https://media4.giphy.com/media/WU5tf9pEbsJlx935rv/200.gif" class="block object-cover w-full h-72 rounded-t-md"/>

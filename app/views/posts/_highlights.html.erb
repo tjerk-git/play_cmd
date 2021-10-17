@@ -1,6 +1,0 @@
-<% if @post.highlights %>
-    <% @post.highlights.each do |highlight| %>
-        Highlighted by: <%= highlight.user.name %>
-        <%= highlight.body %>
-    <% end %>
-<% end %>
