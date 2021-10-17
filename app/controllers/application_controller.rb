@@ -20,8 +20,9 @@ class ApplicationController < ActionController::Base
           :password,
           :password_confirmation,
           :name,
-          :avatar
-          )
+          :avatar,
+          :about
+        )
       end
 
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :invitation_code])
