@@ -82,15 +82,14 @@ class PostsController < ApplicationController
         end
     end
 
-    def gallery
-        @post = Post.find(params[:id])
-    end
 
     def destroy
-        @post = Post.find_by!(slug: params[:slug])
-        @post.destroy
-
-        redirect_to posts_path, notice: 'Post verwijderd'
+        @post = Post.find_by_slug(params[:slug])
+        if @post        
+            if @post.destroy!
+                redirect_to posts_path, notice: 'Post verwijderd'
+            end
+        end
     end
 
 private
