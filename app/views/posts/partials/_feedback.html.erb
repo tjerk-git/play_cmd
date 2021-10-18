@@ -14,7 +14,7 @@
                         </ul>
                     </div>
                 <% end %>
-                <% if @post.comments %>
+                <% if @post.comments.count != 0 %>
                     <div class="px-4 py-6 sm:px-6">
                         <ul role="list" class="space-y-8">
                             <% @post.comments.each do |comment| %>
