@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    add_flash_types :success, :error
+
     def not_found
       raise ActionController::RoutingError.new('Not Found')
     end

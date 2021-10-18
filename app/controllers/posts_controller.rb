@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     def update
         @post = Post.find(params[:slug])
         if @post.update(update_post_params)
-            redirect_to post_path(@post.slug), notice: 'Post bewerkt'
+            redirect_to post_path(@post.slug), success: 'Post edited 🚀'
         else
         render :new
         end
@@ -85,7 +85,7 @@ class PostsController < ApplicationController
 
     def destroy
         @post = Post.find_by_slug(params[:slug])
-        if @post        
+        if @post
             if @post.destroy!
                 redirect_to posts_path, notice: 'Post verwijderd'
             end
