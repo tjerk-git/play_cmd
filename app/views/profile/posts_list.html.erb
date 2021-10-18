@@ -9,13 +9,22 @@
             Flexing your creative flow ammirite 🚀.
           </p>
         </div>
-        <div class="flex flex-col mt-6 lg:flex-row">
-          <div class="flex-grow space-y-6">        
+        <dd class="mt-4 text-sm text-gray-900 sm:mt-5 sm:col-span-2">
+          <ul role="list" class="border border-gray-200 divide-y divide-gray-200 rounded-md">
             <% @posts.each do |post| %>
-              <%= post.title %>
+            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+              <div class="flex items-center flex-1 w-0">
+                <span class="flex-1 w-0 truncate">
+                  <%= post.title %>
+                </span>
+              </div>
+              <div class="flex-shrink-0 ml-4">
+                <%= link_to "Show", post_path(post.slug), class: 'font-medium text-gray-600 hover:text-gray-500', data: { turbo: false } %>
+              </div>
+            </li>
             <% end %>
-          </div> 
-        </div>
+          </ul>
+        </dd>
       </div>
     </div>
   </div>
