@@ -33,4 +33,9 @@ Rails.application.routes.draw do
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
   post '/highlight/new/:post_id', to: 'highlights#create', :as => :new_highlight
 
+  namespace :api, defaults: { format: "json" } do
+    scope module: :v0 do
+      resources :posts, only: [:index]
+    end
+  end
 end
