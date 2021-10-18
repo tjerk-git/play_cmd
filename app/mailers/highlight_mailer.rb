@@ -1,3 +1,5 @@
+include Rails.application.routes.url_helpers
+
 class HighlightMailer < ApplicationMailer
   default template_path: "mailers/#{self.name.underscore}"
 
