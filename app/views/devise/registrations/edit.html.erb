@@ -34,7 +34,7 @@
                   <% if current_user.avatar.attached? %>
                       <%= image_tag current_user.avatar.variant(resize_to_limit: [320, 320], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-full h-full rounded-full ' %>
                   <% else %>
-                      <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
+                      <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
                   <% end %>
                 </div>
                 <div class="ml-5 rounded-md shadow-sm">
@@ -53,7 +53,7 @@
               <% if current_user.avatar.attached? %>
                 <%= image_tag current_user.avatar.variant(resize_to_limit: [320, 320], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-40 h-40 rounded-full relative' %>
               <% else %>
-                  <img class="relative w-40 h-40 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
+                  <img class="relative w-40 h-40 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="USER">
               <% end %>
               <label for="desktop-user-photo" class="absolute inset-0 flex items-center justify-center w-full h-full text-sm font-medium text-white bg-black bg-opacity-75 opacity-0 hover:opacity-100 focus-within:opacity-100">
                 <span>Change</span>

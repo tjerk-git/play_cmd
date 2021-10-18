@@ -1,0 +1,31 @@
+<div class="overflow-hidden bg-white rounded-lg shadow">
+  <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+    <%= render partial: "shared/profile_navigation" %>
+    <div class="divide-y divide-gray-200 lg:col-span-9">
+      <div class="px-4 py-6 sm:p-6 lg:pb-8">
+        <div>
+          <h2 class="text-lg font-medium leading-6 text-gray-900">Your likes</h2>
+          <p class="mt-1 text-sm text-gray-500">
+            Oh my do you like some stuff. Or not? hmm anyway here you go.
+          </p>
+        </div>
+        <dd class="mt-4 text-sm text-gray-900 sm:mt-5 sm:col-span-2">
+          <ul role="list" class="border border-gray-200 divide-y divide-gray-200 rounded-md">
+            <% @likes.each do |like| %>
+            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+              <div class="flex items-center flex-1 w-0">
+                <span class="flex-1 w-0 truncate">
+                  <%= like.post.title %>
+                </span>
+              </div>
+              <div class="flex-shrink-0 ml-4">
+                <%= link_to "Show", post_path(like.post.slug), class: 'font-medium text-gray-600 hover:text-gray-500', data: { turbo: false } %>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+        </dd>
+      </div>
+    </div>
+  </div>
+</div>

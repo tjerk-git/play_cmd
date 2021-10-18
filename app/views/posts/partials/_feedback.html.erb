@@ -14,7 +14,7 @@
                         </ul>
                     </div>
                 <% end %>
-                <% if @post.comments %>
+                <% if @post.comments.count != 0 %>
                     <div class="px-4 py-6 sm:px-6">
                         <ul role="list" class="space-y-8">
                             <% @post.comments.each do |comment| %>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <%# TODO: - Move this somewhere else. %>
-        <% if notice == 'comment aangemaakt' %>
+        <% if success == 'Feedback delivered. Your rock 🤘!' %>
             <script>
             modes.fireworks();
             </script>

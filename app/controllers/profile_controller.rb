@@ -28,6 +28,15 @@ class ProfileController < ApplicationController
         render :list
     end
 
+    def likes_list
+        @likes = current_user.likes()
+        render :likes_list
+    end
+
+    def posts_list
+        @posts = current_user.posts()
+        render :posts_list
+    end
 
     private
     def user_params
