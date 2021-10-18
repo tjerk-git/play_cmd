@@ -1,5 +1,5 @@
 class CommentMailer < ApplicationMailer
- default from: 'noreply@cmdlwd.nl'
+  default template_path: "mailers/#{self.name.underscore}"
 
   def feedback_email
     @comment = params[:comment]
