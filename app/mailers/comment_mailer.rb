@@ -1,5 +1,3 @@
-include Rails.application.routes.url_helpers
-
 class CommentMailer < ApplicationMailer
   default template_path: "mailers/#{self.name.underscore}"
 
