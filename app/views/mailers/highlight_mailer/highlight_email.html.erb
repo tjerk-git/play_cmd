@@ -19,7 +19,7 @@
         <%= @highlight.body %>
     </p>
     <p>
-      Check it out!  <%= link_to ENV['APP_URL'] + @highlight.post.title, "/post/" + @highlight.post.slug %>
+      <a href="#{post_link}">Check it out!</a>
     </p>
     <p>Thanks for playing and have a great day!</p>
   </body>
