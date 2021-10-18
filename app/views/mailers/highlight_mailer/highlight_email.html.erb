@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>
+    Hey,
+    <% if @highlight.post.user.name %>
+      <%= @highlight.post.user.name %>
+    <% else %>
+     <%= @highlight.post.user.email %>
+    <% end %> 👋
+    </h1>
+    <p>
+    
+      <%= @highlight.user.name %>, highlighted your post because:
+      <br>
+        <%= @highlight.body %>
+    </p>
+    <p>
+      Check it out!  <%= link_to ENV['APP_URL'] + @highlight.post.title, "/post/" + @highlight.post.slug %>
+    </p>
+    <p>Thanks for playing and have a great day!</p>
+  </body>
+</html>

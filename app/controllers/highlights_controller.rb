@@ -6,6 +6,7 @@ class HighlightsController < ApplicationController
         @highlight.user = current_user
         @highlight.post = @post
         if @highlight.save
+          HighlightMailer.with(highlight: @highlight).highlight_email.deliver_now
           redirect_to post_path(@post.slug), notice: 'Spotlight added!'
         else
           # render :new
