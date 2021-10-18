@@ -10,6 +10,7 @@ module PlayCmd
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.exceptions_app = self.routes
     config.action_mailer.default_url_options = { host: ENV['APP_URL'] }
 
     Bundler.require(*Rails.groups)

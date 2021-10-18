@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
 
     add_flash_types :success, :error
 
-    def not_found
-      raise ActionController::RoutingError.new('Not Found')
-    end
-
     private
     def after_sign_out_path_for(resource_or_scope)
       root_path

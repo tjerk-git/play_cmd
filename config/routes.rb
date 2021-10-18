@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :posts, param: :slug
   resources :mentions, only: [:index]
 
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
+
+
   get '/post/:id/gallery', to: 'posts#gallery', :as => :gallery_view
   get '/posts/list/for-you', to: 'posts#for_you', :as => :for_you
   get '/posts/list/:slug', to: 'posts#by_tag', :as => :tag_path
