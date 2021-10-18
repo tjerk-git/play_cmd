@@ -18,7 +18,7 @@
         <%= @comment.body %>
     </p>
     <p>
-       <a href="#{post_link}">Check it out!</a>
+      <%= link_to post_path(@comment.post.slug) %>
     </p>
     <p>Thanks for playing and have a great day!</p>
   </body>
