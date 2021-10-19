@@ -18,5 +18,8 @@
     </div>
     <div class="mt-2 space-x-2 text-sm">
         <span class="font-medium text-gray-500"><%= comment.created_at.to_date %></span>
+        <% if current_user == comment.user %>
+            <span class="font-medium text-gray-500 hover:text-red-500 "> <%= link_to "Delete", delete_comment_path(comment.id), method: :delete %></span>
+        <% end %>
     </div>
 </li>
