@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:public]
 
     def index
         @posts = Post.paginate(page: params[:page], per_page: 30).order(highlight: :asc)
@@ -61,6 +61,15 @@ class PostsController < ApplicationController
     def show
         @post = Post.find_by!(slug: params[:slug])
         @comment = Comment.new()
+    rescue ActiveRecord::RecordNotFound
+        if @posts.nil?
+            render "not_found"
+        end
+    end
+
+    def public
+        @post = Post.find_by!(slug: params[:slug])
+        render :public_post, :layout => false
     rescue ActiveRecord::RecordNotFound
         if @posts.nil?
             render "not_found"
