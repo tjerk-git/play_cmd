@@ -106,8 +106,6 @@ ActiveRecord::Schema.define(version: 2021_10_17_153100) do
     t.string "title"
     t.string "slug"
     t.text "body"
-    t.integer "highlight"
-    t.integer "likes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
