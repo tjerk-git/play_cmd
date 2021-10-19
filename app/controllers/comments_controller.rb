@@ -41,6 +41,7 @@ class CommentsController < ApplicationController
         params.require(:comment).permit(
             :current_user,
             :body,
+            :type_id
         )
     end
 end
