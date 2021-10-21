@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_153100) do
+ActiveRecord::Schema.define(version: 2021_10_19_110908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,17 @@ ActiveRecord::Schema.define(version: 2021_10_17_153100) do
     t.integer "likes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "type_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "feedback_types", force: :cascade do |t|
+    t.string "type_name"
+    t.string "color"
+    t.integer "points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "highlights", force: :cascade do |t|
@@ -106,8 +115,6 @@ ActiveRecord::Schema.define(version: 2021_10_17_153100) do
     t.string "title"
     t.string "slug"
     t.text "body"
-    t.integer "highlight"
-    t.integer "likes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"

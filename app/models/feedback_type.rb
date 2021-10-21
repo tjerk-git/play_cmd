@@ -1,0 +1,3 @@
+class FeedbackType < ApplicationRecord
+
+end

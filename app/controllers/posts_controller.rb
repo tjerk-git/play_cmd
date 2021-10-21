@@ -2,7 +2,8 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:public]
 
     def index
-        @posts = Post.paginate(page: params[:page], per_page: 30).order(highlight: :asc)
+        # TODO - .order(highlight: :asc) is not working when there are no highlights
+        @posts = Post.paginate(page: params[:page], per_page: 30)
         @tags = Tag.all()
     end
 
