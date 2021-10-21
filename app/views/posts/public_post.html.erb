@@ -30,45 +30,60 @@
       <%# Navigation %>
       <div class="flex flex-col w-full mb-4">
         <%# Header %>
-  
+        <div class="relative bg-gray-900">
+          <div class="px-3 py-3 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="pr-16 sm:text-center sm:px-16">
+              <p class="font-medium text-white">
+                <span class="md:hidden">
+                  Hi 👋 You're looking at this post as a guest
+                </span>
+                <span class="hidden md:inline">
+                  Hi 👋 You're looking at this post as a guest
+                </span>
+                <span class="block sm:ml-2 sm:inline-block">
+                  <%= link_to new_user_session_path, class: 'font-bold text-white underline' do %>
+                  Sign in <span aria-hidden="true">&rarr;</span>
+                  <% end %>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div class="flex flex-col px-6 mt-4 overflow-y-auto md:px-8">
           <%# Page content %>
           <main class="flex-1 px-6 mt-8 md:px-10 focus:outline-none">
-  
-    
+            <div class="mx-auto md:flex md:items-center md:justify-between">
+                <div class="flex items-center">
+                  <div>
+                    <h1 class="text-2xl font-bold text-gray-900">
+                      <%= @post.title %>
+                    </h1>
+                    <% if @post.tags.present? %>
+                      <p class="text-sm font-medium text-gray-500">Tags:
+                        <% @post.tags.each do |tag| %>
+                          <%= tag.name %>
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
 
+              <div class="grid grid-cols-1 gap-6 mx-auto mt-8 lg:grid-flow-col-dense lg:grid-cols-3">
+                <div class="space-y-6 lg:col-start-1 lg:col-span-2">
+                  <!-- Post body -->
+                  <section aria-labelledby="post-content">
+                    <div class="p-4 bg-white shadow sm:rounded-lg">
+                      <%= @post.body %>
+                    </div>
+                  </section>
+                </div>
 
-<div class="mx-auto md:flex md:items-center md:justify-between">
-    <div class="flex items-center">
-      <div>
-        <h1 class="text-2xl font-bold text-gray-900">
-          <%= @post.title %>
-        </h1>
-        <% if @post.tags.present? %>
-          <p class="text-sm font-medium text-gray-500">Tags:
-            <% @post.tags.each do |tag| %>
-              <%= tag.name %>
-            <% end %>
-          </p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  
-  <div class="grid grid-cols-1 gap-6 mx-auto mt-8 lg:grid-flow-col-dense lg:grid-cols-3">
-    <div class="space-y-6 lg:col-start-1 lg:col-span-2">
-      <!-- Post body -->
-      <section aria-labelledby="post-content">
-        <div class="p-4 bg-white shadow sm:rounded-lg">
-          <%= @post.body %>
-        </div>
-      </section>
-    </div>
-  
-    <section aria-labelledby="Post details" class="lg:col-start-3 lg:col-span-1">
-      <%= render partial: "posts/partials/author" %>
-    </section>
-  </div>
+                <section aria-labelledby="Post details" class="lg:col-start-3 lg:col-span-1">
+                  <%= render partial: "posts/partials/author" %>
+                </section>
+              </div>
       </main>
 
           <%# Footer this is here because of overflow issues :facepalm: %>
