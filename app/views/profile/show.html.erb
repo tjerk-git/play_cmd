@@ -1,14 +1,72 @@
-<div class="flex flex-col">
-    <h1 class="text-2xl" @click="secretModal++"> <%= @user.name %> </h1>
-    <p class="text-gray-600"><%= @user.email %></p>
-</div>
-<% if !@user.posts.empty? %>
+<div>
+    <section aria-labelledby="profile-overview-title">
+            <div class="overflow-hidden bg-white rounded-lg shadow">
+              <div class="p-6 bg-white">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                  <div class="sm:flex sm:space-x-5">
+                    <div class="flex-shrink-0">
+                    <% if @user.avatar.attached? %>
+                        <%= image_tag @user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'z-0 w-20 h-20 mx-auto rounded-full' %>
+                    <% else %>
+                        <img class="z-0 w-20 h-20 mx-auto rounded-full" src="https://ui-avatars.com/api/?name=<%= @user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= @user.name %>">
+                    <% end %>
+                    </div>
+                    <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
+                      <p class="text-sm font-medium text-gray-600"><% if is_teacher(@user) %>
+                            Lecturer
+                        <% else %>
+                            Student
+                        <% end %></p>
+                      <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= @user.name %></p>
+                        <% if @user.about != nil %>
+                            <p class="text-sm font-medium text-gray-600">
+                                <%= @user.about %>
+                            </p>
+                        <% else %>
+                            <p class="text-sm font-medium text-gray-400"> No bio provided</p>
+                        <% end %>
+                    </div>
+                  </div>
+                  <div class="flex justify-center mt-5 sm:mt-0">
+                    <a href="mailto<%= @user.email %>" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50">
+                      Send Mail
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 border-t border-gray-200 divide-y divide-gray-200 bg-gray-50 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
+                <div class="px-6 py-5 text-sm font-medium text-center">
+                  <span class="text-gray-900"><%= @user.posts.count() %></span>
+                  <span class="text-gray-600">Uploaded posts</span>
+                </div>
+
+                <div class="px-6 py-5 text-sm font-medium text-center">
+                  <span class="text-gray-900"><%= @user.comments.count() %></span>
+                  <span class="text-gray-600">Feedback given</span>
+                </div>
+              </div>
+            </div>
+          </section>
     <div class="mt-5">
-        <h2 class="text-lg font-bold">Latest posts</h2>
+        <h2 class="text-2xl font-bold">Creative Fields</h2>
+        <% if @user.tags.present? %>
+            <div class="flex items-center pt-2 mt-2 space-x-2 text-sm font-medium">
+                <% @user.tags.each do |tag| %>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-800">
+                        <%= tag.name %>
+                    </span>
+                <% end %>
+            </div>
+        <% end %>
     </div>
-    <div class="grid grid-cols-3 gap-4 mt-4">
-      <% @user.posts.sort_by{|t| - t.created_at.to_i}.first(2).each do |post| %>
-          <%= render partial: "posts/partials/post_card", locals: { post: post } %>
-      <% end %>
-    </div>
-<% end %>
+    <% if !@user.posts.empty? %>
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold">Latest posts</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mt-4">
+        <% @user.posts.sort_by{|t| - t.created_at.to_i}.first(2).each do |post| %>
+            <%= render partial: "posts/partials/post_card", locals: { post: post } %>
+        <% end %>
+        </div>
+    <% end %>
+</div>
