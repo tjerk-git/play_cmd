@@ -62,6 +62,7 @@ class PostsController < ApplicationController
     def show
         @post = Post.find_by!(slug: params[:slug])
         @comment = Comment.new()
+        @image = url_for(@post.cover_image)
     rescue ActiveRecord::RecordNotFound
         if @posts.nil?
             render "not_found"
