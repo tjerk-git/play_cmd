@@ -126,7 +126,7 @@
                     <%= link_to current_user.name, edit_user_registration_path %>
                   </p>
                   <p class="text-xs font-light text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 dark:text-gray-400">
-                    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false %>
                   </p>
                 </div>
               </div>
