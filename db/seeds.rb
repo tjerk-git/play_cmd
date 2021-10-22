@@ -17,7 +17,7 @@
 #     :invitation_code       => 'speenvarken-2021'
 # )
 # # user.skip_confirmation!
-# user.save!
+# user.save
 
 # user = User.new(
 #     :email                 => "nordy.vlasman@student.nhlstenden.com",
@@ -27,7 +27,7 @@
 #     :invitation_code        => 'speenvarken-2021',
 # )
 # # user.skip_confirmation!
-# user.save!
+# user.save
 
 
 # Tag.create(name: 'Web Design')
@@ -48,11 +48,11 @@
 # Tag.create(name: 'Sound design')
 # Tag.create(name: 'Writing')
 
-FeedbackType.create(type_name: 'confusing', color: 'yellow', points: 5, description: "Not sure what you mean")
-FeedbackType.create(type_name: 'details', color: 'pink', points: 10, description: "Give it some details")
-FeedbackType.create(type_name: 'human', color: 'red', points: 50, description: "Think about your audience")
-FeedbackType.create(type_name: 'iterative', color: 'yellow', points: 5, description: " ¯\_(ツ)_/¯ ")
-FeedbackType.create(type_name: 'launch', color: 'red', points: 10, description: " ¯\_(ツ)_/¯ ")
-FeedbackType.create(type_name: 'test', color: 'blue', points: 50, description: "Go do some testing!")
-FeedbackType.create(type_name: 'variant', color: 'red', points: 50, description: " ¯\_(ツ)_/¯ ")
-FeedbackType.create(type_name: 'sketch', color: 'red', points: 50, description: " ¯\_(ツ)_/¯ ")
+# FeedbackType.create(type_name: 'confusing', color: 'yellow', points: 5, description: "Not sure what you mean")
+# FeedbackType.create(type_name: 'details', color: 'pink', points: 10, description: "Give it some details")
+# FeedbackType.create(type_name: 'human', color: 'red', points: 50, description: "Think about your audience")
+# FeedbackType.create(type_name: 'iterative', color: 'yellow', points: 5, description: " ¯\_(ツ)_/¯ ")
+# FeedbackType.create(type_name: 'launch', color: 'red', points: 10, description: " ¯\_(ツ)_/¯ ")
+# FeedbackType.create(type_name: 'test', color: 'blue', points: 50, description: "Go do some testing!")
+# FeedbackType.create(type_name: 'variant', color: 'red', points: 50, description: " ¯\_(ツ)_/¯ ")
+# FeedbackType.create(type_name: 'sketch', color: 'red', points: 50, description: " ¯\_(ツ)_/¯ ")
