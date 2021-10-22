@@ -17,7 +17,7 @@
 #     :invitation_code       => 'speenvarken-2021'
 # )
 # # user.skip_confirmation!
-# user.save!
+# user.save
 
 # user = User.new(
 #     :email                 => "nordy.vlasman@student.nhlstenden.com",
@@ -27,7 +27,7 @@
 #     :invitation_code        => 'speenvarken-2021',
 # )
 # # user.skip_confirmation!
-# user.save!
+# user.save
 
 
 # Tag.create(name: 'Web Design')
@@ -52,11 +52,11 @@
 # FeedbackType.create(type_name: 'its_ok', color: 'pink', points: 12)
 # FeedbackType.create(type_name: 'fuck_it', color: 'red', points: 100) #WHAT THE HECK MOET HIER TJERK ??? (im in for fuck it hoor)
 
-FeedbackType.create(type_name: 'confusing', color: 'yellow', points: 5)
-FeedbackType.create(type_name: 'details', color: 'pink', points: 10)
-FeedbackType.create(type_name: 'human', color: 'red', points: 50)
-FeedbackType.create(type_name: 'iterative', color: 'yellow', points: 5)
-FeedbackType.create(type_name: 'launch', color: 'red', points: 10)
-FeedbackType.create(type_name: 'test', color: 'blue', points: 50)
-FeedbackType.create(type_name: 'variant', color: 'red', points: 50)
-FeedbackType.create(type_name: 'sketch', color: 'red', points: 50)
+# FeedbackType.create(type_name: 'confusing', color: 'yellow', points: 5)
+# FeedbackType.create(type_name: 'details', color: 'pink', points: 10)
+# FeedbackType.create(type_name: 'human', color: 'red', points: 50)
+# FeedbackType.create(type_name: 'iterative', color: 'yellow', points: 5)
+# FeedbackType.create(type_name: 'launch', color: 'red', points: 10)
+# FeedbackType.create(type_name: 'test', color: 'blue', points: 50)
+# FeedbackType.create(type_name: 'variant', color: 'red', points: 50)
+# FeedbackType.create(type_name: 'sketch', color: 'red', points: 50)
