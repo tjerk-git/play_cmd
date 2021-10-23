@@ -45,6 +45,7 @@ class PostsController < ApplicationController
     end
 
     def filter
+        @tag = Tag.find_by(id: params[:tag_ids])
         @posts = Post.joins(:tags)
         .where(tags: { id: params[:tag_ids] })
         .order(created_at: :desc)

@@ -1,37 +1,37 @@
 <div class="bg-white rounded-md shadow-sm">
-<%= link_to post_path(post.slug), data: { turbo: false } do %>
+  <%= link_to post_path(post.slug), data: { turbo: false } do %>
     <div>
-    <% if post.cover_image.attached? %>
+      <% if post.cover_image.attached? %>
         <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-md' %>
-    <% end %>
+      <% end %>
     </div>
     <header class="flex p-2 md:p-4">
       <div>
         <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug),  data: { turbo: false } %></h2>
         <div class="flex items-center mt-8">
-        <% if post.user.avatar.attached? %>
-             <%= link_to profile_path(post.user.slug),  data: { turbo: false } do %>
-                <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-12 h-12 mr-2 rounded-full' %>
-             <% end %>
-        <% end %>
-        <p class="ml-1 text-gray-900 text-md dark:text-gray-300">
-        <%= link_to profile_path(post.user.slug), data: { turbo: false } do %>
-            <%= post.user.name %>
-        <% end %>
-        </p>
-      </div>
+          <% if post.user.avatar.attached? %>
+            <%= link_to profile_path(post.user.slug),  data: { turbo: false } do %>
+              <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-12 h-12 mr-2 rounded-full' %>
+            <% end %>
+          <% end %>
+          <p class="ml-1 text-gray-900 text-md dark:text-gray-300">
+            <%= link_to profile_path(post.user.slug), data: { turbo: false } do %>
+              <%= post.user.name %>
+            <% end %>
+          </p>
+        </div>
       </div>
     </header>
     <% if post.tags.present? %>
-        <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4 overflow-hidden overflow-x-scroll">
-            <div class="flex space-x-2">
-                <% post.tags.each do |tag| %>
+      <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4 overflow-hidden overflow-x-scroll">
+        <div class="flex space-x-2">
+          <% post.tags.each do |tag| %>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 hover:bg-gray-200 hover:text-gray-600 text-gray-400">
                     <%= link_to tag.name, "/posts/list/#{tag.slug}", data: { turbo: false } %>
                 </span>
-            <% end %>
-            </div>
+          <% end %>
         </div>
+      </div>
     <% end %>
-<% end %>
+  <% end %>
 </div>
