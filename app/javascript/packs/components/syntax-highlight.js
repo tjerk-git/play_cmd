@@ -24,6 +24,6 @@ window.applyFormattingToPreBlocks = function () {
 
 document.addEventListener("turbolinks:load", function() {
     applyFormattingToPreBlocks()
-
+    
     hljs.highlightAll();
 });
