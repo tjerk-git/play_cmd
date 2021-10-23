@@ -115,15 +115,19 @@
             <div class="flex-shrink-0 block w-full group">
               <div class="flex items-center px-2">
                 <div>
-                  <% if current_user.avatar.attached? %>
+                  <% if current_user && current_user.avatar.attached? %>
                     <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-9 h-9 rounded-full inline-block ' %>
                   <% else %>
-                    <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= current_user.name %>">
+                    <% if current_user.name %>
+                      <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= current_user.name %>">
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="ml-4">
                   <p class="text-sm font-light text-gray-700 group-hover:text-gray-900 dark:group-hover:text-gray-300 dark:text-gray-300">
-                    <%= link_to current_user.name, edit_user_registration_path %>
+                    <% if current_user %>
+                      <%= link_to current_user.name, edit_user_registration_path %>
+                    <% end %>
                   </p>
                   <p class="text-xs font-light text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 dark:text-gray-400">
                     <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false %>
