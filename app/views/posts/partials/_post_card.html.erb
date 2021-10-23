@@ -6,7 +6,7 @@
     <% end %>
     </div>
     <header class="flex p-2 md:p-4">
-    <div>
+      <div>
         <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug),  data: { turbo: false } %></h2>
         <div class="flex items-center mt-8">
         <% if post.user.avatar.attached? %>
@@ -19,10 +19,11 @@
             <%= post.user.name %>
         <% end %>
         </p>
-        </div>
+      </div>
+      </div>
     </header>
     <% if post.tags.present? %>
-        <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4">
+        <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4 overflow-hidden overflow-x-scroll">
             <div class="flex space-x-2">
                 <% post.tags.each do |tag| %>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 hover:bg-gray-200 hover:text-gray-600 text-gray-400">
