@@ -23,7 +23,10 @@ class ApplicationController < ActionController::Base
         )
       end
 
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :invitation_code])
+      devise_parameter_sanitizer.permit(:sign_up,
+         keys:
+          [:name, :email, :password, :password_confirmation, :invitation_code, { tag_ids: [] }, :avatar]
+        )
 
       # devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       #   user_params.permit(
