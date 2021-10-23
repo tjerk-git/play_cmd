@@ -21,10 +21,18 @@
         <% end %>
     </div>
     </div>
-    <div class="mt-2 space-x-2 text-sm">
+    <div class="mt-2 space-x-2 flex flex-grid text-sm">
         <span class="font-medium text-gray-500"><%= comment.created_at.to_date %></span>
         <% if current_user == comment.user %>
-            <span class="font-medium text-gray-500 hover:text-red-500 "> <%= link_to "Delete", delete_comment_path(comment.id), method: :delete %></span>
-        <% end %>
+              <span class="font-medium text-gray-500 hover:text-red-500 "> <%= link_to "Delete", delete_comment_path(comment.id), method: :delete %></span>
+        <% else  %>
+        <% if !comment.upvoted?(current_user) %>
+          <turbo-frame id="upvote">
+            <%= button_to upvote_path(comment), method: "put" do %>
+              <span class="font-medium text-gray-500 hover:text-blue-500 ">Upvote</span>
+            <% end %>
+          </turbo-frame>
+        <% end  %>
+      <% end %>
     </div>
 </li>

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   put '/profile/hide_onboarding', to: 'profile#hide_onboarding', :as => :hide_onboarding
 
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
+  put '/comment/:id/upvote', to: 'comments#upvote_comment', :as => 'upvote'
   delete '/comment/:id', :to => 'comments#destroy', :as => :delete_comment
   post '/highlight/new/:post_id', to: 'highlights#create', :as => :new_highlight
 
