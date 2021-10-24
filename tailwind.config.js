@@ -14,6 +14,10 @@ module.exports = {
       fontFamily: {
         sans: ['Mulish', ...defaultTheme.fontFamily.sans],
       },
+      listStyleType: {
+        disc: 'disc',
+        decimal: 'decimal',
+      }
     },
   },
   variants: {
