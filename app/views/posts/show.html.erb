@@ -52,6 +52,9 @@
 
   <section aria-labelledby="Post details" class="lg:col-start-3 lg:col-span-1">
     <%= render partial: "posts/partials/author" %>
+    <% if @post_by_user.count > 0 %>
+      <%= render partial: "posts/partials/author_posts" %>
+    <% end %>
   </section>
 </div>
 

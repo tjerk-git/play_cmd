@@ -62,6 +62,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find_by!(slug: params[:slug])
+        @post_by_user = @post.user.posts.take(3).excluding(@post)
         @comment = Comment.new()
         if @post && @post.cover_image.attached?
             @image = url_for(@post.cover_image)
