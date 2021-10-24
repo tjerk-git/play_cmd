@@ -6,6 +6,7 @@
   <meta property="og:image:alt" content="<%= @post.title %>">
   <meta property="og:site_name" content="PlayCMD">
   <meta name="twitter:card" content="summary_large_image">
+<!--  Okay so this is a bit complicated, due to middleware the meta data aint working-->
 <% end %>
 
 <div class="mx-auto md:flex md:items-center md:justify-between">
@@ -52,6 +53,9 @@
 
   <section aria-labelledby="Post details" class="lg:col-start-3 lg:col-span-1">
     <%= render partial: "posts/partials/author" %>
+    <% if @post_by_user.count > 0 %>
+      <%= render partial: "posts/partials/author_posts" %>
+    <% end %>
   </section>
 </div>
 
