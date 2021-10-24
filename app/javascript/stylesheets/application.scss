@@ -6,6 +6,19 @@
   @apply my-2 py-2;
 }
 
+
+[role="list"] {
+  list-style: none;
+}
+
+ul {
+  list-style: circle;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
 .pagination * {
   @apply px-3 py-2 mx-2;
   @apply text-gray-700 no-underline bg-white rounded-lg;

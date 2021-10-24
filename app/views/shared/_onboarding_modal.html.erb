@@ -21,13 +21,26 @@
           </h3>
           <div class="mt-2">
             <p class="text-sm text-gray-500">
+                <div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe src="https://giphy.com/embed/Nx0rz3jtxtEre" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/mrw-top-escalator-Nx0rz3jtxtEre"></a></p>
+                
                 Welcome to the playground of CMD LWD, <br>
+
                 please follow the following instructions:
 
                 <%= image_tag("/onboarding.png") %>
 
                 PS: This is a beta version, if you want to leave feedback or check out our roadmap.
             </p>
+            <br>
+            <% if is_teacher(current_user) %>
+            <p class="text-sm text-gray-500">
+              Pssst, you are a teacher?
+              That means you can highlight people's work to make them feel extra special!
+              Try it out, don't tell anyone you have this power.
+              <div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/KqzmDrIW2uzNLR6Dgc" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/KqzmDrIW2uzNLR6Dgc"></a></p>
+
+            </p>
+            <% end %>
           </div>
         </div>
       </div>

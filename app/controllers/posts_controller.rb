@@ -45,6 +45,7 @@ class PostsController < ApplicationController
     end
 
     def filter
+        @tag = Tag.find_by(id: params[:tag_ids])
         @posts = Post.joins(:tags)
         .where(tags: { id: params[:tag_ids] })
         .order(created_at: :desc)
@@ -62,7 +63,9 @@ class PostsController < ApplicationController
     def show
         @post = Post.find_by!(slug: params[:slug])
         @comment = Comment.new()
-        @image = url_for(@post.cover_image)
+        if @post && @post.cover_image.attached?
+            @image = url_for(@post.cover_image)
+        end
     rescue ActiveRecord::RecordNotFound
         if @posts.nil?
             render "not_found"

@@ -79,9 +79,12 @@
     copyURL()
   };
 
-  document.getElementById("share_with_parent").onclick = function() {
-    copyDataURL()
-  };
+
+  if(document.getElementById('share_with_parent') != null) {
+    document.getElementById("share_with_parent").onclick = function() {
+       copyDataURL()
+    };
+  }
 
     function copyURL(){
       navigator.clipboard.writeText(window.location.href);

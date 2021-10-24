@@ -25,6 +25,12 @@ class CommentsController < ApplicationController
       end
   end
 
+    def upvote_comment
+      @comment = Comment.find(params[:id])
+      CommentUpvote.create(user: current_user, comment: @comment)
+      redirect_to post_path(@comment.post.slug)
+    end
+
 
   def destroy
     @comment = Comment.find(params[:id])
