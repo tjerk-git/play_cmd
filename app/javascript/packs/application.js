@@ -24,7 +24,6 @@ window.Alpine = Alpine
 Alpine.plugin(collapse)
 Alpine.start()
 
-
 let __SkipConfirmation = false;
 
 Rails.confirm = function (message, element) {
