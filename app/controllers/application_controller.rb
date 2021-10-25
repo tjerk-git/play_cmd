@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
       new_user_session_path
     end
 
+
     protected
 
     def configure_permitted_parameters
