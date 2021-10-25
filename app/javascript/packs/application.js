@@ -11,13 +11,18 @@ import "stylesheets/application"
 import './components/confetti'
 import './components/syntax-highlight'
 import "@hotwired/turbo-rails"
+import Alpine from 'alpinejs'
+import collapse from '@alpinejs/collapse'
+require("trix")
+require("@rails/actiontext")
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("trix")
-require("@rails/actiontext")
+window.Alpine = Alpine
+Alpine.plugin(collapse)
+Alpine.start()
 
 
 let __SkipConfirmation = false;
