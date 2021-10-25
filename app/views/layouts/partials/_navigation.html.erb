@@ -85,6 +85,16 @@
             Community
           </span>
         </a>
+        <% if is_teacher(current_user) %>
+          <a class="flex items-center px-6 py-2 text-sm font-light border-l-2 dark:border-darkBackground group hover:bg-gray-50 dark:hover:bg-darkBackground"  href="<%= admin_tags_path %>">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+            </svg>
+            <span class="text-gray-400 group-hover:text-gray-500">
+              Tags
+            </span>
+          </a>
+        <% end %>
       </div>
       <div class="justify-center">
         <a href="mailto:tjerk.dijkstra@nhlstenden.com" class="flex items-center px-6 py-2 text-sm font-light text-gray-600 border-l-4 border-transparent group hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-darkBackground">

@@ -56,6 +56,7 @@ class PostsController < ApplicationController
 
     def highlight_modal
         @post = Post.find_by!(slug: params[:slug])
+        @post_by_user = @post.user.posts.take(3).excluding(@post)
         @highlight = Highlight.new()
         render :show
     end
