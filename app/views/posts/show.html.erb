@@ -1,10 +1,10 @@
 <% content_for :head do %>
-  <title>PlayCMD | <%= @post.title %></title>
+  <title>Play.CMD | <%= @post.title %></title>
   <meta property="og:title" content="<%= @post.title %>">
   <meta property="og:url" content="https://play.cmdlwd.nl/post/<%= @post.slug %>/public">
   <meta property="og:image" content="<%= @image %>">
   <meta property="og:image:alt" content="<%= @post.title %>">
-  <meta property="og:site_name" content="PlayCMD">
+  <meta property="og:site_name" content="Play.CMD">
   <meta name="twitter:card" content="summary_large_image">
 <!--  Okay so this is a bit complicated, due to middleware the meta data aint working-->
 <% end %>
@@ -27,14 +27,13 @@
   <div class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
     <% if is_your_post(@post) %>
       <%= render partial: "posts/components/your_post_options", object: @post %>
-       <button id="share_with_parent" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-yellow-600 border border-transparent rounded-md shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" data-url="https://play.cmdlwd.nl/post/<%= @post.slug %>/public">🐎 Share to parents</button>
     <% else %>
       <%= render partial: "posts/components/like_post", object: @post %>
     <% end %>
     <% if is_teacher(current_user) %>
       <%= link_to 'Highlight', highlight_modal_path(@post.slug), data: {turbo: false }, class: 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500' %>
     <% end %>
-     <button id="share_with_student" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500">🤓 Share to students</button>
+    <%= render partial: "posts/components/share_options", object: @post %>
   </div>
 </div>
 
@@ -82,39 +81,3 @@
       };
   </script>
 <% end %>
-
-<script>
-  document.getElementById("share_with_student").onclick = function() {
-    copyURL()
-  };
-
-
-  if(document.getElementById('share_with_parent') != null) {
-    document.getElementById("share_with_parent").onclick = function() {
-       copyDataURL()
-    };
-  }
-
-    function copyURL(){
-      navigator.clipboard.writeText(window.location.href);
-      Swal.fire({
-          position: 'top-middle',
-          icon: 'success',
-          title: 'Copied to clipboard',
-          showConfirmButton: false,
-          timer: 1500
-      });
-    }
-
-     function copyDataURL(){
-      const article = document.getElementById("share_with_parent")
-      navigator.clipboard.writeText(article.dataset.url);
-      Swal.fire({
-          position: 'top-middle',
-          icon: 'success',
-          title: 'Copied to clipboard, they are proud already',
-          showConfirmButton: false,
-          timer: 1500
-      });
-    }
-</script>
