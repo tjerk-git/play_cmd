@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="h-full bg-white"">
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= render partial: "layouts/partials/media" %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'alpine', 'data-turbolinks-track': 'reload', :defer => "defer" %>
+
+    <%= yield :head %>
+    <title>Play.CMD</title>
+  </head>
+
+  <body class="h-full bg-white dark:darkBackground">
+    <div class="">
+      <%# Alerts and notices %>
+      <%= render partial: "layouts/partials/messages" %>
+<div class="min-h-full" x-data="{openMobileMenu: false}">
+  <!-- Navbar -->
+  <nav class="bg-gray-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16 border-b border-gray-200">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <%= render partial: 'layouts/partials/admin_logo' %>
+          </div>
+
+          <div class="hidden lg:block lg:ml-10">
+            <div class="flex space-x-4">
+              <a href="<%= admin_tags_path %>" class="px-3 py-2 text-sm font-medium text-gray-900 rounded-md <%= current_page?(admin_tags_path) ? 'bg-gray-100' : 'hover:text-gray-700' %>">Tags</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center flex-1 px-2 lg:ml-6 lg:justify-end">
+          <a href="<%= posts_path %>" class="text-sm text-blue-600 underline">Back to student env</a>
+        </div>
+        <div class="flex lg:hidden">
+          <button type="button" @click="openMobileMenu = !openMobileMenu" class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md bg-gray-50 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Actions section -->
+        <div class="hidden lg:block lg:ml-4">
+          <div class="flex items-center">
+
+            <!-- Profile dropdown -->
+            <div class="relative flex-shrink-0 ml-3" x-data="{showProfile: false}">
+              <div>
+                <button type="button" @click="showProfile = !showProfile" class="flex text-sm text-white rounded-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-purple-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                  <span class="sr-only">Open user menu</span>
+                  <% if current_user && current_user.avatar.attached? %>
+                    <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-8 h-8 rounded-full inline-block ' %>
+                  <% else %>
+                    <% if current_user.name %>
+                      <img class="w-8 h-8 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= current_user.name %>">
+                    <% end %>
+                  <% end %>
+                </button>
+              </div>
+              <div
+                x-show="showProfile"
+                @click.away="showProfile = false"
+                class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <%= link_to 'Edit profile', edit_user_registration_path, class: 'block px-4 py-2 text-sm text-gray-700' %>
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false, class: 'block px-4 py-2 text-sm text-gray-700' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div x-show="openMobileMenu" class="border-b border-gray-200 bg-gray-50 lg:hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="<%= admin_tags_path %>" class="block px-3 py-2 font-medium text-gray-900 rounded-md <%= current_page?(admin_tags_path) ? 'bg-gray-100' : 'hover:bg-gray-200' %>">Tags</a>
+      </div>
+      <div class="pt-4 pb-3 border-t border-gray-200">
+        <div class="flex items-center px-5">
+          <div class="flex-shrink-0">
+            <% if current_user && current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-10 h-10 rounded-full' %>
+            <% else %>
+              <% if current_user.name %>
+                <img class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=<%= current_user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= current_user.name %>">
+              <% end %>
+            <% end %>
+          </div>
+          <div class="ml-3">
+            <div class="text-base font-medium text-gray-800"><%= current_user.name %></div>
+            <div class="text-sm font-medium text-gray-500"><%= current_user.email %></div>
+          </div>
+        </div>
+        <div class="px-2 mt-3 space-y-1">
+          <%= link_to 'Edit profile', edit_user_registration_path, class: 'block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100' %>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false, class: 'block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100' %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <%= yield %>
+</div>
+
+    </div>
+  </body>
+</html>
