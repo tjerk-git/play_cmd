@@ -23,8 +23,8 @@
       </div>
     </header>
     <% if post.tags.present? %>
-      <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4 overflow-hidden overflow-x-auto">
-        <div class="flex space-x-2 overflow-x-auto">
+      <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4">
+        <div class="flex space-x-2 overflow-x-auto overflow h-full">
           <% post.tags.each do |tag| %>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 hover:bg-gray-200 hover:text-gray-600 text-gray-400">
                     <%= link_to tag.name, "/posts/list/#{tag.slug}", data: { turbo: false } %>
