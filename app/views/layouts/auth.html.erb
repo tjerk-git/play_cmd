@@ -7,6 +7,7 @@
   <%= csp_meta_tag %>
 
   <script src="//unpkg.com/alpinejs" defer></script>
+   <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
 
   <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,15 +17,8 @@
 <body class="bg-background">
 <div>
   <div class="flex max-h-screen min-h-screen bg-white">
-    <div
-      class="relative flex-1 hidden w-0 max-h-screen lg:block"
-    >
-    <%# TODO: = Change the cover image to CMD style %>
-      <img
-        class="absolute inset-0 object-cover w-full h-full"
-        src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80"
-        alt=""
-        />
+    <div class="relative flex-1 hidden w-0 max-h-screen lg:block">
+        <div id="canvas"></div>
     </div>
     <div
       class="flex flex-col justify-center flex-1 w-1/2 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-20 animation-delay-2000"
@@ -37,3 +31,137 @@
 </div>
 </body>
 </html>
+
+  <style>
+    #canvas {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      opacity: 1;
+      display: none;
+    }
+  </style>
+
+  <script>
+
+HEIGHT = 500;
+WIDTH = 500;
+CANDIDATES = 100;
+INTERVAL = 800;
+
+
+var logos = [];
+var image = 'alfabet/0.png';
+
+var tryPositionLogo = function(width, height) {
+  var candidate = null;
+  var candidateValue = null;
+
+  for (var i = 0; i < CANDIDATES; i++) {
+    var x = Math.random() * WIDTH;
+    var y = Math.random() * HEIGHT;
+
+    var maxMinDistance = null;
+    var validPositioning = true;
+
+    // Calculate max min distance
+    for (var j = 0; j < logos.length; j++) {
+      var logo = logos[j];
+
+      var distX = (x >= logo.x) ? (x - (logo.x + logo.width)) : (logo.x - (x + width));
+      var distY = (y >= logo.y) ? (y - (logo.y + logo.height)) : (logo.y - (y + height));
+
+      // If both distances are negative, there was an overlap
+      if (distX < 0 && distY < 0) {
+        validPositioning = false;
+        break;
+      }
+
+      // Estimate distance
+      var dist = Math.sqrt((distX < 0 ? 0 : distX * distX) + (distY < 0 ? 0 : distY * distY));
+
+      // Update max-min value
+      maxMinDistance = (maxMinDistance == null) ? dist : Math.min(dist, maxMinDistance);
+    }
+
+    // Update candidate if we found a better one
+    if (validPositioning && (maxMinDistance == null || maxMinDistance >= candidateValue)) {
+      candidate = {x: x, y: y};
+      candidateValue = maxMinDistance;
+    }
+  }
+
+  // We found a candidate, place it
+  if (candidate) {
+    var newLogo = {x: candidate.x, y: candidate.y, height: height, width: width};
+    newLogo.node = buildLogo(newLogo);
+    newLogo.node.appendTo('#canvas');
+    newLogo.node.fadeIn();
+    logos.push(newLogo);
+    return true;
+  }
+
+  return false;
+};
+
+function inArray(arr, el) {
+    for(var i = 0 ; i < arr.length; i++) 
+            if(arr[i] == el) return true;
+    return false;
+}
+
+function getRandomIntNoDuplicates(min, max, DuplicateArr) {
+    var RandomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+    if (DuplicateArr.length > (max-min) ) return false;  // break endless recursion
+    if(!inArray(DuplicateArr, RandomInt)) {
+       DuplicateArr.push(RandomInt); 
+       return RandomInt;
+    }
+    return getRandomIntNoDuplicates(min, max, DuplicateArr); //recurse
+}
+
+var duplicates  =[];
+
+// Build the HTML node for the logo given its x, y, witdth y height
+var buildLogo = function(spec) {
+ 
+  var logo = $('<div class="logo"><img src="../alfabet/'+getRandomIntNoDuplicates(0, 18, duplicates)+'.png"></div>');
+  
+  var random_number_size = Math.floor(Math.random() * 1);
+  var random_angle = Math.floor(Math.random() * 360);
+
+  if(random_number_size == 1){
+    logo.css('height', 150);
+    logo.css('width', 150);
+  } else {
+    logo.css('height', 300);
+    logo.css('width', 300);
+  }
+  
+  logo.css('-webkit-transform','rotate('+random_angle+'deg)');
+  logo.css('top', spec.y);
+  logo.css('left', spec.x);
+
+  return logo;
+};
+
+// Main
+var interval = window.setInterval(function() {
+  // Replace with actual coordinates for logo
+  var width = Math.random() * 100 + 50;
+  var height = Math.random() * 100 + 50;
+
+  // Try 100 times to place it
+  var attempts = 5;
+  while (--attempts > 0 && !tryPositionLogo(width, height));
+
+  if (logos.length > 6) {
+      clearInterval(interval)
+  }
+}, INTERVAL);
+
+  </script>
