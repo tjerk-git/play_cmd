@@ -44,7 +44,7 @@
     <section aria-labelledby="post-content">
       <div class="p-4 bg-white shadow sm:rounded-lg">
         <% if @post.cover_image.attached? %>
-          <%= image_tag @post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-md' %>
+          <%= image_tag @post.cover_image, class: 'block w-full h-72 object-cover rounded-t-md' %>
         <% end %>
 
         <br>
