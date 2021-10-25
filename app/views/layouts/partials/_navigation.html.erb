@@ -1,8 +1,8 @@
 <div class="hidden md:flex md:flex-shrink-0">
   <nav class="flex flex-col flex-grow w-64 pt-8 pb-4 overflow-y-auto bg-white dark:bg-darkColor">
     <div class="flex items-center flex-shrink-0 px-5">
-      <a href="/" class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white duration-200 bg-gray-900 rounded group-hover:bg-gray-700">
-        <span class="italic font-bold text-md"> CMD </span>
+      <a href="/" class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white duration-200 rounded group-hover:bg-gray-700">
+        <%= render partial: 'layouts/partials/logo' %>
       </a>
     </div>
     <div class="flex flex-col flex-grow mt-10">
@@ -107,7 +107,7 @@
             />
           </svg>
           <div class='has-tooltip'>
-            <span class='tooltip rounded shadow-lg p-1 bg-gray-100 py-2 px-2 -mt-12 -ml-4'>Send us some tips 🚀</span>
+            <span class='p-1 px-2 py-2 -mt-12 -ml-4 bg-gray-100 rounded shadow-lg tooltip'>Send us some tips 🚀</span>
             Suggestion box
           </div>
         </a>
