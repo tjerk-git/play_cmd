@@ -4,5 +4,6 @@ PlayCmd::Application.configure do
     Devise::ConfirmationsController.layout  "auth"
     Devise::UnlocksController.layout        "auth"
     Devise::PasswordsController.layout      "auth"
+    Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "auth" }
   end
 end
