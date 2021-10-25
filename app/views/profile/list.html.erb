@@ -30,7 +30,7 @@
           <div class="py-4">
             <h4 class="text-gray-800">Creative fields</h4>
             <div class="flex justify-between mt-1">
-              <div class="flex space-x-2">
+              <div class="flex space-x-2 overflow-x-auto">
                 <% user.tags.each do |tag| %>
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
                        <%= link_to tag.name, "/people/list/#{tag.slug}" %>
