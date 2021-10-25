@@ -1,0 +1,65 @@
+<div class="relative inline-block text-left" x-data="{showShare: false}">
+  <div>
+    <button type="button" @click="showShare = !showShare" class="flex items-center text-gray-400 bg-gray-100 rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+      <span class="sr-only">Open options</span>
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    x-show="showShare"
+    x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="transform opacity-0 scale-95"
+    x-transition:enter-end="transform opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-75"
+    x-transition:leave-start="transform opacity-100 scale-100"
+    x-transition:leave-end="transform opacity-0 scale-95"
+    @click.away="showShare = false"
+    x-cloak
+    class="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+    <div class="py-1" role="none">
+       <% if is_your_post(@post) %>
+      <button class="block px-4 py-2 text-sm text-gray-700" type="button" id="share_with_parent"  data-url="https://play.cmdlwd.nl/post/<%= @post.slug %>/public">Copy public url</button>
+      <% end %>
+      <button class="block px-4 py-2 text-sm text-gray-700" type="button" id="share_with_student">Copy student url</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("share_with_student").onclick = function() {
+    copyURL()
+  };
+
+
+  if(document.getElementById('share_with_parent') != null) {
+    document.getElementById("share_with_parent").onclick = function() {
+       copyDataURL()
+    };
+  }
+
+    function copyURL(){
+      navigator.clipboard.writeText(window.location.href);
+      Swal.fire({
+          position: 'top-middle',
+          icon: 'success',
+          title: 'Copied to clipboard',
+          showConfirmButton: false,
+          timer: 1500
+      });
+    }
+
+     function copyDataURL(){
+      const article = document.getElementById("share_with_parent")
+      navigator.clipboard.writeText(article.dataset.url);
+      Swal.fire({
+          position: 'top-middle',
+          icon: 'success',
+          title: 'Copied to clipboard, they are proud already',
+          showConfirmButton: false,
+          timer: 1500
+      });
+    }
+</script>
