@@ -47,7 +47,7 @@ class User < ApplicationRecord
   end
 
   def make_teacher
-     if !email.include? "student"    
+     if !email.include? "student"
          self.role = 1
      end
   end
