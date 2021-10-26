@@ -74,10 +74,34 @@
                 </div>
           </div>
         </div>
+
         <div class="grid grid-cols-12 gap-6 mt-6">
           <div class="col-span-12 sm:col-span-6">
+            <div>
+              <%= f.label :twitter_username, class: 'block text-sm font-medium text-gray-700' %>
+              <div class="flex mt-1 rounded-md shadow-sm">
+                <span class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 bg-gray-50 rounded-l-md sm:text-sm">
+                  @
+                </span>
+                <%= f.text_field :twitter_username, class: 'focus:ring-gray-500 focus:border-gray-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300'  %>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-12 sm:col-span-6">
+              <%= f.label :github_username, class: 'block text-sm font-medium text-gray-700' %>
+              <%= f.text_field :github_username, class: 'block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm'  %>
+          </div>
+          <div class="col-span-12 sm:col-span-6">
+            <%= f.label :dribbble_url, class: 'block text-sm font-medium text-gray-700' %>
+            <%= f.text_field :dribbble_url, placeholder: 'https://dribbble.com/', class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
+          </div>
+          <div class="col-span-12 sm:col-span-6">
+            <%= f.label :website_url, class: 'block text-sm font-medium text-gray-700' %>
+            <%= f.text_field :website_url, placeholder: 'yourwebsitehere.com', class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
+          </div>
+          <div class="col-span-12 sm:col-span-6">
             <%= f.label :name, class: 'block text-sm font-medium text-gray-700' %>
-            <%= f.text_field :name, autofocus: true, class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
+            <%= f.text_field :name, class: 'block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm' %>
           </div>
           <div class="col-span-12 sm:col-span-6">
             <%= f.label :tags, class: 'block text-sm font-medium text-gray-700' %>
