@@ -20,7 +20,11 @@ class ApplicationController < ActionController::Base
           :password_confirmation,
           :name,
           :avatar,
-          :about
+          :about,
+          :github_username,
+          :twitter_username,
+          :dribbble_url,
+          :website_url
         )
       end
 
