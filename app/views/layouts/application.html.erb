@@ -148,31 +148,8 @@
       <%= yield :tagselector %>
 
       <%# NOTICE FOR IMPORTANT MESSAGES %>
-      <!-- <div class="relative bg-gray-800">
-        <div class="px-3 py-3 mx-auto sm:px-6 lg:px-8">
-          <div class="">
-            <p class="font-medium text-white">
-              <span class="md:hidden">
-                Shoop!
-              </span>
-              <span class="hidden md:inline">
-                Hey, We can place a nice notice here!
-              </span>
-              <span class="block sm:ml-2 sm:inline-block">
-                <a href="#" class="font-bold text-white underline"> Check this out <span aria-hidden="true">&rarr;</span></a>
-              </span>
-            </p>
-          </div>
-          <div class="absolute inset-y-0 right-0 flex items-start pt-1 pr-1 sm:pt-1 sm:pr-2 sm:items-start">
-            <button type="button" class="flex p-2 rounded-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-white">
-              <span class="sr-only">Dismiss</span>
-              <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div> -->
+      <%= render partial: 'layouts/partials/notice' %>
+
       <%# MAIN %>
       <main class="px-4 mx-auto mt-5 sm:px-6 lg:px-8">
         <%= yield %>
