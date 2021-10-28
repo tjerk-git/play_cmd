@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -24,41 +24,178 @@
     <title>Play.CMD</title>
   </head>
 
-  <body class="overflow-hidden bg-background dark:darkBackground" x-data="{secretModal: 0}">
-    <div class="">
-      <%# Alerts and notices %>
-      <%= render partial: "layouts/partials/messages" %>
+  <body class="overflow-hidden bg-background dark:bg-tundora-500">
+    <div class="min-h-full">
+      <header class="bg-white shadow-md dark:bg-tundora-500 lg:static lg:overflow-y-visible" x-data="{ showMobileMenu: false }">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8">
+          <div class="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
+            <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
+              <div class="flex items-center flex-shrink-0">
+                <a href="/">
+                  <svg id="Laag_1" class="rounded-md" data-name="Laag 1" height="45" width="45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.63 61.63">
+                    <defs>
+                      <style>
+                        .cls-1{fill:#ededed;}.cls-2{fill:#1d1d1b;}.cls-3{fill:#b2b2b2;}
+                      </style>
+                    </defs>
+                    <rect class="cls-1" width="61.63" height="61.63" />
+                    <path class="cls-2" d="M280.91,419.29a7.07,7.07,0,0,1-3.49-.78,5.09,5.09,0,0,1-2.09-2.17,7.86,7.86,0,0,1-.78-3.25c0-.63,0-1.3,0-2s0-1.41,0-2.06a7.82,7.82,0,0,1,.78-3.25,5.11,5.11,0,0,1,2.09-2.18,7.18,7.18,0,0,1,3.49-.77,8.06,8.06,0,0,1,2.77.43,5.84,5.84,0,0,1,2,1.17,5.05,5.05,0,0,1,1.66,3.5.39.39,0,0,1-.13.34.5.5,0,0,1-.35.14h-1.26a.51.51,0,0,1-.35-.12.64.64,0,0,1-.22-.41,3.65,3.65,0,0,0-1.46-2.45,4.93,4.93,0,0,0-2.66-.66,4,4,0,0,0-2.91,1,4.79,4.79,0,0,0-1.16,3.33q-.07,1.88,0,3.84A4.76,4.76,0,0,0,278,416.3a4,4,0,0,0,2.91,1,4.93,4.93,0,0,0,2.66-.66,3.63,3.63,0,0,0,1.46-2.45.7.7,0,0,1,.22-.41.56.56,0,0,1,.35-.11h1.26a.49.49,0,0,1,.35.13.42.42,0,0,1,.13.35,4.9,4.9,0,0,1-.46,1.86,5,5,0,0,1-1.2,1.64,5.67,5.67,0,0,1-2,1.16A8.05,8.05,0,0,1,280.91,419.29Z" transform="translate(-267.07 -389.77)" />
+                    <path class="cls-2" d="M290.91,419.06a.52.52,0,0,1-.38-.15.5.5,0,0,1-.15-.38V403.59a.55.55,0,0,1,.15-.4.52.52,0,0,1,.38-.15h1.14a.59.59,0,0,1,.42.14.64.64,0,0,1,.16.23l4.85,9.24,4.87-9.24a1.2,1.2,0,0,1,.17-.23.54.54,0,0,1,.4-.14H304a.54.54,0,0,1,.4.15.55.55,0,0,1,.15.4v14.94a.5.5,0,0,1-.15.38.54.54,0,0,1-.4.15h-1.12a.48.48,0,0,1-.37-.15.5.5,0,0,1-.15-.38V407.28l-3.82,7.46a.82.82,0,0,1-.28.35.74.74,0,0,1-.46.13h-.71a.72.72,0,0,1-.46-.13.84.84,0,0,1-.29-.35l-3.82-7.46v11.25a.5.5,0,0,1-.15.38.52.52,0,0,1-.38.15Z" transform="translate(-267.07 -389.77)" />
+                    <path class="cls-2" d="M309.08,419.06a.5.5,0,0,1-.39-.15.54.54,0,0,1-.14-.38V403.59a.59.59,0,0,1,.14-.4.5.5,0,0,1,.39-.15h5.19a8.7,8.7,0,0,1,3.8.71,4.41,4.41,0,0,1,2.1,2.1,7.82,7.82,0,0,1,.69,3.4c0,.68,0,1.28,0,1.8s0,1.12,0,1.79a8.58,8.58,0,0,1-.7,3.49,4.21,4.21,0,0,1-2.06,2.06,8.61,8.61,0,0,1-3.71.67Zm1.71-1.94h3.48a6.09,6.09,0,0,0,2.52-.44,2.68,2.68,0,0,0,1.36-1.39,6.76,6.76,0,0,0,.45-2.54c0-.46,0-.86,0-1.21v-1c0-.34,0-.73,0-1.17a4.81,4.81,0,0,0-1.06-3.29,4.5,4.5,0,0,0-3.38-1.06h-3.37Z" transform="translate(-267.07 -389.77)" />
+                    <path class="cls-3" d="M304.07,421.29a.48.48,0,0,1,.37.15.5.5,0,0,1,.15.38v14.94a.54.54,0,0,1-.15.4.48.48,0,0,1-.37.15h-1.15a.56.56,0,0,1-.41-.14.64.64,0,0,1-.16-.23l-4.85-9.24-4.87,9.24a1,1,0,0,1-.18.23.51.51,0,0,1-.4.14h-1.12a.55.55,0,0,1-.4-.15.54.54,0,0,1-.15-.4V421.82a.5.5,0,0,1,.15-.38.55.55,0,0,1,.4-.15h1.12a.51.51,0,0,1,.53.53v11.25l3.82-7.45a.68.68,0,0,1,.28-.36.8.8,0,0,1,.45-.13h.71a.8.8,0,0,1,.47.13.89.89,0,0,1,.29.36l3.82,7.45V421.82a.51.51,0,0,1,.53-.53Z" transform="translate(-267.07 -389.77)" />
+                    <path class="cls-3" d="M309.08,437.31a.5.5,0,0,1-.39-.15.56.56,0,0,1-.14-.38V421.84a.57.57,0,0,1,.14-.4.5.5,0,0,1,.39-.15h5.19a8.7,8.7,0,0,1,3.8.71,4.39,4.39,0,0,1,2.1,2.09,7.89,7.89,0,0,1,.69,3.4c0,.69,0,1.29,0,1.81s0,1.11,0,1.78a8.51,8.51,0,0,1-.7,3.49,4.17,4.17,0,0,1-2.06,2.06,8.6,8.6,0,0,1-3.71.68Zm1.71-1.95h3.48a6.11,6.11,0,0,0,2.52-.43,2.69,2.69,0,0,0,1.36-1.4,6.76,6.76,0,0,0,.45-2.54c0-.46,0-.86,0-1.2v-1c0-.34,0-.73,0-1.18a4.78,4.78,0,0,0-1.06-3.28,4.5,4.5,0,0,0-3.38-1.06h-3.37Z" transform="translate(-267.07 -389.77)" />
+                    <path class="cls-3" d="M277.46,437.31a.5.5,0,0,1-.39-.15.56.56,0,0,1-.14-.38v-15a.54.54,0,0,1,.14-.38.5.5,0,0,1,.39-.15h1.21a.48.48,0,0,1,.37.15.54.54,0,0,1,.14.38v13.5h7.62a.49.49,0,0,1,.38.15.52.52,0,0,1,.14.4v.91a.51.51,0,0,1-.14.38.49.49,0,0,1-.38.15Z" transform="translate(-267.07 -389.77)" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="flex-1 min-w-0 md:px-8 lg:px-0 xl:col-span-6">
+              <div class="flex items-center px-6 py-4 mx-auto">
+                <div class="w-full">
+                  <label for="search" class="sr-only">Search users</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <input id="search" name="search" class="block w-full py-2 pl-10 pr-3 text-sm placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-600 focus:border-gray-600 sm:text-sm dark:bg-mine-shaft-500 dark:border-mine-shaft-500 dark:text-gray-300" placeholder="Search users" type="search" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
+              <button type="button" @click="showMobileMenu = !showMobileMenu" class="inline-flex items-center justify-center p-2 -mx-2 text-gray-400 rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500" aria-expanded="false">
+                <span class="sr-only">Open menu</span>
+                <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+              <a href="mailto:tjerk.dijkstra@nhlstenden.com" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:underline"> Send us feedback </a>
+              <a href="#" class="flex-shrink-0 p-1 ml-5 text-gray-400 bg-white rounded-full dark:bg-mine-shaft-500 dark:text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
+                <span class="sr-only">View notifications</span>
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </a>
 
-      <div class="flex h-screen bg-gray-100" x-data="{ open: false }">
-      <%# Modals %>
-      <%= render partial: "shared/onboarding_modal" %>
-      <%= render partial: "shared/secret_modal" %>
+              <div class="relative flex-shrink-0 ml-5" x-data="{profileDropdown: false }">
+                <div>
+                  <button type="button" @click="profileDropdown = !profileDropdown" class="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                    <span class="sr-only">Open user menu</span>
+                    <img class="w-8 h-8 rounded-full" src="<%= image_avatar %>" alt="" />
+                  </button>
+                </div>
 
-      <%# Navigation %>
-      <%= render partial: "layouts/partials/mobile_navigation" %>
-      <%= render partial: "layouts/partials/navigation" %>
-      <div class="flex flex-col w-full mb-4">
-        <%# Header %>
-        <%= render partial: "layouts/partials/header" %>
-        <%= render "layouts/partials/notification" %>
+                <div
+                  @click.away="profileDropdown = false"
+                  x-show="profileDropdown"
+                  x-transition:enter="transition ease-out duration-100"
+                  x-transition:enter-start="transform opacity-0 scale-95"
+                  x-transition:enter-end="transform opacity-100 scale-100"
+                  x-transition:leave="transition ease-in duration-75"
+                  x-transition:leave-start="transform opacity-100 scale-100"
+                  x-transition:leave-end="transform opacity-0 scale-95"
+                  class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                >
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                </div>
+              </div>
 
-        <div class="flex flex-col px-2 mt-4 overflow-y-auto md:px-8">
-          <%# Page content %>
-          <main class="flex-1 px-2 mt-8 md:px-10 focus:outline-none">
-            <%= yield %>
-          </main>
-
-          <%# Hacky highlight modal TODO: Alpine this. %>
-          <% if @post && @post.slug %>
-            <% if current_page?(controller: 'posts', action: 'highlight_modal', slug: @post.slug) %>
-                <%= render partial: "highlight_form", object: @post %>
-            <% end %>
-          <% end %>
-
-          <%# Footer this is here because of overflow issues :facepalm: %>
-          <%= render partial: "layouts/partials/footer" %>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <nav x-show="showMobileMenu" class="lg:hidden" aria-label="Global">
+          <div class="max-w-3xl px-2 pt-2 pb-3 mx-auto space-y-1 sm:px-4">
+            <a href="#" aria-current="page" class="block px-3 py-2 text-base font-medium text-gray-900 bg-gray-100 rounded-md">Home</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50">Communities</a>
+          </div>
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center max-w-3xl px-4 mx-auto sm:px-6">
+              <div class="flex-shrink-0">
+                <img class="w-10 h-10 rounded-full" src="<%= image_avatar %>" alt="" />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium text-gray-800"><%= current_user.name %></div>
+                <div class="text-sm font-medium text-gray-500"><%= current_user.email %></div>
+              </div>
+            </div>
+            <div class="max-w-3xl px-2 mx-auto mt-3 space-y-1 sm:px-4">
+              <a href="#" class="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900">Profile settings</a>
+              <a href="#" class="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900">Sign out</a>
+            </div>
+          </div>
+
+          <div class="max-w-3xl px-4 mx-auto mt-6 sm:px-6">
+            <a href="#" class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-800 border border-transparent rounded-md shadow-sm hover:bg-gray-900"> New Post </a>
+
+            <div class="flex justify-center mt-6">
+              <a href="mailto:tjerk.dijkstra@nhlstenden.com" class="mb-2 text-base font-medium text-gray-900 hover:underline"> Send us feedback </a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <%# TAG SELECTOR %>
+      <section id="heading" class="px-4 mx-auto bg-gray-100 shadow-inner dark:bg-mine-shaft-500 sm:px-6 lg:px-8">
+        <div class="py-3 mx-auto sm:flex sm:items-center">
+          <h3 class="text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-300">
+            Communities
+          </h3>
+          <div aria-hidden="true" class="hidden w-px h-5 bg-gray-300 sm:block sm:ml-4"></div>
+
+          <div class="mt-2 sm:mt-0 sm:ml-4">
+            <div class="flex flex-wrap items-center -m-1">
+              <% current_user.tags.each do |tag| %>
+              <span class="m-1 inline-block rounded-full border border-gray-200 items-center py-1.5 pl-3 pr-3 text-sm font-medium bg-white dark:border-tundora-500 dark:bg-tundora-500 dark:text-gray-300 text-gray-900">
+                <span><%= tag.name %></span>
+                <%# This is for a badge
+                  <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">2</span>
+                %>
+              </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </section>
+      <%# NOTICE FOR IMPORTANT MESSAGES %>
+      <!-- <div class="relative bg-gray-800">
+        <div class="px-3 py-3 mx-auto sm:px-6 lg:px-8">
+          <div class="">
+            <p class="font-medium text-white">
+              <span class="md:hidden">
+                Shoop!
+              </span>
+              <span class="hidden md:inline">
+                Hey, We can place a nice notice here!
+              </span>
+              <span class="block sm:ml-2 sm:inline-block">
+                <a href="#" class="font-bold text-white underline"> Check this out <span aria-hidden="true">&rarr;</span></a>
+              </span>
+            </p>
+          </div>
+          <div class="absolute inset-y-0 right-0 flex items-start pt-1 pr-1 sm:pt-1 sm:pr-2 sm:items-start">
+            <button type="button" class="flex p-2 rounded-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-white">
+              <span class="sr-only">Dismiss</span>
+              <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div> -->
+      <%# MAIN %>
+      <main class="px-4 mx-auto mt-5 sm:px-6 lg:px-8">
+        <%= yield %>
+      </main>
     </div>
   </body>
 </html>
