@@ -44,9 +44,11 @@
                     <span class="font-medium">Creative fields</span>
                     <div class="flex overflow-x-auto items-center pt-2 space-x-2 text-sm font-medium">
                         <% @post.user.tags.each do |tag| %>
+                        <%= link_to tag_path(tag.slug) do %>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
                                 <%= tag.name %>
                             </span>
+                          <% end  %>
                         <% end %>
                     </div>
                 </div>
