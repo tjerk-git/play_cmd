@@ -1,37 +1,38 @@
-<div class="bg-white rounded-md shadow-sm">
-  <%= link_to post_path(post.slug), data: { turbo: false } do %>
-    <div>
-      <% if post.cover_image.attached? %>
-        <%= image_tag post.cover_image.variant(resize_to_limit: [800, 400]).processed, class: 'block w-full h-72 object-cover rounded-t-md' %>
-      <% end %>
-    </div>
-    <header class="flex p-2 md:p-4">
-      <div>
-        <h2 class="text-2xl font-bold hover:underline"><%= link_to post.title, post_path(post.slug),  data: { turbo: false } %></h2>
-        <div class="flex items-center mt-8">
-          <% if post.user.avatar.attached? %>
-            <%= link_to profile_path(post.user.slug),  data: { turbo: false } do %>
-              <%= image_tag post.user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'inline w-12 h-12 mr-2 rounded-full' %>
-            <% end %>
-          <% end %>
-          <p class="ml-1 text-gray-900 text-md dark:text-gray-300">
-            <%= link_to profile_path(post.user.slug), data: { turbo: false } do %>
-              <%= post.user.name %>
-            <% end %>
-          </p>
-        </div>
-      </div>
-    </header>
-    <% if post.tags.present? %>
-      <div class="bottom-0 flex justify-between p-2 pt-2 mb-3 space-x-8 md:px-4">
-        <div class="flex space-x-2 overflow-x-auto overflow h-full">
-          <% post.tags.each do |tag| %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 hover:bg-gray-200 hover:text-gray-600 text-gray-400">
-                    <%= link_to tag.name, "/posts/list/#{tag.slug}", data: { turbo: false } %>
-                </span>
-          <% end %>
-        </div>
+<div class="flex flex-col overflow-hidden rounded-md shadow-md">
+    <% unless !post.cover_image.attached? %>
+      <div class="flex-shrink-0">
+        <img class="object-cover w-full h-48" src="<%= get_cover(post) %>" alt="">
       </div>
     <% end %>
-  <% end %>
+    <div class="flex flex-col justify-between flex-1 p-6 bg-white dark:bg-mine-shaft-500">
+        <div class="flex-1">
+          <a href="#" class="block">
+            <p class="text-xl font-semibold text-gray-900 dark:text-gray-300">
+              <%= link_to post_path(post.slug), data: { turbo: false } do %>
+                <%= post.title %>
+              <% end %>
+            </p>
+          </a>
+        </div>
+        <div class="flex items-center mt-6">
+          <div class="flex-shrink-0">
+            <a href="#">
+              <span class="sr-only"><%= post.user.name %></span>
+              <img class="w-10 h-10 rounded-full" src="<%= get_avatar(post) %>" alt="">
+            </a>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-900 dark:text-gray-300">
+              <a href="#" class="hover:underline">
+                <%= post.user.name %>
+              </a>
+            </p>
+            <div class="flex space-x-1 text-sm text-gray-400">
+              <time datetime="<%= post.created_at %>">
+                <%= post.created_at.to_date %>
+              </time>
+            </div>
+          </div>
+        </div>
+    </div>
 </div>

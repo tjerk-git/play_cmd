@@ -1,3 +1,4 @@
+<%# TAG SELECTOR %>
 <% content_for :tagselector do %>
   <section id="heading" class="px-4 mx-auto bg-gray-100 shadow-inner dark:bg-mine-shaft-500 sm:px-6 lg:px-8">
     <div class="py-3 mx-auto sm:flex sm:items-center">
@@ -21,55 +22,22 @@
     </div>
   </section>
 <% end %>
+
+<%# POSTS %>
 <section id="posts">
   <div class="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
     <% @posts.each do |post| %>
-    <div class="flex flex-col overflow-hidden rounded-md shadow-md">
-      <% unless !post.cover_image.attached? %>
-      <div class="flex-shrink-0">
-        <img class="object-cover w-full h-48" src="<%= get_cover(post) %>" alt="">
-      </div>
-      <% end %>
-      <div class="flex flex-col justify-between flex-1 p-6 bg-white dark:bg-mine-shaft-500">
-        <div class="flex-1">
-          <a href="#" class="block">
-            <p class="text-xl font-semibold text-gray-900 dark:text-gray-300">
-              <%= link_to post_path(post.slug), data: { turbo: false } do %>
-                <%= post.title %>
-              <% end %>
-            </p>
-          </a>
-        </div>
-        <div class="flex items-center mt-6">
-          <div class="flex-shrink-0">
-            <a href="#">
-              <span class="sr-only"><%= post.user.name %></span>
-              <img class="w-10 h-10 rounded-full" src="<%= get_avatar(post) %>" alt="">
-            </a>
-          </div>
-          <div class="ml-3">
-            <p class="text-sm font-medium text-gray-900 dark:text-gray-300">
-              <a href="#" class="hover:underline">
-                <%= post.user.name %>
-              </a>
-            </p>
-            <div class="flex space-x-1 text-sm text-gray-400">
-              <time datetime="2020-02-12">
-                Nov 10 2021
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <%= render partial: 'posts/partials/post_card', locals: { post: post } %>
     <% end %>
-    <button type="button" class="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 dark:border-mine-shaft-500 dark:hover:border-mine-shaft-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-      <svg class="w-12 h-12 mx-auto text-gray-400 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-      </svg>
-      <span class="block mt-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-        Your project here?
-      </span>
-    </button>
+    <%= link_to new_post_path, class: 'relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 dark:border-mine-shaft-500 dark:hover:border-mine-shaft-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' do %>
+      <div class="p-12 my-auto">
+        <svg class="w-12 h-12 mx-auto text-gray-400 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        </svg>
+        <span class="block mt-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          Your project here?
+        </span>
+      </div>
+    <% end %>
   </div>
 </section>
