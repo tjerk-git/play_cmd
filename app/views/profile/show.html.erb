@@ -1,6 +1,6 @@
 <div>
     <section aria-labelledby="profile-overview-title">
-            <div class="overflow-hidden bg-white rounded-lg shadow">
+            <div class="overflow-hidden bg-white rounded-lg border">
               <div class="p-6 bg-white">
                 <div class="sm:flex sm:items-center sm:justify-between">
                   <div class="sm:flex sm:space-x-5">
@@ -96,13 +96,15 @@
             </div>
           </section>
     <div class="mt-5">
-        <h2 class="text-2xl font-bold">Creative Fields</h2>
+        <h2 class="text-2xl font-bold">Communities</h2>
         <% if @user.tags.present? %>
             <div class="flex items-center pt-2 mt-2 space-x-2 text-sm font-medium">
                 <% @user.tags.each do |tag| %>
+                <%= link_to tag_path(tag.slug) do %>
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-800">
                         <%= tag.name %>
                     </span>
+                  <% end  %>
                 <% end %>
             </div>
         <% end %>
