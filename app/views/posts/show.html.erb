@@ -42,7 +42,7 @@
   <div class="space-y-6 lg:col-start-1 lg:col-span-2">
     <!-- Post body -->
     <section aria-labelledby="post-content">
-      <div class="p-4 bg-white shadow sm:rounded-lg">
+      <div class="p-4 bg-white border sm:rounded-lg">
         <% if @post.cover_image.attached? %>
           <%= image_tag @post.cover_image, class: 'block w-full h-72 object-cover rounded-t-md' %>
         <% end %>
