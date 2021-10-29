@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/tag/:slug', to: 'tag#show', :as => 'tag'
   get '/tag/:slug/members', to: 'tag#members', :as => 'tag_members'
   get '/tag/:slug/highlighted', to: 'tag#highlighted', :as => 'tag_highlighted'
+  post '/tag/:slug/subscribe', to: 'tag#subscribe', :as => 'tag_subscribe'
 
   namespace :admin do
     resources :tags
