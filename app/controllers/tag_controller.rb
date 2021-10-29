@@ -1,4 +1,9 @@
 class TagController < ApplicationController
+
+  def index
+    @tags = Tag.all
+  end
+
   def show
     @tag = Tag.find_by_slug(params[:slug])
     @posts = @tag.posts.paginate(:page => params[:page], :per_page => 10)

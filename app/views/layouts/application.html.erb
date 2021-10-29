@@ -27,15 +27,16 @@
   <body class="bg-white dark:bg-tundora-500">
     <div class="min-h-full">
       <header class="top-0 z-20 bg-transparent bg-white shadow-md dark:bg-tundora-500 lg:sticky lg:overflow-y-visible md:backdrop-blur-lg dark:border-opacity-10 border-opacity-20 md:bg-opacity-70 dark:bg-opacity-40 backdrop-filter backdrop-saturate-125" x-data="{ showMobileMenu: false }">
-        <div class="px-4 mx-auto sm:px-6 lg:px-8">
-          <div class="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
-            <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
-              <div class="flex items-center flex-shrink-0">
+        <div class="mx-auto px-2 sm:px-4 lg:px-8">
+          <div class="relative flex items-center justify-between h-16">
+            <!-- Logo section -->
+            <div class="flex items-center px-2 lg:px-0 xl:w-64">
+              <div class="flex-shrink-0">
                 <a href="/">
                   <svg id="Laag_1" class="rounded-md" data-name="Laag 1" height="45" width="45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.63 61.63">
                     <defs>
                       <style>
-                        .cls-1{fill:#ededed;}.cls-2{fill:#1d1d1b;}.cls-3{fill:#b2b2b2;}
+                          .cls-1{fill:#ededed;}.cls-2{fill:#1d1d1b;}.cls-3{fill:#b2b2b2;}
                       </style>
                     </defs>
                     <rect class="cls-1" width="61.63" height="61.63" />
@@ -49,15 +50,14 @@
                 </a>
               </div>
             </div>
-            <div class="flex-1 min-w-0 md:px-8 lg:px-0 xl:col-span-6">
-              <div class="flex items-center px-6 py-4 mx-auto">
-                <div class="w-full">
-                  <label for="search" class="sr-only">Search users</label>
-                  <%= render partial: "search/search_form" %>
-                </div>
+
+            <div class="flex-1 flex justify-center lg:justify-end">
+              <div class="w-full px-2 lg:px-6">
+                <label for="search" class="sr-only">Search users</label>
+                <%= render partial: 'search/search_form' %>
               </div>
             </div>
-            <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
+            <div class="flex lg:hidden">
               <button type="button" @click="showMobileMenu = !showMobileMenu" class="inline-flex items-center justify-center p-2 -mx-2 text-gray-400 rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500" aria-expanded="false">
                 <span class="sr-only">Open menu</span>
                 <svg x-show="!showMobileMenu" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -68,41 +68,39 @@
                 </svg>
               </button>
             </div>
-            <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-              <a href="mailto:tjerk.dijkstra@nhlstenden.com?subject=Demmit Tjerk, fix your site!" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:underline"> Send us feedback </a>
-
-<!--              <a href="#" class="flex-shrink-0 p-1 ml-5 text-gray-400 bg-white rounded-full dark:bg-mine-shaft-500 dark:text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">-->
-<!--                <span class="sr-only">View notifications</span>-->
-<!--                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />-->
-<!--                </svg>-->
-<!--              </a>-->
-
-              <div class="relative flex-shrink-0 ml-5" x-data="{profileDropdown: false }">
-                <div>
-                  <button type="button" @click="profileDropdown = !profileDropdown" class="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="<%= image_avatar %>" alt="" />
-                  </button>
+            <div class="hidden lg:block lg:w-80">
+              <div class="flex items-center justify-end">
+                <div class="flex">
+                  <%= link_to 'Communities', tags_path, class: 'px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-gray-800' %>
+                  <%= link_to 'People', people_path, class: 'px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-gray-800' %>
                 </div>
 
-                <div
-                  @click.away="profileDropdown = false"
-                  x-show="profileDropdown"
-                  x-transition:enter="transition ease-out duration-100"
-                  x-transition:enter-start="transform opacity-0 scale-95"
-                  x-transition:enter-end="transform opacity-100 scale-100"
-                  x-transition:leave="transition ease-in duration-75"
-                  x-transition:leave-start="transform opacity-100 scale-100"
-                  x-transition:leave-end="transform opacity-0 scale-95"
-                  class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
-                >
-                  <%= link_to "Settings", edit_user_registration_path, class: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300'  %>
-                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false, class: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300' %>
+                  <div class="relative flex-shrink-0 ml-5" x-data="{profileDropdown: false }">
+                    <div>
+                      <button type="button" @click="profileDropdown = !profileDropdown" class="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full" src="<%= image_avatar %>" alt="" />
+                      </button>
+                    </div>
+
+                    <div
+                      @click.away="profileDropdown = false"
+                      x-show="profileDropdown"
+                      x-transition:enter="transition ease-out duration-100"
+                      x-transition:enter-start="transform opacity-0 scale-95"
+                      x-transition:enter-end="transform opacity-100 scale-100"
+                      x-transition:leave="transition ease-in duration-75"
+                      x-transition:leave-start="transform opacity-100 scale-100"
+                      x-transition:leave-end="transform opacity-0 scale-95"
+                      class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                    >
+                      <%= link_to "Settings", edit_user_registration_path, class: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300'  %>
+                      <a href="mailto:tjerk.dijkstra@nhlstenden.com?subject=Demmit Tjerk, fix your site!" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300"> Send us feedback </a>
+                      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false, class: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300' %>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
