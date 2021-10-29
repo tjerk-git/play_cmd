@@ -60,22 +60,23 @@
             <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
               <button type="button" @click="showMobileMenu = !showMobileMenu" class="inline-flex items-center justify-center p-2 -mx-2 text-gray-400 rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500" aria-expanded="false">
                 <span class="sr-only">Open menu</span>
-                <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <svg x-show="!showMobileMenu" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <svg x-show="showMobileMenu" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
             <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-              <a href="mailto:tjerk.dijkstra@nhlstenden.com" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:underline"> Send us feedback </a>
-              <a href="#" class="flex-shrink-0 p-1 ml-5 text-gray-400 bg-white rounded-full dark:bg-mine-shaft-500 dark:text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
-                <span class="sr-only">View notifications</span>
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </a>
+              <a href="mailto:tjerk.dijkstra@nhlstenden.com?subject=Demmit Tjerk, fix your site!" class="text-sm font-medium text-gray-900 dark:text-gray-400 hover:underline"> Send us feedback </a>
+
+<!--              <a href="#" class="flex-shrink-0 p-1 ml-5 text-gray-400 bg-white rounded-full dark:bg-mine-shaft-500 dark:text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">-->
+<!--                <span class="sr-only">View notifications</span>-->
+<!--                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+<!--                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />-->
+<!--                </svg>-->
+<!--              </a>-->
 
               <div class="relative flex-shrink-0 ml-5" x-data="{profileDropdown: false }">
                 <div>
@@ -97,8 +98,8 @@
                   class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                 >
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                  <%= link_to "Settings", edit_user_registration_path, class: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300'  %>
+                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, turbo: false, class: 'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300' %>
                 </div>
               </div>
 
@@ -138,7 +139,7 @@
       </header>
 
       <%# TAG SELECTOR %>
-      <%= yield :tagselector %>
+      <%= yield :tag_selector %>
 
       <%# NOTICE FOR IMPORTANT MESSAGES %>
       <%# <%= render partial: 'layouts/partials/notice' %>

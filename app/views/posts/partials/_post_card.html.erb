@@ -1,7 +1,7 @@
 <div class="flex flex-col overflow-hidden rounded-md shadow-md">
-    <% unless !post.cover_image.attached? %>
+    <% if post.cover_image.attached? %>
       <div class="flex-shrink-0">
-        <img class="object-cover w-full h-48" src="<%= get_cover(post) %>" alt="">
+            <img class="object-cover w-full h-48" src="<%=  get_cover(post)  %>" alt="">
       </div>
     <% end %>
     <div class="flex flex-col justify-between flex-1 p-6 bg-white dark:bg-mine-shaft-500">
