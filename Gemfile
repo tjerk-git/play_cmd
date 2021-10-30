@@ -68,3 +68,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'turbo-rails'
 gem "view_component", require: "view_component/engine"
 gem "view_component_storybook"
+gem 'stimulus-rails', '>= 0.7.0'

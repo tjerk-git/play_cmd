@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="//cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
@@ -33,7 +32,7 @@
             <div class="flex items-center px-2 lg:px-0 xl:w-64">
               <div class="flex-shrink-0">
                 <a href="/">
-                  <svg id="Laag_1" class="rounded-md" data-name="Laag 1" height="45" width="45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.63 61.63">
+                  <svg id="Play.CMD" class="rounded-md" data-name="Laag 1" height="45" width="45" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.63 61.63">
                     <defs>
                       <style>
                           .cls-1{fill:#ededed;}.cls-2{fill:#1d1d1b;}.cls-3{fill:#b2b2b2;}
@@ -148,6 +147,8 @@
 
         <%= yield %>
       </main>
+
+      <%= turbo_frame_tag "modal" %>
     </div>
   </body>
 </html>
