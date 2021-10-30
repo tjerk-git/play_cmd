@@ -1,4 +1,5 @@
 <div class="flex flex-col overflow-hidden rounded-md border">
+  <%= link_to post_path(post.slug) do %>
     <% if post.cover_image.attached? %>
       <div class="flex-shrink-0">
             <img class="object-cover w-full h-48" src="<%=  get_cover(post)  %>" alt="">
@@ -6,14 +7,11 @@
     <% end %>
     <div class="flex flex-col justify-between flex-1 p-6 bg-white dark:bg-mine-shaft-500">
         <div class="flex-1">
-          <a href="#" class="block">
             <p class="text-xl font-semibold text-gray-900 dark:text-gray-300">
-              <%= link_to post_path(post.slug), data: { turbo: false } do %>
                 <%= post.title %>
-              <% end %>
             </p>
-          </a>
         </div>
+    <% end  %>
         <div class="flex items-center mt-6">
           <div class="flex-shrink-0">
             <a href="#">
@@ -24,7 +22,9 @@
           <div class="ml-3">
             <p class="text-sm font-medium text-gray-900 dark:text-gray-300">
               <a href="#" class="hover:underline">
-                <%= post.user.name %>
+                <%= link_to profile_path(post.user.slug) do %>
+                  <%= post.user.name %>
+                <% end %>
               </a>
             </p>
             <div class="flex space-x-1 text-sm text-gray-400">
