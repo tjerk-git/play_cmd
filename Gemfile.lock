@@ -1253,6 +1253,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     et-orbi (1.2.5)
       tzinfo
@@ -1432,6 +1436,7 @@ DEPENDENCIES
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   capybara (>= 3.26)
   devise
+  dotenv-rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
