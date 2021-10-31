@@ -5,6 +5,10 @@ class NotificationComponent < ViewComponent::Base
         @icon = icon
     end
 
+    def confetti?
+        @confetti = @type == 'success'
+    end
+
     private
 
     def icon
