@@ -20,7 +20,7 @@ module PostsHelper
         if post.user.avatar.attached?
             return rails_blob_url(post.user.avatar)
         else
-            return "https://ui-avatars.com/api/?name=" + post.user.avatar + ";color=7F9CF5&amp;background=EBF4FF"
+            return "https://ui-avatars.com/api/?name=" + post.user.name + ";color=7F9CF5&amp;background=EBF4FF"
         end
     end
 end
