@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   resources :posts, param: :slug
   resources :mentions, only: [:index]
 
+  get 'tag/new', to: 'tag#new', :as => 'new_tag'
   get '/tag', to: 'tag#index', :as => 'tags'
   get '/tag/:slug', to: 'tag#show', :as => 'tag'
   get '/tag/:slug/members', to: 'tag#members', :as => 'tag_members'
   get '/tag/:slug/highlighted', to: 'tag#highlighted', :as => 'tag_highlighted'
   post '/tag/:slug/subscribe', to: 'tag#subscribe', :as => 'tag_subscribe'
+  post 'tag', to: 'tag#create', :as => 'create_tag'
 
   namespace :admin do
     resources :tags
