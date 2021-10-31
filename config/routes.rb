@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :posts, param: :slug
   resources :mentions, only: [:index]
 
+  # TAG STUFF
   get 'tag/new', to: 'tag#new', :as => 'new_tag'
   get '/tag', to: 'tag#index', :as => 'tags'
   get '/tag/:slug', to: 'tag#show', :as => 'tag'
@@ -14,36 +15,37 @@ Rails.application.routes.draw do
   post '/tag/:slug/subscribe', to: 'tag#subscribe', :as => 'tag_subscribe'
   post 'tag', to: 'tag#create', :as => 'create_tag'
 
-  namespace :admin do
-    resources :tags
-  end
-
+  # ERRORS
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
 
+  # POST STUFF
   get '/post/:slug/public', to: 'posts#public', :as => :public_post
   get '/posts/list/for-you', to: 'posts#for_you', :as => :for_you
   get '/posts/list/:slug', to: 'posts#by_tag', :as => :tag_path
-
   patch '/posts', to: 'posts#update', :as => :update_posts
   post '/posts/list/filter/', to: 'posts#filter', :as => :filter_posts
   put '/post/:id/like', to: 'posts#like', :as =>'like'
 
-  get '/posts/:slug/highlight_show', to: 'posts#highlight_modal', :as => 'highlight_modal'
-
+  # USER OVERVIEW
   get '/people/list/', to: 'profile#list', :as => :people
   get '/people/search/', to: 'profile#list', :as => :filter_people
   get '/people/list/:slug', to: 'profile#by_tag', :as => :tag_users
 
+  # PROFILE PAGES
   get '/profile/show/:slug', to: 'profile#show', :as => :profile
   get '/profile/likes/list', to: 'profile#likes_list', :as => :profile_likes
   get '/profile/posts/list', to: 'profile#posts_list', :as => :profile_posts
   get '/profile/edit/:slug', to: 'profile#edit', :as => :profile_edit
   put '/profile/hide_onboarding', to: 'profile#hide_onboarding', :as => :hide_onboarding
 
+  # COMMENTS
   post '/comment/new/:post_id', to: 'comments#create', :as => :new_comment
   put '/comment/:id/upvote', to: 'comments#upvote_comment', :as => 'upvote'
   delete '/comment/:id', :to => 'comments#destroy', :as => :delete_comment
+
+  # HIGHLIGHTS
+  get '/posts/:slug/highlight', to: 'highlights#new', :as => 'highlight'
   post '/highlight/new/:post_id', to: 'highlights#create', :as => :new_highlight
 
   namespace :api, defaults: { format: "json" } do

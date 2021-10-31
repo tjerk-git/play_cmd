@@ -1,5 +1,10 @@
 class HighlightsController < ApplicationController
 
+    def new
+        @post = Post.find_by!(slug: params[:slug])
+        @highlight = Highlight.new()
+    end
+
     def create
         @highlight = Highlight.new(highlight_params)
         @post = Post.find(params[:post_id])

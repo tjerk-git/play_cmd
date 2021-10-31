@@ -31,7 +31,7 @@
       <%= render partial: "posts/components/like_post", object: @post %>
     <% end %>
     <% if is_teacher(current_user) %>
-      <%= link_to 'Highlight', highlight_modal_path(@post.slug), data: {turbo: false }, class: 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500' %>
+      <%= link_to "Highlight", highlight_path, data: { turbo_frame: "modal"}, class: 'inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500' %>
     <% end %>
     <%= render partial: "posts/components/share_options", object: @post %>
   </div>
@@ -74,11 +74,3 @@
   [x-cloak] { display: none !important; }
 </style>
 
-<%# PAGE SCRIPTS %>
-<% if notice == 'Post aangemaakt' %>
-  <script>
-      window.onload = function () {
-          modes.fireworks();
-      };
-  </script>
-<% end %>
