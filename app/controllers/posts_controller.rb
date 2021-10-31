@@ -85,7 +85,7 @@ class PostsController < ApplicationController
         @post.cover_image.attach(params[:cover_image])
         @post.user = current_user
         if @post.save
-          redirect_to post_path(@post.slug), notice: 'Post aangemaakt'
+          redirect_to post_path(@post.slug), success: 'Post aangemaakt'
         else
           render :new
         end

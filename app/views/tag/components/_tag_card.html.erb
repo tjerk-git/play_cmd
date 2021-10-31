@@ -4,7 +4,7 @@
     <h2 class="text-lg font-medium leading-6 text-gray-900">
       <%= link_to tag.name, tag_path(tag.slug) %>
     </h2>
-    <%# <p class="mt-4 text-sm text-gray-500"><%= tag.description ? tag.description : 'No description provided' %></p> %>
+    <p class="mt-4 text-sm text-gray-500"><%= tag.description ? tag.description : 'No description provided' %></p>
     <div class="flex flex-col mt-1 sm:flex-row sm:flex-wrap sm:mt-2 sm:space-x-8">
       <div class="flex items-center mt-2 text-sm text-gray-500">
         <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
