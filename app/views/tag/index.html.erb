@@ -1,5 +1,5 @@
 <% content_for :tag_selector do %>
-  <div class="py-4 px-8 bg-gray-100 mx-auto md:flex md:items-center md:justify-between">
+  <div class="px-8 py-4 mx-auto bg-gray-100 md:flex md:items-center md:justify-between">
     <div class="flex items-center">
       <div>
         <h1 class="text-2xl font-bold text-gray-900">
@@ -10,27 +10,31 @@
   </div>
 <% end %>
 <section id="tags">
-  <div class="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-5 mb-4 md:grid-cols-3 lg:grid-cols-4">
     <% @tags.each do |tag| %>
-      <li class="col-span-1 flex shadow-sm rounded-md">
-        <div class="flex-shrink-0 flex items-center justify-center w-16 bg-gray-900 text-white text-sm font-medium rounded-l-md">
-          WD
-        </div>
-        <div class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
-          <div class="flex-1 px-4 py-2 text-sm truncate">
-            <a href="#" class="text-gray-900 font-medium hover:text-gray-600"><%= tag.name %></a>
-            <p class="text-gray-500"><%= tag.users.count %> Community members</p>
-          </div>
-          <div class="flex-shrink-0 pr-2">
-            <button type="button" class="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              <span class="sr-only">Open options</span>
-              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+      <div class="border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-sm">
+          <div class="w-full h-10 rounded-t-lg <%= tag.color ? 'bg-' + tag.color + '-900' : 'bg-gray-900' %>"> </div>
+          <div class="p-6">
+            <h2 class="text-lg font-medium leading-6 text-gray-900">
+              <%= link_to tag.name, tag_path(tag.slug) %>
+            </h2>
+            <p class="mt-4 text-sm text-gray-500"><%= tag.description ? tag.description : 'No description provided' %></p>
+            <div class="flex flex-col mt-1 sm:flex-row sm:flex-wrap sm:mt-2 sm:space-x-8">
+              <div class="flex items-center mt-2 text-sm text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
-            </button>
+                <%= tag.users.count %> Members
+              </div>
+              <div class="flex items-center mt-2 text-sm text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                </svg>
+                <%= tag.posts.count %> Posts
+              </div>
+            </div>
           </div>
-        </div>
-      </li>
+      </div>
     <% end %>
   </div>
 </section>

@@ -9,14 +9,14 @@
 <!--  Okay so this is a bit complicated, due to middleware the meta data aint working-->
 <% end %>
 <% content_for :tag_selector do %>
-<div class="py-4 px-8 bg-gray-100 mx-auto md:flex md:items-center md:justify-between">
-  <div class="flex items-center">
+<div class="px-8 py-4 mx-auto bg-gray-100 md:flex md:items-center md:justify-between">
+  <div class="flex items-center my-2">
     <div>
       <h1 class="text-2xl font-bold text-gray-900">
         <%= @post.title %>
       </h1>
       <% if @post.tags.present? %>
-        <p class="text-sm font-medium text-gray-500">Tags:
+        <p class="mt-1 text-sm font-medium text-gray-500">Tags:
           <% @post.tags.each do |tag| %>
             <%= link_to tag.name, tag_path(tag.slug), class: 'text-gray-900' %>
           <% end %>

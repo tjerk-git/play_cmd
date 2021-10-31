@@ -1,5 +1,5 @@
 <!-- Page header -->
-<div class="bg-blue-50 shadow-inner">
+<div class="shadow-inner <%= @tag.color ? 'bg-' + @tag.color + '-50': 'bg-gray-100' %>">
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200">
       <div class="flex-1 min-w-0">

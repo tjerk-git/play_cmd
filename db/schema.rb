@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2021_10_29_224940) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.datetime "publish_at"
+    t.datetime "published_at"
     t.boolean "temporary"
     t.datetime "unpublished_at"
   end
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_10_29_224940) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "color"
+    t.string "description"
   end
 
   create_table "user_tags", force: :cascade do |t|
