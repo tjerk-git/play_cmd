@@ -1,0 +1,13 @@
+<% content_for :tag_selector do %>
+  <%= render partial: 'tag/components/header', locals: { tag: @tag } %>
+<% end  %>
+
+<section id="posts">
+  <%= render partial: 'tag/components/section_header', locals: { tag: @tag, title: 'Highlighted' } %>
+
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4 mt-7">
+    <% @posts.each do |post| %>
+      <%= render partial: 'posts/partials/post_card', locals: { post: post } %>
+    <% end %>
+  </div>
+</section>

@@ -8,17 +8,17 @@
   <meta name="twitter:card" content="summary_large_image">
 <!--  Okay so this is a bit complicated, due to middleware the meta data aint working-->
 <% end %>
-
-<div class="mx-auto md:flex md:items-center md:justify-between">
-  <div class="flex items-center">
+<% content_for :tag_selector do %>
+<div class="px-8 py-4 mx-auto bg-gray-100 md:flex md:items-center md:justify-between">
+  <div class="flex items-center my-2">
     <div>
       <h1 class="text-2xl font-bold text-gray-900">
         <%= @post.title %>
       </h1>
       <% if @post.tags.present? %>
-        <p class="text-sm font-medium text-gray-500">Tags:
+        <p class="mt-1 text-sm font-medium text-gray-500">Tags:
           <% @post.tags.each do |tag| %>
-            <%= link_to tag.name, "/posts/list/#{tag.slug}", class: 'text-gray-900' %>
+            <%= link_to tag.name, tag_path(tag.slug), class: 'text-gray-900' %>
           <% end %>
         </p>
       <% end %>
@@ -31,17 +31,18 @@
       <%= render partial: "posts/components/like_post", object: @post %>
     <% end %>
     <% if is_teacher(current_user) %>
-      <%= link_to 'Highlight', highlight_modal_path(@post.slug), data: {turbo: false }, class: 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500' %>
+      <%= link_to "Highlight", highlight_path, data: { turbo_frame: "modal"}, class: 'inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500' %>
     <% end %>
     <%= render partial: "posts/components/share_options", object: @post %>
   </div>
 </div>
+<% end  %>
 
 <div class="grid grid-cols-1 gap-6 mx-auto mt-8 lg:grid-flow-col-dense lg:grid-cols-3">
   <div class="space-y-6 lg:col-start-1 lg:col-span-2">
     <!-- Post body -->
     <section aria-labelledby="post-content">
-      <div class="p-4 bg-white shadow sm:rounded-lg">
+      <div class="p-4 bg-white border sm:rounded-lg">
         <% if @post.cover_image.attached? %>
           <%= image_tag @post.cover_image, class: 'block w-full h-72 object-cover rounded-t-md' %>
         <% end %>
@@ -73,11 +74,3 @@
   [x-cloak] { display: none !important; }
 </style>
 
-<%# PAGE SCRIPTS %>
-<% if notice == 'Post aangemaakt' %>
-  <script>
-      window.onload = function () {
-          modes.fireworks();
-      };
-  </script>
-<% end %>

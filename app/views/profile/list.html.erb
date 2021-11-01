@@ -1,3 +1,30 @@
+<%# TAG SELECTOR %>
+<% content_for :tag_selector do %>
+  <section id="heading" class="px-4 mx-auto bg-gray-100 shadow-inner dark:bg-mine-shaft-500 sm:px-6 lg:px-8">
+    <div class="py-3 mx-auto sm:flex sm:items-center">
+      <h3 class="text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-300">
+        Communities
+      </h3>
+      <div aria-hidden="true" class="hidden w-px h-5 bg-gray-300 sm:block sm:ml-4"></div>
+
+      <div class="mt-2 sm:mt-0 sm:ml-4">
+        <div class="flex flex-wrap items-center -m-1">
+          <% current_user.tags.each do |tag| %>
+            <%= link_to tag_path(tag.slug) do %>
+              <span class="m-1 inline-block rounded-full border border-gray-200 items-center py-1.5 pl-3 pr-3 text-sm font-medium bg-white dark:border-tundora-500 dark:bg-tundora-500 dark:text-gray-300 text-gray-900">
+                <span><%= tag.name %></span>
+                <%# This is for a badge
+                  <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">2</span>
+                %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
 <div class="flex justify-between w-full flex-gap">
   <h1 class="text-2xl">All users</h1>
 </div>
@@ -5,45 +32,11 @@
 <% if !@users.empty? %>
 
   <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
-
-  <% @users.each do |user| %>
-      <div class="flex-auto px-4 py-4 bg-white rounded-md">
-        <div class="flex items-center overflow-hidden">
-          <% if user.avatar.attached? %>
-            <%= image_tag user.avatar.variant(resize_to_limit: [100, 100], format: :jpeg, sampling_factor: "4:2:0", strip: true, interlace: "JPEG", colorspace: "sRGB", quality: 100), class: 'w-8 h-8 mr-3 rounded-full ' %>
-          <% else %>
-            <img class="w-8 h-8 mr-3 rounded-full" src="https://ui-avatars.com/api/?name=<%= user.name %>;color=7F9CF5&amp;background=EBF4FF" alt="<%= user.name %>">
-          <% end %>
-          <div class="">
-            <%= link_to profile_path(user.slug) do %>
-              <% if is_teacher(user) %>
-              Lecturer |
-              <% else %>
-              Student |
-              <% end %>
-             <%= user.name %>
-            <% end %><br>
-            <a href="mailto:<% user.email %>" class="text-sm text-gray-400 truncate"><%= user.email %></a>
-          </div>
-        </div>
-        <% if user.tags.present? %>
-          <div class="py-4">
-            <h4 class="text-gray-800">Creative fields</h4>
-            <div class="flex justify-between mt-1">
-              <div class="flex space-x-2 overflow-x-auto">
-                <% user.tags.each do |tag| %>
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-400">
-                       <%= link_to tag.name, "/people/list/#{tag.slug}" %>
-                    </span>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        </div>
+    <% @users.each do |user| %>
+      <%= render 'profile/partials/user_card', user: user %>
     <% end %>
   </div>
   <%= will_paginate @users %>
 <% else %>
-    <h1> Weird, niemand gevonden... </h1>
+    <h1> 404 did not found... </h1>
 <% end %>

@@ -1,84 +1,45 @@
-<turbo-frame id="posts">
-  <div class="flex justify-between w-full flex-gap">
-    <% unless current_page?(:controller => 'posts', :action => 'for_you') %>
-    <h1 class="text-2xl">Listing all posts
-      <% if @tag %>
-        with tag
-        <span class="font-bold">
-          <% if @tag.kind_of?(Array) %>
-            <% @tag.each do |tag| %>
-            #<%=  tag.name  %>
-              <% end  %>
-            <% else %>
-          #<%= @tag.name %>
-          <% end %>
-        </span>
-      <%  end  %>
-    </h1>
-    <% end %>
+<%# TAG SELECTOR %>
+<% content_for :tag_selector do %>
+  <section id="heading" class="px-4 mx-auto bg-gray-100 shadow-inner dark:bg-mine-shaft-500 sm:px-6 lg:px-8">
+    <div class="py-3 mx-auto sm:flex sm:items-center">
+      <h3 class="text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-300">
+        Communities
+      </h3>
+      <div aria-hidden="true" class="hidden w-px h-5 bg-gray-300 sm:block sm:ml-4"></div>
 
-    <% if current_page?(:controller => 'posts', :action => 'for_you') %>
-      <h1 class="text-2xl">
-        Browsing by your tags:
-        <% current_user.tags.each do |tag| %>
-          <span class="font-bold">#<%= tag.name %> </span>
-        <% end %>
-      </h1>
-    <% end %>
-
-    <% if !current_page?(:controller => 'posts', :action => 'for_you') %>
-      <div class="flex items-center -mx-4 divide-x divide-gray-200">
-        <div class="relative inline-block px-4 text-left" x-data="{open: false}">
-          <button @click="open = !open" type="button" class="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900" aria-expanded="false">
-            <span>Tags</span>
-            <svg class="flex-shrink-0 w-5 h-5 ml-1 -mr-1 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-          <div
-            x-show="open"
-            x-transition.scale.origin.top
-            x-cloak
-            x-on:click.away="open = false"
-          >
-            <div class="absolute right-0 p-4 mt-2 overflow-auto origin-top-right bg-white rounded-md shadow-2xl max-h-32 ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <%= form_with model: @post, url: filter_posts_path do |form| %>
-                <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-                  <div class="flex items-center">
-                    <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded', :onclick => "this.form.submit()"%>
-                    <label for="filter-category-0" class="pr-6 ml-3 text-sm font-medium text-gray-900 whitespace-nowrap">
-                      <%= b.label %>
-                    </label>
-                  </div>
-                <% end %>
+      <div class="mt-2 sm:mt-0 sm:ml-4">
+        <div class="flex flex-wrap items-center -m-1">
+          <% current_user.tags.each do |tag| %>
+            <%= link_to tag_path(tag.slug) do %>
+              <span class="m-1 inline-block rounded-full border border-gray-200 items-center py-1.5 pl-3 pr-3 text-sm font-medium bg-white dark:border-tundora-500 dark:bg-tundora-500 dark:text-gray-300 text-gray-900">
+                <span><%= tag.name %></span>
+                <%# This is for a badge
+                  <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">2</span>
+                %>
+              </span>
               <% end %>
-            </div>
-          </div>
+          <% end %>
         </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%# POSTS %>
+<section id="posts">
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
+    <% @posts.each do |post| %>
+      <%= render partial: 'posts/partials/post_card', locals: { post: post } %>
+    <% end %>
+    <%= link_to new_post_path, class: 'relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 dark:border-mine-shaft-500 dark:hover:border-mine-shaft-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' do %>
+      <div class="p-12 my-auto">
+        <svg class="w-12 h-12 mx-auto text-gray-400 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        </svg>
+        <span class="block mt-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          Your project here?
+        </span>
       </div>
     <% end %>
   </div>
-  <div class="my-2 bg-gray-100">
-    <% if !@posts.empty? %>
-      <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
-        <% @posts.each do |post| %>
-          <%= render partial: "posts/partials/post_card", locals: { post: post } %>
-        <% end %>
-      </div>
-      <%= will_paginate @posts %>
-    <% else %>
-      <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3">
-        <div class="bg-white rounded-md shadow-md">
-          <div>
-            <img src="https://media4.giphy.com/media/WU5tf9pEbsJlx935rv/200.gif" alt="not-found" class="block object-cover w-full h-72 rounded-t-md"/>
-          </div>
-          <header class="flex p-2 py-3 md:p-3">
-            <div>
-              <h2 class="text-xl font-semibold">No posts available</h2>
-            </div>
-          </header>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</turbo-frame>
+</section>

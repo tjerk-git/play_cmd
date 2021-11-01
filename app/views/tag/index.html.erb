@@ -1,0 +1,25 @@
+<% content_for :tag_selector do %>
+  <div class="shadow-inner bg-gray-100">
+    <div class="px-4 sm:px-6 lg:px-8">
+      <div class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200">
+        <div class="flex-1 min-w-0">
+          <h1 class="text-2xl font-bold text-gray-900">
+            Community pages
+          </h1>
+        </div>
+        <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+          <%= link_to new_tag_path, data: { turbo_frame: "modal"}, class: 'inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500' do %>
+            Add community
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<section id="tags">
+  <div class="grid grid-cols-1 gap-5 mb-4 md:grid-cols-3 lg:grid-cols-4">
+    <% @tags.each do |tag| %>
+      <%= render partial: 'tag/components/tag_card', locals: { tag: tag} %>
+    <% end %>
+  </div>
+</section>

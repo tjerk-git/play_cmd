@@ -21,7 +21,7 @@
                 x-show="open"
                 x-on:click.away="open = false"
               >
-                <div class="absolute left-0 z-20 w-56 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto origin-top-left bg-white rounded-md shadow-2xl max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
+                <div class="absolute left-0 z-20 w-56 py-1 mt-2 ml-2 space-x-2 space-y-2 overflow-auto border origin-top-left bg-white rounded-md shadow-2xl max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
                   <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
                     <div class="flex items-center">
                       <%= b.check_box class: 'h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded' %>

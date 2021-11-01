@@ -10,4 +10,8 @@ module ApplicationHelper
             return "https://ui-avatars.com/api/?name=" + current_user.name + ";color=7F9CF5&amp;background=EBF4FF"
         end
     end
+
+    def importmap()
+        safe_join [javascript_inline_importmap_tag()]
+    end
 end

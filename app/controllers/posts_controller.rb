@@ -54,13 +54,6 @@ class PostsController < ApplicationController
         render :index
     end
 
-    def highlight_modal
-        @post = Post.find_by!(slug: params[:slug])
-        @post_by_user = @post.user.posts.take(3).excluding(@post)
-        @highlight = Highlight.new()
-        render :show
-    end
-
     def show
         @post = Post.find_by!(slug: params[:slug])
         @post_by_user = @post.user.posts.take(3).excluding(@post)
@@ -92,7 +85,7 @@ class PostsController < ApplicationController
         @post.cover_image.attach(params[:cover_image])
         @post.user = current_user
         if @post.save
-          redirect_to post_path(@post.slug), notice: 'Post aangemaakt'
+          redirect_to post_path(@post.slug), success: 'Post aangemaakt'
         else
           render :new
         end
