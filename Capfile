@@ -13,7 +13,6 @@ require 'capistrano/puma'
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 
-lock '3.4.0'
 
 set :application, 'playcmd'
 set :repo_url, 'git@github.com:tjerk-git/play_cmd.git'  # Edit this to match your repository
