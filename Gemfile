@@ -8,12 +8,13 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 
 gem 'pg'
 gem 'rexml'
-gem 'aws-sdk', '~> 3'
 gem 'will_paginate', '~> 3.3'
 
 gem 'sidekiq'
 gem "sidekiq-cron"
 gem 'rack-cors'
+
+gem 'figaro'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -34,14 +35,9 @@ gem 'redis', '~> 4.0'
 gem 'image_processing', '~> 1.2'
 gem 'devise'
 
-gem 'capistrano', '~> 3.11'
-gem 'capistrano-rails', '~> 1.4'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 # Reduces boot times through caching; required in config/boot.rb
-#gem 'bootsnap', '>= 1.4.4', require: false
-gem 'dotenv-rails'
+gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +53,13 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  #gem 'dotenv-rails', groups: [:development, :test]
+  gem 'dotenv-rails', groups: [:development, :test]
+
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
 end
 
 group :test do
