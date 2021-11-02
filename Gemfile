@@ -5,16 +5,15 @@ ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-gem 'aws-sdk', '~> 3'
+
 gem 'pg'
 gem 'rexml'
+gem 'aws-sdk', '~> 3'
 gem 'will_paginate', '~> 3.3'
 
 gem 'sidekiq'
 gem "sidekiq-cron"
 gem 'rack-cors'
-
-gem 'figaro'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -33,8 +32,8 @@ gem 'redis', '~> 4.0'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
-gem 'devise'
 
+gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -54,12 +53,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'dotenv-rails', groups: [:development, :test]
-
-  gem 'capistrano'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rvm'
 end
 
 group :test do
