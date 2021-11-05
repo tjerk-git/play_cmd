@@ -1,3 +1,0 @@
-highlight_remove_job:
-   cron: "0 0 1 * *"
-   class: "HardWorker"
