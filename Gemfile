@@ -16,7 +16,7 @@ gem "puma", "~> 5.0"
 gem "jsbundling-rails", "~> 0.1.0"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", ">= 0.7.11"
+gem "turbo-rails", ">= 0.8.3"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", ">= 0.4.0"
@@ -43,7 +43,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 # gem "sassc-rails", "~> 2.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # Use Devise for authentication
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
