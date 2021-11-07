@@ -2,3 +2,6 @@
 // Run that command whenever you add a new controller
 
 import { application } from "./application"
+
+import ThemeController from "./theme_controller.js"
+application.register("theme", ThemeController)
