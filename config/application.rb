@@ -2,8 +2,6 @@ require_relative "boot"
 
 require "rails/all"
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module PlayCMD
@@ -11,10 +9,10 @@ module PlayCMD
     config.load_defaults 7.0
 
     config.to_prepare do
-      Devise::SessionsController.layout       = "auth"
-      Devise::RegistrationController.layout   = "auth"
-      Devise::ConfirmationsController.layout  = "auth"
-      Devise::UnlocksController.layout        = "auth"
+      Devise::SessionsController.layout        "auth"
+      Devise::RegistrationsController.layout   "auth"
+      Devise::ConfirmationsController.layout   "auth"
+      Devise::UnlocksController.layout         "auth"
     end
   end
 end
