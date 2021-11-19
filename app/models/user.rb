@@ -17,6 +17,11 @@ class User < ApplicationRecord
 
   scope :admins, -> { where(role: ADMIN_ROLES) }
 
+  # Actions
+  before_validation :create_slug
+
+  # Relations
+  has_many :communities
   has_one_attached :avatar
 
   def avatar?
@@ -29,5 +34,11 @@ class User < ApplicationRecord
 
   def assignable_roles
     ROLES[0..ROLES.index(role)]
+  end
+
+  def create_slug
+    if slug.blank? && first_name.present? && last_name.present?
+      self.slug = "#{first_name.to_s.downcase.parameterize.tr('_', '')}-#{last_name.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
+    end
   end
 end
