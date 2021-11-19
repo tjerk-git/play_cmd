@@ -4,7 +4,7 @@ class User < ApplicationRecord
   ROLES       = %w[user teacher admin].freeze
   ADMIN_ROLES = %w[teacher admin].freeze
 
-  slugging :first_name, :last_name
+  slugging :first_name
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
