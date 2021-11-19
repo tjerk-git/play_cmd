@@ -12,7 +12,7 @@ class CreateCommunities < ActiveRecord::Migration[7.0]
       t.integer :owner, null: false # Uncomment when you want creator to be the owner
       t.integer :created_by, null: false
 
-      # Optional stuff (ready for discussion)
+      ## Optional stuff (ready for discussion)
 
       # t.string :category, null: true
       # t.string :bg_color_hex, null: true, default: "#fff"
