@@ -48,6 +48,9 @@ gem "image_processing", "~> 1.2"
 # Use Devise for authentication
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 
+gem "action_policy-graphql", "~> 0.4"
+gem "graphql"
+
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
