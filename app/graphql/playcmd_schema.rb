@@ -1,29 +1,51 @@
-class PlayCMDSchema < GraphQL::Schema
-
-  log_query_depth = GraphQL::Analysis::QueryDepth.new do |_query, depth|
-    Rails.logger.info("[GraphQL Query Depth] #{depth}")
-  end
-
-  query_analyzer(log_query_depth)
+class PlaycmdSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
-  def self.unauthorized_object(error)
-    raise GraphQL::ExecutionError, "An object of type #{error.type.graphql_name} was hidden due to permissions"
+  # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
+  use GraphQL::Dataloader
+
+  # GraphQL-Ruby calls this when something goes wrong while running a query:
+  def self.type_error(err)
+    # if err.is_a?(GraphQL::InvalidNullError)
+    #   # report to your bug tracker here
+    #   return nil
+    # end
+    super
   end
 
-  def self.unauthorized_field(error)
-    raise GraphQL::ExecutionError, "The field #{error.field.graphql_name} on an object of type #{error.type.graphql_name} was hidden due to permissions"
+  # Union and Interface Resolution
+  def self.resolve_type(abstract_type, obj, ctx)
+    # TODO: Implement this function
+    # to return the correct GraphQL object type for `obj`
+    raise(GraphQL::RequiredImplementationMissingError)
   end
 
-  rescue_from(ActionPolicy::Unauthorized) do |exp|
-    raise GraphQL::ExecutionError.new(
-      exp.result.message,
-      extensions: {
-        code: :unauthorized,
-        fullMessages: exp.result.reasons.full_messages,
-        details: exp.result.reasons.details
-      }
-    )
+  # Relay-style Object Identification:
+
+  # Return a string UUID for `object`
+  def self.id_from_object(object, type_definition, query_ctx)
+    # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
+    object_id = object.to_global_id.to_s
+    # Remove this redundant prefix to make IDs shorter:
+    object_id = object_id.sub("gid://#{GlobalID.app}/", "")
+    encoded_id = Base64.urlsafe_encode64(object_id)
+    # Remove the "=" padding
+    encoded_id = encoded_id.sub(/=+/, "")
+    # Add a type hint
+    type_hint = type_definition.graphql_name.first
+    "#{type_hint}_#{encoded_id}"
+  end
+
+  # Given a string UUID, find the object
+  def self.object_from_id(encoded_id_with_hint, query_ctx)
+    # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
+    # Split off the type hint
+    _type_hint, encoded_id = encoded_id_with_hint.split("_", 2)
+    # Decode the ID
+    id = Base64.urlsafe_decode64(encoded_id)
+    # Rebuild it for Rails then find the object:
+    full_global_id = "gid://#{GlobalID.app}/#{id}"
+    GlobalID::Locator.locate(full_global_id)
   end
 end
