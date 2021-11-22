@@ -1,4 +1,4 @@
-class PlaycmdSchema < GraphQL::Schema
+class PlayCmdSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
