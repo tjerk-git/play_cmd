@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+has_secure_password
   ROLES       = %w[user teacher admin].freeze
   ADMIN_ROLES = %w[teacher admin].freeze
 
@@ -7,7 +8,7 @@ class User < ApplicationRecord
             :recoverable, 
             :rememberable, 
             :validatable
-            
+
   validates :first_name, :last_name, presence: true
 
   validates :email, format: {

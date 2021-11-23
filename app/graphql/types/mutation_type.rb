@@ -1,5 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
-    field :user, mutation: Mutations::User::CreateUser
+    field :sign_in_mutation, mutation: Mutations::SignInMutation
+    
   end
 end
