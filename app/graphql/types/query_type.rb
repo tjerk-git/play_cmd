@@ -7,5 +7,12 @@ module Types
     def communities
         Community.all()
     end
+
+    field :user, Types::UserType, null: false, description: "Get current user"
+    def user
+        {
+            user: context[:current_user]
+        }
+    end
   end
 end

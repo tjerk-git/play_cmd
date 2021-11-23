@@ -10,7 +10,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      session: session,
+      current_user: current_user
     }
     result = PlayCmdSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -21,6 +22,18 @@ class GraphqlController < ApplicationController
 
   private
 
+  def current_user
+    return nil if request.headers['Authorization'].blank?
+    token = request.headers['Authorization'].split(' ').last
+    return nil if token.blank?
+    payload = JsonWebToken.decode(token)
+    User.find(payload["sub"])
+  rescue ::JWT::ExpiredSignature
+    fail "Auth token has expired"
+  rescue ::JWT::DecodeError
+    fail "Auth token is invalid"
+  end
+  
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)
     case variables_param
