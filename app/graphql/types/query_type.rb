@@ -8,11 +8,9 @@ module Types
         Community.all()
     end
 
-    field :user, Types::UserType, null: false, description: "Get current user"
-    def user
-        {
-            user: context[:current_user]
-        }
+    field :current_user, Types::UserType, null: false, description: "Get current user"
+    def current_user()
+        context[:current_user]
     end
   end
 end

@@ -9,8 +9,6 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      session: session,
       current_user: current_user
     }
     result = PlayCmdSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
@@ -27,7 +25,7 @@ class GraphqlController < ApplicationController
     token = request.headers['Authorization'].split(' ').last
     return nil if token.blank?
     payload = JsonWebToken.decode(token)
-    User.find(payload["sub"])
+    User.find_by_id(payload["sub"])
   rescue ::JWT::ExpiredSignature
     fail "Auth token has expired"
   rescue ::JWT::DecodeError
