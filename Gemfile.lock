@@ -109,6 +109,8 @@ GEM
       railties
       sprockets-rails
     graphql (1.12.20)
+    graphql_playground-rails (2.1.0)
+      rails (>= 5.1.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -143,6 +145,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.0.alpha2)
@@ -234,11 +238,13 @@ DEPENDENCIES
   devise!
   graphiql-rails
   graphql
+  graphql_playground-rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jsbundling-rails (~> 0.1.0)
   jwt
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.0.alpha2)
   redis (~> 4.0)
   selenium-webdriver

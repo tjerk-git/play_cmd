@@ -18,7 +18,10 @@ gem "image_processing", "~> 1.2"
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem "action_policy-graphql", "~> 0.4"
 gem "graphql"
+gem "graphql_playground-rails"
 gem 'jwt'
+gem 'rack-cors'
+
 group :development, :test do
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
 end
