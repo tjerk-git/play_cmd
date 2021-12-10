@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   darkMode: 'media',
-  purge: [
+  content: [
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js'
